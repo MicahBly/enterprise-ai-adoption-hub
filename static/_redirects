@@ -1,0 +1,5 @@
+# Redirect root to /fox
+/  /fox  301
+
+# Handle all routes under /fox
+/fox/*  /fox/index.html  200

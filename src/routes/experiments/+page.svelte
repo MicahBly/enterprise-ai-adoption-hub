@@ -212,7 +212,7 @@
 						</div>
 					</CardHeader>
 					<CardContent class="space-y-4">
-						<p class="text-sm text-gray-800 dark:text-gray-200">{experiment.description}</p>
+						<p class="text-sm text-black">{experiment.description}</p>
 						
 						<div class="space-y-2">
 							<div class="flex justify-between text-sm">
@@ -285,7 +285,7 @@
 									</div>
 								</CardHeader>
 								<CardContent class="space-y-3">
-									<p class="text-sm text-gray-800 dark:text-gray-200">{suggestion.description}</p>
+									<p class="text-sm text-black">{suggestion.description}</p>
 									
 									<div class="space-y-2">
 										<div class="flex items-center gap-2 text-sm">

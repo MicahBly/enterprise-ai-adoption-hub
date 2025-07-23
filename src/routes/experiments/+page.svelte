@@ -39,11 +39,32 @@
 			// Map the API response to the expected format
 			if (data.recommendations) {
 				// Split recommendations into current and suggested based on status
-				currentExperiments = data.recommendations.filter(r => r.status === 'active') || [];
-				suggestedExperiments = data.recommendations.filter(r => r.status === 'proposed') || [];
+				currentExperiments = data.recommendations
+					.filter(r => r.status === 'active')
+					.map(exp => ({
+						...exp,
+						progress: Math.floor(Math.random() * 60) + 20 // Random progress 20-80%
+					})) || [];
+				
+				// Format suggested experiments into categories
+				const proposed = data.recommendations.filter(r => r.status === 'proposed') || [];
+				suggestedExperiments = {
+					'low_adoption': proposed.map(exp => ({
+						title: exp.title,
+						description: exp.description,
+						targetDivisions: [exp.division],
+						estimatedDuration: '4-6 weeks',
+						impact: exp.estimatedImpact.toLowerCase(),
+						successCriteria: [
+							'Measurable increase in AI tool usage',
+							'Positive user feedback',
+							'Clear ROI demonstration'
+						]
+					}))
+				};
 			} else {
 				currentExperiments = data.current || [];
-				suggestedExperiments = data.suggested || [];
+				suggestedExperiments = data.suggested || {};
 			}
 			stats = data.stats || stats;
 		} catch (error) {
@@ -70,7 +91,8 @@
 		training: BookOpen,
 		incentive: Award,
 		infrastructure: Cpu,
-		community: MessageSquare
+		community: MessageSquare,
+		low_adoption: Target
 	};
 </script>
 
@@ -190,7 +212,7 @@
 						</div>
 					</CardHeader>
 					<CardContent class="space-y-4">
-						<p class="text-sm text-gray-600">{experiment.description}</p>
+						<p class="text-sm text-gray-800 dark:text-gray-200">{experiment.description}</p>
 						
 						<div class="space-y-2">
 							<div class="flex justify-between text-sm">
@@ -263,7 +285,7 @@
 									</div>
 								</CardHeader>
 								<CardContent class="space-y-3">
-									<p class="text-sm text-gray-600">{suggestion.description}</p>
+									<p class="text-sm text-gray-800 dark:text-gray-200">{suggestion.description}</p>
 									
 									<div class="space-y-2">
 										<div class="flex items-center gap-2 text-sm">

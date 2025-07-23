@@ -1,14 +1,13 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { db } from '$lib/db';
-import { useCases } from '$lib/db/schema';
+import useCasesData from '$lib/data/use-cases-db.json';
 
 export const GET: RequestHandler = async ({ url }) => {
   try {
     const period = url.searchParams.get('period') || 'all';
     
-    // Get all use cases
-    const allUseCases = await db.select().from(useCases);
+    // Use the imported JSON data
+    const allUseCases = useCasesData;
     
     // Calculate financial metrics
     const totalSavings = allUseCases.reduce((sum, uc) => sum + (uc.costSavings || 0), 0);

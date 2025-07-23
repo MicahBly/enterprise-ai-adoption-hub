@@ -36,8 +36,15 @@
 			const response = await fetch(`${base}/api/experiments`);
 			const data = await response.json();
 			
-			currentExperiments = data.current || [];
-			suggestedExperiments = data.suggested || [];
+			// Map the API response to the expected format
+			if (data.recommendations) {
+				// Split recommendations into current and suggested based on status
+				currentExperiments = data.recommendations.filter(r => r.status === 'active') || [];
+				suggestedExperiments = data.recommendations.filter(r => r.status === 'proposed') || [];
+			} else {
+				currentExperiments = data.current || [];
+				suggestedExperiments = data.suggested || [];
+			}
 			stats = data.stats || stats;
 		} catch (error) {
 			console.error('Error loading experiments:', error);

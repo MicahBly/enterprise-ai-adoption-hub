@@ -16,7 +16,7 @@ const config = {
 			out: 'build'
 		}),
 		paths: {
-			base: '/fox'
+			base: '/ai-hub-prototype'
 		}
 	}
 };

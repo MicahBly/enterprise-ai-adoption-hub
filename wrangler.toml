@@ -1,5 +1,6 @@
 name = "enterprise-ai-adoption-hub"
 compatibility_date = "2025-01-23"
+pages_build_output_dir = ".svelte-kit/cloudflare"
 
 # This is required for the SvelteKit Cloudflare adapter
 main = "./.svelte-kit/cloudflare/_worker.js"

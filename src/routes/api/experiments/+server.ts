@@ -1,14 +1,13 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { db } from '$lib/db';
-import { useCases, adoptionData } from '$lib/db/schema';
-import { sql } from 'drizzle-orm';
+import useCasesData from '$lib/data/use-cases-db.json';
+import adoptionDataRaw from '$lib/data/adoption-data.json';
 
 export const GET: RequestHandler = async () => {
   try {
-    // Get adoption data and use cases for analysis
-    const allUseCases = await db.select().from(useCases);
-    const adoptionMatrix = await db.select().from(adoptionData);
+    // Use the imported JSON data
+    const allUseCases = useCasesData;
+    const adoptionMatrix = adoptionDataRaw;
     
     // Calculate statistics
     const activeExperiments = 12; // In real implementation, would come from experiments table
@@ -41,177 +40,69 @@ export const GET: RequestHandler = async () => {
       }
     });
     
-    // Current experiments (mock data - in real implementation would come from experiments table)
-    const currentExperiments = [
+    // Find underutilized tools
+    const underutilizedTools = [];
+    toolAdoption.forEach((percentages, tool) => {
+      const avg = percentages.reduce((a, b) => a + b, 0) / percentages.length;
+      if (avg < 30) {
+        underutilizedTools.push(tool);
+      }
+    });
+    
+    // Get high impact use cases for potential experiments
+    const highImpactUseCases = allUseCases
+      .filter(uc => uc.status === 'in-progress' || uc.status === 'planned')
+      .sort((a, b) => {
+        const impactA = (a.costSavings || 0) + (a.revenueIncrease || 0);
+        const impactB = (b.costSavings || 0) + (b.revenueIncrease || 0);
+        return impactB - impactA;
+      })
+      .slice(0, 5);
+    
+    // Sample experiment recommendations
+    const recommendations = [
       {
-        id: 'exp-001',
-        title: 'AI Champions Program',
-        division: 'Fox News Media',
-        description: 'Training 20 AI champions to mentor teams and drive adoption of ChatGPT and Claude for content creation.',
-        status: 'active',
-        progress: 65,
-        startDate: 'Oct 2024',
-        duration: '3 months',
-        metrics: [
-          '20 champions trained',
-          '50+ team members mentored',
-          '30% increase in AI tool usage'
-        ]
+        id: 'exp-1',
+        title: 'AI Code Review Assistant for Development Teams',
+        division: lowAdoptionDivisions[0] || 'Technology',
+        aiTool: 'Claude',
+        estimatedImpact: 'High',
+        status: 'proposed',
+        description: 'Implement AI-powered code review to improve code quality and reduce review time by 40%'
       },
       {
-        id: 'exp-002',
-        title: 'Automated Workflow Templates',
-        division: 'Fox Sports Media Group',
-        description: 'Creating pre-built AI workflow templates for common sports content generation tasks.',
+        id: 'exp-2',
+        title: 'Voice-to-Text Meeting Transcription',
+        division: lowAdoptionDivisions[1] || 'Sales',
+        aiTool: 'Whisper',
+        estimatedImpact: 'Medium',
         status: 'active',
-        progress: 40,
-        startDate: 'Nov 2024',
-        duration: '2 months',
-        metrics: [
-          '10 workflow templates created',
-          '5 hours saved per week per user',
-          '80% user satisfaction'
-        ]
+        description: 'Automatically transcribe and summarize sales calls to capture insights and action items'
       },
       {
-        id: 'exp-003',
-        title: 'AI Hackathon Series',
-        division: 'Fox Digital',
-        description: 'Monthly hackathons to discover innovative AI use cases and build prototypes.',
-        status: 'completed',
-        progress: 100,
-        startDate: 'Sep 2024',
-        duration: '3 months',
-        metrics: [
-          '3 hackathons completed',
-          '15 prototypes built',
-          '5 ideas moved to production'
-        ]
+        id: 'exp-3',
+        title: 'Automated Contract Analysis',
+        division: 'Legal',
+        aiTool: 'GPT-4',
+        estimatedImpact: 'Very High',
+        status: 'proposed',
+        description: 'Use AI to review contracts for risk factors and compliance issues, reducing review time by 60%'
       }
     ];
     
-    // Suggested experiments based on adoption data
-    const suggestedExperiments = {
-      training: [
-        {
-          title: 'AI Literacy Bootcamp',
-          description: 'Intensive 2-day workshops for divisions with low AI adoption to build foundational skills.',
-          impact: 'high',
-          targetDivisions: lowAdoptionDivisions.slice(0, 3),
-          estimatedDuration: '2 weeks',
-          successCriteria: [
-            '90% participant completion',
-            '25% increase in tool usage',
-            'NPS score > 8'
-          ]
-        },
-        {
-          title: 'Tool-Specific Workshops',
-          description: 'Deep dive sessions on underutilized tools like Whisper for transcription and Midjourney for visuals.',
-          impact: 'medium',
-          targetDivisions: ['Fox News Media', 'Fox Sports'],
-          estimatedDuration: '1 month',
-          successCriteria: [
-            '50 participants per session',
-            '3x increase in tool usage',
-            'Create 5 success stories'
-          ]
-        }
-      ],
-      incentive: [
-        {
-          title: 'AI Innovation Awards',
-          description: 'Quarterly awards recognizing teams that achieve significant results using AI tools.',
-          impact: 'high',
-          targetDivisions: ['All Divisions'],
-          estimatedDuration: 'Ongoing',
-          successCriteria: [
-            '20+ submissions per quarter',
-            'Cross-division participation',
-            'Documented ROI > $100k'
-          ]
-        },
-        {
-          title: 'Usage Milestone Rewards',
-          description: 'Gamified system rewarding teams for reaching AI tool usage milestones.',
-          impact: 'medium',
-          targetDivisions: lowAdoptionDivisions,
-          estimatedDuration: '6 months',
-          successCriteria: [
-            '50% participation rate',
-            '2x usage increase',
-            'Sustained engagement'
-          ]
-        }
-      ],
-      infrastructure: [
-        {
-          title: 'AI Sandbox Environment',
-          description: 'Dedicated environment for teams to experiment with AI tools without production risks.',
-          impact: 'high',
-          targetDivisions: ['Fox Digital', 'Fox Entertainment'],
-          estimatedDuration: '2 months',
-          successCriteria: [
-            '100+ active users',
-            '20 experiments per month',
-            '5 ideas promoted to production'
-          ]
-        },
-        {
-          title: 'Integration Templates',
-          description: 'Pre-built integrations between AI tools and existing Fox systems.',
-          impact: 'medium',
-          targetDivisions: ['All Technical Teams'],
-          estimatedDuration: '3 months',
-          successCriteria: [
-            '10 templates created',
-            '50% reduction in setup time',
-            '80% reuse rate'
-          ]
-        }
-      ],
-      community: [
-        {
-          title: 'AI User Groups',
-          description: 'Division-specific communities for sharing best practices and use cases.',
-          impact: 'medium',
-          targetDivisions: ['All Divisions'],
-          estimatedDuration: 'Ongoing',
-          successCriteria: [
-            '200+ active members',
-            'Weekly knowledge sharing',
-            '10 cross-team collaborations'
-          ]
-        },
-        {
-          title: 'Show & Tell Sessions',
-          description: 'Monthly demos where teams showcase their AI implementations and results.',
-          impact: 'low',
-          targetDivisions: ['All Divisions'],
-          estimatedDuration: 'Ongoing',
-          successCriteria: [
-            '5 demos per session',
-            '100+ attendees',
-            '3 ideas replicated'
-          ]
-        }
-      ]
-    };
-    
-    // Calculate participating divisions
-    const participatingDivisions = new Set(currentExperiments.map(exp => exp.division)).size;
-    
-    // Projected impact based on current experiments
-    const projectedImpact = 18; // Calculated from experiment success metrics
-    
     return json({
-      current: currentExperiments,
-      suggested: suggestedExperiments,
       stats: {
         activeExperiments,
+        completedExperiments,
         successRate,
-        participatingDivisions,
-        projectedImpact
+        lowAdoptionDivisions: lowAdoptionDivisions.length,
+        underutilizedTools: underutilizedTools.length
+      },
+      recommendations,
+      insights: {
+        lowAdoptionDivisions: lowAdoptionDivisions.slice(0, 3),
+        underutilizedTools: underutilizedTools.slice(0, 3),
+        highImpactOpportunities: highImpactUseCases.length
       }
     });
   } catch (error) {

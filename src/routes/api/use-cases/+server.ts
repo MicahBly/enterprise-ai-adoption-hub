@@ -1,8 +1,6 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { db } from '$lib/db';
-import { useCases } from '$lib/db/schema';
-import { desc, like, or, inArray } from 'drizzle-orm';
+import useCasesData from '$lib/data/use-cases-db.json';
 
 export const GET: RequestHandler = async ({ url }) => {
   try {
@@ -12,41 +10,42 @@ export const GET: RequestHandler = async ({ url }) => {
     const status = searchParams.get('status');
     const tags = searchParams.get('tags')?.split(',').filter(Boolean);
 
-    let query = db.select().from(useCases);
+    let results = [...useCasesData];
 
     // Apply filters
-    const conditions = [];
-    
     if (division && division !== 'all') {
-      conditions.push(like(useCases.division, `%${division}%`));
+      results = results.filter(uc => 
+        uc.division.toLowerCase().includes(division.toLowerCase())
+      );
     }
     
     if (search) {
-      conditions.push(
-        or(
-          like(useCases.title, `%${search}%`),
-          like(useCases.description, `%${search}%`),
-          like(useCases.impact, `%${search}%`)
-        )
+      const searchLower = search.toLowerCase();
+      results = results.filter(uc => 
+        uc.title.toLowerCase().includes(searchLower) ||
+        uc.description.toLowerCase().includes(searchLower) ||
+        uc.impact.toLowerCase().includes(searchLower)
       );
     }
     
     if (status && status !== 'all') {
-      conditions.push(like(useCases.status, status));
+      results = results.filter(uc => uc.status === status);
     }
 
-    if (conditions.length > 0) {
-      query = query.where(...conditions);
-    }
-
-    let results = await query.orderBy(desc(useCases.updatedAt));
-
-    // Filter by tags if provided (since we store tags as JSON)
+    // Filter by tags if provided
     if (tags && tags.length > 0) {
-      results = results.filter(useCase => 
-        tags.some(tag => useCase.tags.includes(tag))
-      );
+      results = results.filter(useCase => {
+        const useCaseTags = JSON.parse(useCase.tags);
+        return tags.some(tag => useCaseTags.includes(tag));
+      });
     }
+
+    // Sort by updatedAt descending
+    results.sort((a, b) => {
+      const dateA = new Date(a.updatedAt || a.createdAt).getTime();
+      const dateB = new Date(b.updatedAt || b.createdAt).getTime();
+      return dateB - dateA;
+    });
 
     return json(results);
   } catch (error) {
@@ -59,12 +58,8 @@ export const POST: RequestHandler = async ({ request }) => {
   try {
     const data = await request.json();
     
-    const newUseCase = await db.insert(useCases).values({
-      ...data,
-      id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-    }).returning();
-
-    return json(newUseCase[0]);
+    // For production, just return an error since we can't write to JSON files
+    return json({ error: 'Creating use cases is not supported in production' }, { status: 501 });
   } catch (error) {
     console.error('Error creating use case:', error);
     return json({ error: 'Failed to create use case' }, { status: 500 });

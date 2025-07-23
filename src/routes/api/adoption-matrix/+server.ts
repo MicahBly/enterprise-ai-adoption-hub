@@ -1,12 +1,11 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { db } from '$lib/db';
-import { useCases } from '$lib/db/schema';
+import useCasesData from '$lib/data/use-cases-db.json';
 
 export const GET: RequestHandler = async () => {
   try {
-    // Get all use cases from database
-    const allUseCases = await db.select().from(useCases);
+    // Use the imported JSON data
+    const allUseCases = useCasesData;
     
     if (allUseCases.length === 0) {
       return json({ error: 'No use cases found' }, { status: 404 });
@@ -78,25 +77,8 @@ export const GET: RequestHandler = async () => {
 
 export const PUT: RequestHandler = async ({ request }) => {
   try {
-    const { division, aiTool, adoptionPercentage } = await request.json();
-    
-    const id = `${division.toLowerCase().replace(/\s+/g, '-')}-${aiTool.toLowerCase().replace(/\s+/g, '-')}`;
-    
-    const updatedData = await db.insert(adoptionData).values({
-      id,
-      division,
-      aiTool,
-      adoptionPercentage,
-      lastUpdated: new Date().toISOString(),
-    }).onConflictDoUpdate({
-      target: adoptionData.id,
-      set: {
-        adoptionPercentage,
-        lastUpdated: new Date().toISOString(),
-      }
-    }).returning();
-    
-    return json(updatedData[0]);
+    // For production, just return an error since we can't write to JSON files
+    return json({ error: 'Updating adoption data is not supported in production' }, { status: 501 });
   } catch (error) {
     console.error('Error updating adoption data:', error);
     return json({ error: 'Failed to update adoption data' }, { status: 500 });

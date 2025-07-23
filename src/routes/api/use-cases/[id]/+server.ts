@@ -1,20 +1,16 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { db } from '$lib/db';
-import { useCases } from '$lib/db/schema';
-import { eq } from 'drizzle-orm';
+import useCasesData from '$lib/data/use-cases-db.json';
 
 export const GET: RequestHandler = async ({ params }) => {
   try {
-    const { id } = params;
+    const useCase = useCasesData.find(uc => uc.id === params.id);
     
-    const useCase = await db.select().from(useCases).where(eq(useCases.id, id)).limit(1);
-    
-    if (useCase.length === 0) {
+    if (!useCase) {
       return json({ error: 'Use case not found' }, { status: 404 });
     }
-
-    return json(useCase[0]);
+    
+    return json(useCase);
   } catch (error) {
     console.error('Error fetching use case:', error);
     return json({ error: 'Failed to fetch use case' }, { status: 500 });
@@ -23,19 +19,8 @@ export const GET: RequestHandler = async ({ params }) => {
 
 export const PUT: RequestHandler = async ({ params, request }) => {
   try {
-    const { id } = params;
-    const data = await request.json();
-    
-    const updatedUseCase = await db.update(useCases)
-      .set({ ...data, updatedAt: new Date().toISOString() })
-      .where(eq(useCases.id, id))
-      .returning();
-
-    if (updatedUseCase.length === 0) {
-      return json({ error: 'Use case not found' }, { status: 404 });
-    }
-
-    return json(updatedUseCase[0]);
+    // For production, just return an error since we can't write to JSON files
+    return json({ error: 'Updating use cases is not supported in production' }, { status: 501 });
   } catch (error) {
     console.error('Error updating use case:', error);
     return json({ error: 'Failed to update use case' }, { status: 500 });
@@ -44,17 +29,8 @@ export const PUT: RequestHandler = async ({ params, request }) => {
 
 export const DELETE: RequestHandler = async ({ params }) => {
   try {
-    const { id } = params;
-    
-    const deletedUseCase = await db.delete(useCases)
-      .where(eq(useCases.id, id))
-      .returning();
-
-    if (deletedUseCase.length === 0) {
-      return json({ error: 'Use case not found' }, { status: 404 });
-    }
-
-    return json({ message: 'Use case deleted successfully' });
+    // For production, just return an error since we can't write to JSON files
+    return json({ error: 'Deleting use cases is not supported in production' }, { status: 501 });
   } catch (error) {
     console.error('Error deleting use case:', error);
     return json({ error: 'Failed to delete use case' }, { status: 500 });

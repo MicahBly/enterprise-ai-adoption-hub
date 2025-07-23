@@ -1,5 +1,2 @@
-# Redirect root to /fox
-/  /fox  301
-
-# Handle all routes under /fox
-/fox/*  /fox/index.html  200
+# SPA fallback - all routes go to index.html
+/*  /index.html  200

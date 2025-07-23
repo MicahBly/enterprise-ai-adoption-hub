@@ -1,19 +1,9 @@
 name = "enterprise-ai-adoption-hub"
 compatibility_date = "2025-01-23"
+
+# Pages configuration
 pages_build_output_dir = ".svelte-kit/cloudflare"
 
-# This is required for the SvelteKit Cloudflare adapter
-main = "./.svelte-kit/cloudflare/_worker.js"
-
-# Static assets configuration
-[assets]
-directory = "./.svelte-kit/cloudflare"
-binding = "STATIC"
-
-# Build configuration
-[build]
-command = "npm run build"
-
-# Environment variables
+# Environment variables (if needed for runtime)
 [vars]
 NODE_VERSION = "20"

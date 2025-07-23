@@ -1,0 +1,534 @@
+import { d as derived, w as writable } from "./index.js";
+import { b as base } from "./paths.js";
+const useCasesData = [
+  {
+    id: "onefox-ai-advertising-platform",
+    title: "OneFOX AI-Driven Converged Media Platform",
+    division: "Fox Corporation",
+    status: "production",
+    description: "AI-powered converged media platform by AdRise that harnesses audience & contextual signals along with behavioral, creative and campaign analytics to create personalized ad experiences and increase ad efficacy across FOX Entertainment, FOX Sports, FOX News Media and Tubi.",
+    impact: "Unified planning, activation and measurement across all Fox properties",
+    tags: [
+      "ai",
+      "advertising",
+      "machine-learning",
+      "llm"
+    ],
+    owner: "AdRise Technology Team",
+    techStack: {
+      ai: [
+        "Machine Learning",
+        "Large Language Models (LLMs)",
+        "Predictive Models"
+      ],
+      infrastructure: [
+        "AWS",
+        "Proprietary AdRise Platform"
+      ],
+      integration: [
+        "FOX Entertainment",
+        "FOX Sports",
+        "FOX News Media",
+        "Tubi"
+      ]
+    },
+    reusePotential: "Very High - core platform for all Fox advertising across properties",
+    enablementSteps: [
+      "Deploy AI-driven audience modeling",
+      "Integrate predictive campaign strategies",
+      "Implement unified measurement tools",
+      "Connect all Fox brand platforms"
+    ]
+  },
+  {
+    id: "verify-blockchain-platform",
+    title: "Verify - Blockchain Platform for AI Content Licensing",
+    division: "Fox Corporation",
+    status: "production",
+    description: "Blockchain platform to negotiate licensing agreements with AI firms, allowing media companies to register content, verify ownership, and grant usage rights to AI platforms for training large language models.",
+    impact: "Industry-first solution for protecting content from unauthorized AI training",
+    tags: [
+      "blockchain",
+      "ai",
+      "content-protection",
+      "licensing"
+    ],
+    owner: "Fox Corporation Technology",
+    techStack: {
+      ai: [
+        "Content Verification Systems",
+        "Blockchain Smart Contracts"
+      ],
+      infrastructure: [
+        "Blockchain Protocol",
+        "Third-party Publishing Integrations"
+      ],
+      integration: [
+        "Content Management Systems",
+        "AI Platform APIs"
+      ]
+    },
+    reusePotential: "High - can be licensed to other media companies",
+    enablementSteps: [
+      "Register content on blockchain",
+      "Integrate with CMS systems",
+      "Establish AI licensing protocols",
+      "Deploy verification tools"
+    ]
+  },
+  {
+    id: "fox-mediacloud-aws",
+    title: "MediaCloud - Cloud-Based Media Processing Platform",
+    division: "Fox Corporation",
+    status: "production",
+    description: "Built on AWS after migrating 8 petabytes of content in 6 weeks, MediaCloud processes and distributes programming with enhanced functionality and speed, achieving industry-first uncompressed live video delivery with zero redundancy.",
+    impact: "Enabled remote editing during COVID-19, processes thousands of high-profile events including Super Bowl",
+    tags: [
+      "cloud",
+      "aws",
+      "media-processing",
+      "live-streaming"
+    ],
+    owner: "Fox Technology Infrastructure",
+    techStack: {
+      ai: [
+        "Amazon SageMaker",
+        "ML Automation"
+      ],
+      infrastructure: [
+        "AWS S3",
+        "AWS EC2",
+        "AWS Lambda",
+        "Amazon CloudFront"
+      ],
+      integration: [
+        "Live Production Systems",
+        "Tubi Content Library",
+        "Broadcast Systems"
+      ]
+    },
+    reusePotential: "Very High - foundation for all Fox media operations",
+    enablementSteps: [
+      "Migrate content to cloud storage",
+      "Deploy serverless processing",
+      "Implement disaster recovery",
+      "Enable remote workflows"
+    ]
+  },
+  {
+    id: "fox-sports-ml-commentary",
+    title: "ML-Powered Natural Language Sports Commentary",
+    division: "Fox Sports Media Group",
+    status: "production",
+    description: "Using Amazon SageMaker and ML Solutions Lab partnership, generates natural language in-game storylines for live sports commentaries from structured data, enhancing sports narratives with AI-powered insights.",
+    impact: "Enhanced viewer engagement with data-driven storylines during broadcasts",
+    tags: [
+      "nlp",
+      "sports",
+      "real-time",
+      "sagemaker"
+    ],
+    owner: "Fox Sports Technology",
+    techStack: {
+      ai: [
+        "Amazon SageMaker",
+        "Natural Language Generation",
+        "Custom ML Models"
+      ],
+      infrastructure: [
+        "AWS ML Solutions",
+        "Real-time Processing"
+      ],
+      integration: [
+        "Sports Data Feeds",
+        "Broadcast Graphics",
+        "Commentary Systems"
+      ]
+    },
+    reusePotential: "High - adaptable to different sports and broadcast formats",
+    enablementSteps: [
+      "Train NLG models on sports data",
+      "Integrate with live data feeds",
+      "Deploy real-time generation",
+      "Connect to broadcast systems"
+    ]
+  },
+  {
+    id: "fox-tech-streaming-platform",
+    title: "Next-Gen Streaming Technology Platform",
+    division: "Fox Tech",
+    status: "production",
+    description: "Comprehensive streaming platform supporting iOS, Android, tvOS, Roku, Fire TV with React/Vue.js web frontends, Golang/PHP backends, and advanced video delivery through HLS/MPEG-DASH protocols with 4K/HDR support.",
+    impact: "Powers some of the biggest sports, entertainment and news streaming services",
+    tags: [
+      "streaming",
+      "multi-platform",
+      "4k",
+      "hdr"
+    ],
+    owner: "Fox Tech Engineering",
+    techStack: {
+      ai: [
+        "Personalization Algorithms",
+        "Content Recommendations"
+      ],
+      infrastructure: [
+        "AWS",
+        "Google Cloud Platform",
+        "Docker",
+        "Terraform"
+      ],
+      integration: [
+        "Akamai CDN",
+        "Fastly",
+        "AWS CloudFront"
+      ]
+    },
+    reusePotential: "Very High - core streaming infrastructure for all properties",
+    enablementSteps: [
+      "Deploy multi-platform apps",
+      "Implement video delivery pipeline",
+      "Configure CDN distribution",
+      "Enable 4K/HDR streaming"
+    ]
+  },
+  {
+    id: "aws-clean-rooms-collaboration",
+    title: "AWS Clean Rooms for Secure Data Collaboration",
+    division: "Fox Corporation",
+    status: "production",
+    description: "Enables secure data collaborations in AWS Cloud helping advertising clients unlock new insights across every Fox brand while protecting consumer data privacy.",
+    impact: "Secure data sharing with advertisers while maintaining privacy compliance",
+    tags: [
+      "privacy",
+      "data-collaboration",
+      "aws",
+      "advertising"
+    ],
+    owner: "Fox Data & Commercial Technology",
+    techStack: {
+      ai: [
+        "Privacy-Preserving Analytics",
+        "Secure Multi-party Computation"
+      ],
+      infrastructure: [
+        "AWS Clean Rooms",
+        "Encrypted Data Storage"
+      ],
+      integration: [
+        "Advertiser Systems",
+        "Fox Brand Data",
+        "Privacy Compliance Tools"
+      ]
+    },
+    reusePotential: "High - applicable to all advertiser partnerships",
+    enablementSteps: [
+      "Set up secure data environments",
+      "Configure privacy protocols",
+      "Enable advertiser access",
+      "Implement compliance monitoring"
+    ]
+  },
+  {
+    id: "tubi-acquisition-integration",
+    title: "Tubi Streaming Service AI Integration",
+    division: "Tubi Media Group",
+    status: "production",
+    description: "Following the $440M acquisition in 2020, integrated Tubi's streaming service with Fox's AI and cloud infrastructure, enabling rapid content transfer and enhanced personalization capabilities.",
+    impact: "Transferred 2,000 assets in 2 hours, expanded content library reach",
+    tags: [
+      "acquisition",
+      "streaming",
+      "integration",
+      "personalization"
+    ],
+    owner: "Tubi Technology Team",
+    techStack: {
+      ai: [
+        "Amazon Personalize",
+        "Recommendation Engine",
+        "Content Analysis"
+      ],
+      infrastructure: [
+        "AWS MediaCloud",
+        "Content Delivery Network"
+      ],
+      integration: [
+        "Fox MediaCloud",
+        "Tubi Platform",
+        "Analytics Systems"
+      ]
+    },
+    reusePotential: "Medium - specific to Tubi but learnings apply to other acquisitions",
+    enablementSteps: [
+      "Migrate Tubi infrastructure",
+      "Integrate with Fox systems",
+      "Deploy AI personalization",
+      "Unify content delivery"
+    ]
+  },
+  {
+    id: "fox-ai-exploration-bedrock",
+    title: "Generative AI Exploration with Amazon Bedrock",
+    division: "Fox Corporation",
+    status: "development",
+    description: "Led by Lindsay Silver (SVP Data & Commercial Technology), exploring Amazon Bedrock and Titan for next-generation AI capabilities to deliver contextually relevant products to consumers, advertisers, and broadcasters.",
+    impact: "Future-proofing AI capabilities for emerging use cases",
+    tags: [
+      "generative-ai",
+      "bedrock",
+      "innovation",
+      "exploration"
+    ],
+    owner: "Data & Commercial Technology Team",
+    techStack: {
+      ai: [
+        "Amazon Bedrock",
+        "Amazon Titan",
+        "Foundation Models"
+      ],
+      infrastructure: [
+        "AWS AI Services",
+        "Serverless Architecture"
+      ],
+      integration: [
+        "Existing ML Pipeline",
+        "Content Systems",
+        "Ad Tech Platform"
+      ]
+    },
+    reusePotential: "Very High - foundation for future AI innovations",
+    enablementSteps: [
+      "Evaluate foundation models",
+      "Prototype use cases",
+      "Test integration points",
+      "Plan production deployment"
+    ]
+  },
+  {
+    id: "experian-transunion-partnership",
+    title: "Enhanced Converged Media Platform Partnerships",
+    division: "Fox Corporation",
+    status: "production",
+    description: "Strategic collaborations with Experian, TransUnion, and LiveRamp to enhance the OneFOX Converged Media Platform with advanced identity resolution and audience data capabilities.",
+    impact: "Enhanced audience targeting while maintaining privacy compliance",
+    tags: [
+      "partnerships",
+      "data",
+      "identity",
+      "advertising"
+    ],
+    owner: "Fox Advertising",
+    techStack: {
+      ai: [
+        "Identity Resolution",
+        "Audience Modeling",
+        "Privacy-Preserving ML"
+      ],
+      infrastructure: [
+        "Partner APIs",
+        "Secure Data Exchange"
+      ],
+      integration: [
+        "Experian API",
+        "TransUnion Systems",
+        "LiveRamp Platform"
+      ]
+    },
+    reusePotential: "High - model for future data partnerships",
+    enablementSteps: [
+      "Integrate partner data feeds",
+      "Implement identity matching",
+      "Deploy privacy controls",
+      "Enable audience insights"
+    ]
+  },
+  {
+    id: "enhanced-brand-storytelling",
+    title: "AI-Enhanced Brand Storytelling Program",
+    division: "Fox Corporation",
+    status: "production",
+    description: "Strategic investment in The Lighthouse to develop AI-powered brand storytelling capabilities, enabling more effective and engaging advertising content across Fox properties.",
+    impact: "Improved brand engagement and advertising effectiveness",
+    tags: [
+      "storytelling",
+      "branding",
+      "ai",
+      "content-creation"
+    ],
+    owner: "Fox Advertising",
+    techStack: {
+      ai: [
+        "Creative AI",
+        "Content Generation",
+        "Brand Analysis"
+      ],
+      infrastructure: [
+        "The Lighthouse Platform",
+        "Content Creation Tools"
+      ],
+      integration: [
+        "Ad Creative Systems",
+        "Brand Guidelines",
+        "Campaign Management"
+      ]
+    },
+    reusePotential: "Medium - customizable for different brand needs",
+    enablementSteps: [
+      "Deploy creative AI tools",
+      "Train on brand guidelines",
+      "Integrate with ad systems",
+      "Measure engagement impact"
+    ]
+  },
+  {
+    id: "super-bowl-streaming-scale",
+    title: "Super Bowl Live Streaming at Scale",
+    division: "Fox Sports Media Group",
+    status: "production",
+    description: "Leveraging AWS scale and reliability to broadcast high-profile events like Super Bowl LIV to millions of viewers with zero redundancy and industry-leading performance.",
+    impact: "Flawless delivery of major sporting events to millions of concurrent viewers",
+    tags: [
+      "live-streaming",
+      "scale",
+      "sports",
+      "reliability"
+    ],
+    owner: "Fox Sports Technology",
+    techStack: {
+      ai: [
+        "Load Prediction",
+        "Auto-scaling Algorithms"
+      ],
+      infrastructure: [
+        "AWS Auto-scaling",
+        "Multi-region Deployment",
+        "Edge Computing"
+      ],
+      integration: [
+        "Broadcast Systems",
+        "CDN Networks",
+        "Monitoring Tools"
+      ]
+    },
+    reusePotential: "Very High - blueprint for all major live events",
+    enablementSteps: [
+      "Design scalable architecture",
+      "Implement redundancy systems",
+      "Deploy edge infrastructure",
+      "Test at scale"
+    ]
+  },
+  {
+    id: "fox-data-science-culture",
+    title: "Data Science and Engineering Innovation Hub",
+    division: "Fox Tech",
+    status: "production",
+    description: "Building a community of builders, operators and innovators with startup culture, fostering experimentation and collaboration to develop next-generation streaming technology and data solutions.",
+    impact: "Attracting top tech talent and driving innovation across Fox brands",
+    tags: [
+      "culture",
+      "innovation",
+      "data-science",
+      "engineering"
+    ],
+    owner: "Fox Tech Leadership",
+    techStack: {
+      ai: [
+        "Various ML Frameworks",
+        "Experimentation Platforms"
+      ],
+      infrastructure: [
+        "Multi-cloud",
+        "Modern Data Stack",
+        "DevOps Tools"
+      ],
+      integration: [
+        "Cross-team Collaboration",
+        "Innovation Labs",
+        "Hackathons"
+      ]
+    },
+    reusePotential: "Very High - cultural foundation for all tech initiatives",
+    enablementSteps: [
+      "Establish innovation programs",
+      "Create collaboration spaces",
+      "Foster experimentation culture",
+      "Measure innovation impact"
+    ]
+  }
+];
+function createUseCasesStore() {
+  const { subscribe, set, update } = writable([]);
+  const loadUseCases = async () => {
+    try {
+      const response = await fetch(`${base}/api/use-cases`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch use cases: ${response.statusText}`);
+      }
+      const useCases = await response.json();
+      set(useCases);
+    } catch (error) {
+      console.error("Error loading use cases:", error);
+      const transformedData = useCasesData.map((uc) => ({
+        ...uc,
+        techStackAi: uc.techStack?.ai || [],
+        techStackInfrastructure: uc.techStack?.infrastructure || [],
+        techStackIntegration: uc.techStack?.integration || [],
+        subsidiary: uc.subsidiary || null,
+        estimatedUsers: uc.estimatedUsers || null,
+        costSavings: uc.costSavings || null,
+        revenueIncrease: uc.revenueIncrease || null,
+        timeToValue: uc.timeToValue || null,
+        createdAt: (/* @__PURE__ */ new Date()).toISOString(),
+        updatedAt: (/* @__PURE__ */ new Date()).toISOString()
+      }));
+      set(transformedData);
+    }
+  };
+  return {
+    subscribe,
+    set,
+    update,
+    // Load use cases from database API
+    loadUseCases,
+    // Reload use cases from API
+    reload: async () => {
+      await loadUseCases();
+    }
+  };
+}
+const useCasesStore = createUseCasesStore();
+const useCaseFilters = writable({
+  division: "all",
+  tags: [],
+  status: "all",
+  search: ""
+});
+const filteredUseCases = derived(
+  [useCasesStore, useCaseFilters],
+  ([$useCases, $filters]) => {
+    let filtered = [...$useCases];
+    if ($filters.division && $filters.division !== "all") {
+      filtered = filtered.filter((uc) => uc.division === $filters.division);
+    }
+    if ($filters.tags && $filters.tags.length > 0) {
+      filtered = filtered.filter(
+        (uc) => uc.tags.some((tag) => $filters.tags.includes(tag))
+      );
+    }
+    if ($filters.status && $filters.status !== "all") {
+      filtered = filtered.filter((uc) => uc.status === $filters.status);
+    }
+    if ($filters.search && $filters.search.trim() !== "") {
+      const searchLower = $filters.search.toLowerCase().trim();
+      filtered = filtered.filter(
+        (uc) => uc.title.toLowerCase().includes(searchLower) || uc.description.toLowerCase().includes(searchLower) || uc.impact.toLowerCase().includes(searchLower) || uc.owner.toLowerCase().includes(searchLower) || uc.tags.some((tag) => tag.toLowerCase().includes(searchLower))
+      );
+    }
+    return filtered;
+  }
+);
+export {
+  filteredUseCases as f
+};

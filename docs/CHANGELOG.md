@@ -1,3 +1,4 @@
+2025-01-23 - Fixed Cloudflare deployment by switching from Node adapter to Cloudflare adapter
 2025-01-23 - Changed base URL path from /fox to /ai-hub-prototype for better project alignment
 2025-01-14 - Fixed OPENAI_API_KEY build error by switching from static to dynamic environment variable import
 2025-01-14 - Updated deployment configurations (nixpacks.toml and Dockerfile) to handle missing environment variables gracefully

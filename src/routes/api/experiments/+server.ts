@@ -67,7 +67,7 @@ export const GET: RequestHandler = async () => {
         division: lowAdoptionDivisions[0] || 'Technology',
         aiTool: 'Claude',
         estimatedImpact: 'High',
-        status: 'proposed',
+        status: 'active',
         description: 'Implement AI-powered code review to improve code quality and reduce review time by 40%'
       },
       {
@@ -87,6 +87,33 @@ export const GET: RequestHandler = async () => {
         estimatedImpact: 'Very High',
         status: 'proposed',
         description: 'Use AI to review contracts for risk factors and compliance issues, reducing review time by 60%'
+      },
+      {
+        id: 'exp-4',
+        title: 'AI-Powered Customer Support Chatbot',
+        division: 'Customer Service',
+        aiTool: 'GPT-4',
+        estimatedImpact: 'High',
+        status: 'active',
+        description: 'Deploy intelligent chatbot to handle 70% of tier-1 support tickets automatically'
+      },
+      {
+        id: 'exp-5',
+        title: 'Predictive Analytics for Sales Forecasting',
+        division: 'Sales',
+        aiTool: 'Claude',
+        estimatedImpact: 'Medium',
+        status: 'proposed',
+        description: 'Use AI to analyze historical data and predict quarterly sales with 85% accuracy'
+      },
+      {
+        id: 'exp-6',
+        title: 'Automated Document Classification',
+        division: 'Operations',
+        aiTool: 'Claude',
+        estimatedImpact: 'Medium',
+        status: 'proposed',
+        description: 'Automatically categorize and route incoming documents to appropriate departments'
       }
     ];
     

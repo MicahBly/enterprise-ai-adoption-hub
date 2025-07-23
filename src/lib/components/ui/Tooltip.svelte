@@ -169,7 +169,6 @@
       <div class="leading-relaxed">
         {content}
       </div>
-      <div class="tooltip-arrow" />
     </div>
   </div>
 {/if}
@@ -179,49 +178,6 @@
     animation: fadeIn 0.2s ease-out;
   }
   
-  .tooltip-arrow {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-  }
-  
-  /* Arrow positioning styles */
-  .tooltip[data-arrow-direction="top"] .tooltip-arrow {
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 0 6px 6px 6px;
-    border-color: transparent transparent #1f2937 transparent;
-  }
-  
-  .tooltip[data-arrow-direction="bottom"] .tooltip-arrow {
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 6px 6px 0 6px;
-    border-color: #1f2937 transparent transparent transparent;
-  }
-  
-  .tooltip[data-arrow-direction="left"] .tooltip-arrow {
-    right: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    border-width: 6px 6px 6px 0;
-    border-color: transparent #1f2937 transparent transparent;
-  }
-  
-  .tooltip[data-arrow-direction="right"] .tooltip-arrow {
-    left: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    border-width: 6px 0 6px 6px;
-    border-color: transparent transparent transparent #1f2937;
-  }
-  
-  .tooltip[data-arrow-direction="none"] .tooltip-arrow {
-    display: none;
-  }
   
   @keyframes fadeIn {
     from {

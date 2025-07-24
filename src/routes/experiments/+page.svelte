@@ -33,8 +33,11 @@
 	
 	onMount(async () => {
 		try {
-			const response = await fetch(`${base}/api/experiments`);
+			const url = '/api/experiments';
+			console.log('Fetching experiments...', url);
+			const response = await fetch(url);
 			const data = await response.json();
+			console.log('API response:', data);
 			
 			// Map the API response to the expected format
 			if (data.recommendations) {

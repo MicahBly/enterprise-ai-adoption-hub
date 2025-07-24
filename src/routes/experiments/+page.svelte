@@ -43,7 +43,14 @@
 					.filter(r => r.status === 'active')
 					.map(exp => ({
 						...exp,
-						progress: Math.floor(Math.random() * 60) + 20 // Random progress 20-80%
+						progress: Math.floor(Math.random() * 60) + 20, // Random progress 20-80%
+						startDate: 'Nov 2024',
+						duration: '3 months',
+						metrics: [
+							'20% reduction in review time',
+							'15% improvement in code quality',
+							'90% user satisfaction'
+						]
 					})) || [];
 				
 				// Format suggested experiments into categories

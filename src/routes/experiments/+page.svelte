@@ -69,17 +69,21 @@
 						]
 					}))
 				};
+				
+				// Update stats based on actual data
+				const uniqueDivisions = [...new Set(data.recommendations.map(r => r.division))];
+				stats = {
+					activeExperiments: currentExperiments.length,
+					successRate: data.stats?.successRate || 88,
+					participatingDivisions: uniqueDivisions.length,
+					projectedImpact: 25
+				};
+				console.log('Stats updated:', stats);
 			} else {
 				currentExperiments = data.current || [];
 				suggestedExperiments = data.suggested || {};
+				stats = data.stats || stats;
 			}
-			// Update stats based on actual data
-			stats = {
-				activeExperiments: currentExperiments.length,
-				successRate: data.stats?.successRate || 88,
-				participatingDivisions: [...new Set(data.recommendations.map(r => r.division))].length,
-				projectedImpact: 25
-			};
 		} catch (error) {
 			console.error('Error loading experiments:', error);
 		}

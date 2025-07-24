@@ -131,11 +131,11 @@
 		<Card>
 			<CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
 				<CardTitle class="text-sm font-medium">Active Experiments</CardTitle>
-				<svelte:component this={FlaskConical} class="h-4 w-4 text-muted-foreground" />
+				<svelte:component this={FlaskConical} class="h-4 w-4 text-black" />
 			</CardHeader>
 			<CardContent>
 				<div class="text-2xl font-bold">{stats.activeExperiments}</div>
-				<p class="text-xs text-muted-foreground">Currently running</p>
+				<p class="text-xs text-black">Currently running</p>
 			</CardContent>
 		</Card>
 		</div>
@@ -144,11 +144,11 @@
 		<Card>
 			<CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
 				<CardTitle class="text-sm font-medium">Success Rate</CardTitle>
-				<svelte:component this={TrendingUp} class="h-4 w-4 text-muted-foreground" />
+				<svelte:component this={TrendingUp} class="h-4 w-4 text-black" />
 			</CardHeader>
 			<CardContent>
 				<div class="text-2xl font-bold">{stats.successRate}%</div>
-				<p class="text-xs text-muted-foreground">Of completed experiments</p>
+				<p class="text-xs text-black">Of completed experiments</p>
 			</CardContent>
 		</Card>
 		</div>
@@ -157,11 +157,11 @@
 		<Card>
 			<CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
 				<CardTitle class="text-sm font-medium">Participating Divisions</CardTitle>
-				<svelte:component this={Users} class="h-4 w-4 text-muted-foreground" />
+				<svelte:component this={Users} class="h-4 w-4 text-black" />
 			</CardHeader>
 			<CardContent>
 				<div class="text-2xl font-bold">{stats.participatingDivisions}</div>
-				<p class="text-xs text-muted-foreground">Actively engaged</p>
+				<p class="text-xs text-black">Actively engaged</p>
 			</CardContent>
 		</Card>
 		</div>
@@ -170,11 +170,11 @@
 		<Card>
 			<CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
 				<CardTitle class="text-sm font-medium">Projected Impact</CardTitle>
-				<svelte:component this={Target} class="h-4 w-4 text-muted-foreground" />
+				<svelte:component this={Target} class="h-4 w-4 text-black" />
 			</CardHeader>
 			<CardContent>
 				<div class="text-2xl font-bold">+{stats.projectedImpact}%</div>
-				<p class="text-xs text-muted-foreground">Adoption increase</p>
+				<p class="text-xs text-black">Adoption increase</p>
 			</CardContent>
 		</Card>
 		</div>
@@ -198,7 +198,7 @@
 						<div class="flex items-start justify-between">
 							<div class="space-y-1">
 								<CardTitle class="text-lg">{experiment.title}</CardTitle>
-								<p class="text-sm text-muted-foreground">{experiment.division}</p>
+								<p class="text-sm text-black">{experiment.division}</p>
 							</div>
 							<div class="flex items-center gap-2">
 								<svelte:component 
@@ -216,7 +216,7 @@
 						
 						<div class="space-y-2">
 							<div class="flex justify-between text-sm">
-								<span class="text-muted-foreground">Progress</span>
+								<span class="text-black">Progress</span>
 								<span class="font-medium">{experiment.progress}%</span>
 							</div>
 							<div class="w-full bg-gray-200 rounded-full h-2">
@@ -226,17 +226,17 @@
 						
 						<div class="grid grid-cols-2 gap-4 text-sm">
 							<div>
-								<p class="text-muted-foreground">Started</p>
+								<p class="text-black">Started</p>
 								<p class="font-medium">{experiment.startDate}</p>
 							</div>
 							<div>
-								<p class="text-muted-foreground">Duration</p>
+								<p class="text-black">Duration</p>
 								<p class="font-medium">{experiment.duration}</p>
 							</div>
 						</div>
 						
 						<div class="pt-2 border-t">
-							<p class="text-sm text-muted-foreground mb-1">Success Metrics</p>
+							<p class="text-sm text-black mb-1">Success Metrics</p>
 							<ul class="text-sm space-y-1">
 								{#each experiment.metrics as metric}
 									<li class="flex items-center gap-2">
@@ -260,7 +260,7 @@
 			<h2 class="text-2xl font-bold">Suggested Experiments</h2>
 		</div>
 		
-		<p class="text-muted-foreground">
+		<p class="text-black">
 			Based on your adoption matrix data, here are targeted experiments to boost AI adoption
 		</p>
 		
@@ -268,7 +268,7 @@
 			{#each Object.entries(suggestedExperiments) as [category, experiments], categoryIndex}
 				<div class="space-y-3" in:fly={{ y: 20, duration: 400, delay: 600 + (categoryIndex * 200), easing: quintOut }}>
 					<div class="flex items-center gap-2">
-						<svelte:component this={categoryIcons[category]} class="h-5 w-5 text-gray-600" />
+						<svelte:component this={categoryIcons[category]} class="h-5 w-5 text-black" />
 						<h3 class="text-lg font-semibold capitalize">{category.replace('_', ' ')}</h3>
 					</div>
 					
@@ -289,20 +289,20 @@
 									
 									<div class="space-y-2">
 										<div class="flex items-center gap-2 text-sm">
-											<svelte:component this={Users} class="h-4 w-4 text-gray-400" />
-											<span class="text-muted-foreground">Target:</span>
+											<svelte:component this={Users} class="h-4 w-4 text-black" />
+											<span class="text-black">Target:</span>
 											<span class="font-medium">{suggestion.targetDivisions.join(', ')}</span>
 										</div>
 										
 										<div class="flex items-center gap-2 text-sm">
-											<svelte:component this={Clock} class="h-4 w-4 text-gray-400" />
-											<span class="text-muted-foreground">Duration:</span>
+											<svelte:component this={Clock} class="h-4 w-4 text-black" />
+											<span class="text-black">Duration:</span>
 											<span class="font-medium">{suggestion.estimatedDuration}</span>
 										</div>
 									</div>
 									
 									<div class="pt-3 border-t">
-										<p class="text-xs text-muted-foreground mb-2">Success Criteria</p>
+										<p class="text-xs text-black mb-2">Success Criteria</p>
 										<ul class="text-xs space-y-1">
 											{#each suggestion.successCriteria as criteria}
 												<li>• {criteria}</li>

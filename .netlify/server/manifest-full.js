@@ -10,7 +10,7 @@ return {
 	assets: new Set(["favicon.png","favicon.svg"]),
 	mimeTypes: {".png":"image/png",".svg":"image/svg+xml"},
 	_: {
-		client: {start:"_app/immutable/entry/start.c3ECfd_X.js",app:"_app/immutable/entry/app.CqvWy02C.js",imports:["_app/immutable/entry/start.c3ECfd_X.js","_app/immutable/chunks/CO6wgPBT.js","_app/immutable/chunks/DwSqhXc_.js","_app/immutable/chunks/Dqr_qIUs.js","_app/immutable/chunks/Bslk2bT-.js","_app/immutable/entry/app.CqvWy02C.js","_app/immutable/chunks/DwSqhXc_.js","_app/immutable/chunks/IHki7fMi.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
+		client: {start:"_app/immutable/entry/start.CyEVwaya.js",app:"_app/immutable/entry/app.vQL9bNbr.js",imports:["_app/immutable/entry/start.CyEVwaya.js","_app/immutable/chunks/L8HRGTJs.js","_app/immutable/chunks/DwSqhXc_.js","_app/immutable/chunks/Dqr_qIUs.js","_app/immutable/chunks/BCYlDaTq.js","_app/immutable/entry/app.vQL9bNbr.js","_app/immutable/chunks/DwSqhXc_.js","_app/immutable/chunks/IHki7fMi.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
@@ -22,7 +22,8 @@ return {
 			__memo(() => import('./nodes/7.js')),
 			__memo(() => import('./nodes/8.js')),
 			__memo(() => import('./nodes/9.js')),
-			__memo(() => import('./nodes/10.js'))
+			__memo(() => import('./nodes/10.js')),
+			__memo(() => import('./nodes/11.js'))
 		],
 		routes: [
 			{
@@ -110,24 +111,31 @@ return {
 				endpoint: null
 			},
 			{
+				id: "/fox",
+				pattern: /^\/fox\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 8 },
+				endpoint: null
+			},
+			{
 				id: "/taxonomy/[tag]",
 				pattern: /^\/taxonomy\/([^/]+?)\/?$/,
 				params: [{"name":"tag","optional":false,"rest":false,"chained":false}],
-				page: { layouts: [0,], errors: [1,], leaf: 8 },
+				page: { layouts: [0,], errors: [1,], leaf: 9 },
 				endpoint: null
 			},
 			{
 				id: "/use-cases",
 				pattern: /^\/use-cases\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 9 },
+				page: { layouts: [0,], errors: [1,], leaf: 10 },
 				endpoint: null
 			},
 			{
 				id: "/use-cases/[id]",
 				pattern: /^\/use-cases\/([^/]+?)\/?$/,
 				params: [{"name":"id","optional":false,"rest":false,"chained":false}],
-				page: { layouts: [0,], errors: [1,], leaf: 10 },
+				page: { layouts: [0,], errors: [1,], leaf: 11 },
 				endpoint: null
 			}
 		],

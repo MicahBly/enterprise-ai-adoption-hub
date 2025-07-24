@@ -45,9 +45,9 @@
 				// Split recommendations into current and suggested based on status
 				currentExperiments = data.recommendations
 					.filter(r => r.status === 'active')
-					.map(exp => ({
+					.map((exp, index) => ({
 						...exp,
-						progress: Math.floor(Math.random() * 60) + 20, // Random progress 20-80%
+						progress: 20 + (index * 20) % 60, // Deterministic progress based on index
 						startDate: 'Nov 2024',
 						duration: '3 months',
 						metrics: [
@@ -110,6 +110,7 @@
 	// Impact level styling
 	const impactStyles = {
 		high: { bg: 'bg-red-100', text: 'text-red-700' },
+		'very high': { bg: 'bg-purple-100', text: 'text-purple-700' },
 		medium: { bg: 'bg-yellow-100', text: 'text-yellow-700' },
 		low: { bg: 'bg-gray-100', text: 'text-gray-700' }
 	};

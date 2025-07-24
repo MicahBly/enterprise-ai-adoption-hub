@@ -1,9 +1,347 @@
 import { json } from "@sveltejs/kit";
-import { d as db, u as useCases, a as adoptionData } from "../../../../chunks/index2.js";
+import { u as useCasesData } from "../../../../chunks/use-cases-db.js";
+const adoptionDataRaw = [
+  {
+    id: "fox-news-media-claude",
+    division: "Fox News Media",
+    aiTool: "Claude",
+    adoptionPercentage: 88,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-news-media-gpt-4",
+    division: "Fox News Media",
+    aiTool: "GPT-4",
+    adoptionPercentage: 82,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-news-media-whisper",
+    division: "Fox News Media",
+    aiTool: "Whisper",
+    adoptionPercentage: 95,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-news-media-github-copilot",
+    division: "Fox News Media",
+    aiTool: "GitHub Copilot",
+    adoptionPercentage: 45,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-news-media-midjourney",
+    division: "Fox News Media",
+    aiTool: "Midjourney",
+    adoptionPercentage: 60,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-news-media-stable-diffusion",
+    division: "Fox News Media",
+    aiTool: "Stable Diffusion",
+    adoptionPercentage: 35,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-news-media-gemini",
+    division: "Fox News Media",
+    aiTool: "Gemini",
+    adoptionPercentage: 20,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-news-media-perplexity",
+    division: "Fox News Media",
+    aiTool: "Perplexity",
+    adoptionPercentage: 75,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-sports-media-group-claude",
+    division: "Fox Sports Media Group",
+    aiTool: "Claude",
+    adoptionPercentage: 70,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-sports-media-group-gpt-4",
+    division: "Fox Sports Media Group",
+    aiTool: "GPT-4",
+    adoptionPercentage: 80,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-sports-media-group-whisper",
+    division: "Fox Sports Media Group",
+    aiTool: "Whisper",
+    adoptionPercentage: 65,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-sports-media-group-github-copilot",
+    division: "Fox Sports Media Group",
+    aiTool: "GitHub Copilot",
+    adoptionPercentage: 75,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-sports-media-group-midjourney",
+    division: "Fox Sports Media Group",
+    aiTool: "Midjourney",
+    adoptionPercentage: 85,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-sports-media-group-stable-diffusion",
+    division: "Fox Sports Media Group",
+    aiTool: "Stable Diffusion",
+    adoptionPercentage: 80,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-sports-media-group-gemini",
+    division: "Fox Sports Media Group",
+    aiTool: "Gemini",
+    adoptionPercentage: 40,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-sports-media-group-perplexity",
+    division: "Fox Sports Media Group",
+    aiTool: "Perplexity",
+    adoptionPercentage: 50,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-entertainment-claude",
+    division: "Fox Entertainment",
+    aiTool: "Claude",
+    adoptionPercentage: 60,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-entertainment-gpt-4",
+    division: "Fox Entertainment",
+    aiTool: "GPT-4",
+    adoptionPercentage: 65,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-entertainment-whisper",
+    division: "Fox Entertainment",
+    aiTool: "Whisper",
+    adoptionPercentage: 55,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-entertainment-github-copilot",
+    division: "Fox Entertainment",
+    aiTool: "GitHub Copilot",
+    adoptionPercentage: 30,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-entertainment-midjourney",
+    division: "Fox Entertainment",
+    aiTool: "Midjourney",
+    adoptionPercentage: 92,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-entertainment-stable-diffusion",
+    division: "Fox Entertainment",
+    aiTool: "Stable Diffusion",
+    adoptionPercentage: 88,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-entertainment-gemini",
+    division: "Fox Entertainment",
+    aiTool: "Gemini",
+    adoptionPercentage: 35,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-entertainment-perplexity",
+    division: "Fox Entertainment",
+    aiTool: "Perplexity",
+    adoptionPercentage: 45,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-television-stations-claude",
+    division: "Fox Television Stations",
+    aiTool: "Claude",
+    adoptionPercentage: 65,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-television-stations-gpt-4",
+    division: "Fox Television Stations",
+    aiTool: "GPT-4",
+    adoptionPercentage: 70,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-television-stations-whisper",
+    division: "Fox Television Stations",
+    aiTool: "Whisper",
+    adoptionPercentage: 85,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-television-stations-github-copilot",
+    division: "Fox Television Stations",
+    aiTool: "GitHub Copilot",
+    adoptionPercentage: 55,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-television-stations-midjourney",
+    division: "Fox Television Stations",
+    aiTool: "Midjourney",
+    adoptionPercentage: 50,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-television-stations-stable-diffusion",
+    division: "Fox Television Stations",
+    aiTool: "Stable Diffusion",
+    adoptionPercentage: 45,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-television-stations-gemini",
+    division: "Fox Television Stations",
+    aiTool: "Gemini",
+    adoptionPercentage: 60,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "fox-television-stations-perplexity",
+    division: "Fox Television Stations",
+    aiTool: "Perplexity",
+    adoptionPercentage: 65,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "tubi-media-group-claude",
+    division: "Tubi Media Group",
+    aiTool: "Claude",
+    adoptionPercentage: 85,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "tubi-media-group-gpt-4",
+    division: "Tubi Media Group",
+    aiTool: "GPT-4",
+    adoptionPercentage: 75,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "tubi-media-group-whisper",
+    division: "Tubi Media Group",
+    aiTool: "Whisper",
+    adoptionPercentage: 60,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "tubi-media-group-github-copilot",
+    division: "Tubi Media Group",
+    aiTool: "GitHub Copilot",
+    adoptionPercentage: 90,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "tubi-media-group-midjourney",
+    division: "Tubi Media Group",
+    aiTool: "Midjourney",
+    adoptionPercentage: 55,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "tubi-media-group-stable-diffusion",
+    division: "Tubi Media Group",
+    aiTool: "Stable Diffusion",
+    adoptionPercentage: 50,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "tubi-media-group-gemini",
+    division: "Tubi Media Group",
+    aiTool: "Gemini",
+    adoptionPercentage: 45,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "tubi-media-group-perplexity",
+    division: "Tubi Media Group",
+    aiTool: "Perplexity",
+    adoptionPercentage: 70,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "other-assets-claude",
+    division: "Other Assets",
+    aiTool: "Claude",
+    adoptionPercentage: 70,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "other-assets-gpt-4",
+    division: "Other Assets",
+    aiTool: "GPT-4",
+    adoptionPercentage: 68,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "other-assets-whisper",
+    division: "Other Assets",
+    aiTool: "Whisper",
+    adoptionPercentage: 55,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "other-assets-github-copilot",
+    division: "Other Assets",
+    aiTool: "GitHub Copilot",
+    adoptionPercentage: 75,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "other-assets-midjourney",
+    division: "Other Assets",
+    aiTool: "Midjourney",
+    adoptionPercentage: 45,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "other-assets-stable-diffusion",
+    division: "Other Assets",
+    aiTool: "Stable Diffusion",
+    adoptionPercentage: 40,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "other-assets-gemini",
+    division: "Other Assets",
+    aiTool: "Gemini",
+    adoptionPercentage: 50,
+    lastUpdated: "2025-07-12 06:23:37"
+  },
+  {
+    id: "other-assets-perplexity",
+    division: "Other Assets",
+    aiTool: "Perplexity",
+    adoptionPercentage: 60,
+    lastUpdated: "2025-07-12 06:23:37"
+  }
+];
 const GET = async () => {
   try {
-    const allUseCases = await db.select().from(useCases);
-    const adoptionMatrix = await db.select().from(adoptionData);
+    const allUseCases = useCasesData;
+    const adoptionMatrix = adoptionDataRaw;
     const activeExperiments = 12;
     const completedExperiments = 8;
     const successRate = Math.round(7 / completedExperiments * 100);
@@ -26,169 +364,60 @@ const GET = async () => {
         lowAdoptionDivisions.push(division);
       }
     });
-    const currentExperiments = [
+    const underutilizedTools = [];
+    toolAdoption.forEach((percentages, tool) => {
+      const avg = percentages.reduce((a, b) => a + b, 0) / percentages.length;
+      if (avg < 30) {
+        underutilizedTools.push(tool);
+      }
+    });
+    const highImpactUseCases = allUseCases.filter((uc) => uc.status === "in-progress" || uc.status === "planned").sort((a, b) => {
+      const impactA = (a.costSavings || 0) + (a.revenueIncrease || 0);
+      const impactB = (b.costSavings || 0) + (b.revenueIncrease || 0);
+      return impactB - impactA;
+    }).slice(0, 5);
+    const recommendations = [
       {
-        id: "exp-001",
-        title: "AI Champions Program",
-        division: "Fox News Media",
-        description: "Training 20 AI champions to mentor teams and drive adoption of ChatGPT and Claude for content creation.",
-        status: "active",
-        progress: 65,
-        startDate: "Oct 2024",
-        duration: "3 months",
-        metrics: [
-          "20 champions trained",
-          "50+ team members mentored",
-          "30% increase in AI tool usage"
-        ]
+        id: "exp-1",
+        title: "AI Code Review Assistant for Development Teams",
+        division: lowAdoptionDivisions[0] || "Technology",
+        aiTool: "Claude",
+        estimatedImpact: "High",
+        status: "proposed",
+        description: "Implement AI-powered code review to improve code quality and reduce review time by 40%"
       },
       {
-        id: "exp-002",
-        title: "Automated Workflow Templates",
-        division: "Fox Sports Media Group",
-        description: "Creating pre-built AI workflow templates for common sports content generation tasks.",
+        id: "exp-2",
+        title: "Voice-to-Text Meeting Transcription",
+        division: lowAdoptionDivisions[1] || "Sales",
+        aiTool: "Whisper",
+        estimatedImpact: "Medium",
         status: "active",
-        progress: 40,
-        startDate: "Nov 2024",
-        duration: "2 months",
-        metrics: [
-          "10 workflow templates created",
-          "5 hours saved per week per user",
-          "80% user satisfaction"
-        ]
+        description: "Automatically transcribe and summarize sales calls to capture insights and action items"
       },
       {
-        id: "exp-003",
-        title: "AI Hackathon Series",
-        division: "Fox Digital",
-        description: "Monthly hackathons to discover innovative AI use cases and build prototypes.",
-        status: "completed",
-        progress: 100,
-        startDate: "Sep 2024",
-        duration: "3 months",
-        metrics: [
-          "3 hackathons completed",
-          "15 prototypes built",
-          "5 ideas moved to production"
-        ]
+        id: "exp-3",
+        title: "Automated Contract Analysis",
+        division: "Legal",
+        aiTool: "GPT-4",
+        estimatedImpact: "Very High",
+        status: "proposed",
+        description: "Use AI to review contracts for risk factors and compliance issues, reducing review time by 60%"
       }
     ];
-    const suggestedExperiments = {
-      training: [
-        {
-          title: "AI Literacy Bootcamp",
-          description: "Intensive 2-day workshops for divisions with low AI adoption to build foundational skills.",
-          impact: "high",
-          targetDivisions: lowAdoptionDivisions.slice(0, 3),
-          estimatedDuration: "2 weeks",
-          successCriteria: [
-            "90% participant completion",
-            "25% increase in tool usage",
-            "NPS score > 8"
-          ]
-        },
-        {
-          title: "Tool-Specific Workshops",
-          description: "Deep dive sessions on underutilized tools like Whisper for transcription and Midjourney for visuals.",
-          impact: "medium",
-          targetDivisions: ["Fox News Media", "Fox Sports"],
-          estimatedDuration: "1 month",
-          successCriteria: [
-            "50 participants per session",
-            "3x increase in tool usage",
-            "Create 5 success stories"
-          ]
-        }
-      ],
-      incentive: [
-        {
-          title: "AI Innovation Awards",
-          description: "Quarterly awards recognizing teams that achieve significant results using AI tools.",
-          impact: "high",
-          targetDivisions: ["All Divisions"],
-          estimatedDuration: "Ongoing",
-          successCriteria: [
-            "20+ submissions per quarter",
-            "Cross-division participation",
-            "Documented ROI > $100k"
-          ]
-        },
-        {
-          title: "Usage Milestone Rewards",
-          description: "Gamified system rewarding teams for reaching AI tool usage milestones.",
-          impact: "medium",
-          targetDivisions: lowAdoptionDivisions,
-          estimatedDuration: "6 months",
-          successCriteria: [
-            "50% participation rate",
-            "2x usage increase",
-            "Sustained engagement"
-          ]
-        }
-      ],
-      infrastructure: [
-        {
-          title: "AI Sandbox Environment",
-          description: "Dedicated environment for teams to experiment with AI tools without production risks.",
-          impact: "high",
-          targetDivisions: ["Fox Digital", "Fox Entertainment"],
-          estimatedDuration: "2 months",
-          successCriteria: [
-            "100+ active users",
-            "20 experiments per month",
-            "5 ideas promoted to production"
-          ]
-        },
-        {
-          title: "Integration Templates",
-          description: "Pre-built integrations between AI tools and existing Fox systems.",
-          impact: "medium",
-          targetDivisions: ["All Technical Teams"],
-          estimatedDuration: "3 months",
-          successCriteria: [
-            "10 templates created",
-            "50% reduction in setup time",
-            "80% reuse rate"
-          ]
-        }
-      ],
-      community: [
-        {
-          title: "AI User Groups",
-          description: "Division-specific communities for sharing best practices and use cases.",
-          impact: "medium",
-          targetDivisions: ["All Divisions"],
-          estimatedDuration: "Ongoing",
-          successCriteria: [
-            "200+ active members",
-            "Weekly knowledge sharing",
-            "10 cross-team collaborations"
-          ]
-        },
-        {
-          title: "Show & Tell Sessions",
-          description: "Monthly demos where teams showcase their AI implementations and results.",
-          impact: "low",
-          targetDivisions: ["All Divisions"],
-          estimatedDuration: "Ongoing",
-          successCriteria: [
-            "5 demos per session",
-            "100+ attendees",
-            "3 ideas replicated"
-          ]
-        }
-      ]
-    };
-    const participatingDivisions = new Set(currentExperiments.map((exp) => exp.division)).size;
-    const projectedImpact = 18;
     return json({
-      current: currentExperiments,
-      suggested: suggestedExperiments,
       stats: {
         activeExperiments,
+        completedExperiments,
         successRate,
-        participatingDivisions,
-        projectedImpact
+        lowAdoptionDivisions: lowAdoptionDivisions.length,
+        underutilizedTools: underutilizedTools.length
+      },
+      recommendations,
+      insights: {
+        lowAdoptionDivisions: lowAdoptionDivisions.slice(0, 3),
+        underutilizedTools: underutilizedTools.slice(0, 3),
+        highImpactOpportunities: highImpactUseCases.length
       }
     });
   } catch (error) {

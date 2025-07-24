@@ -133,7 +133,6 @@ if (needsInit) {
   initializeDatabase();
 }
 export {
-  adoptionData as a,
   chatInteractions as c,
   db as d,
   useCases as u

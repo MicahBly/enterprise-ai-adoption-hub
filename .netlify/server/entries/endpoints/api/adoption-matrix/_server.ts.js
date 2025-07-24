@@ -1,8 +1,8 @@
 import { json } from "@sveltejs/kit";
-import { d as db, u as useCases } from "../../../../chunks/index2.js";
+import { u as useCasesData } from "../../../../chunks/use-cases-db.js";
 const GET = async () => {
   try {
-    const allUseCases = await db.select().from(useCases);
+    const allUseCases = useCasesData;
     if (allUseCases.length === 0) {
       return json({ error: "No use cases found" }, { status: 404 });
     }
@@ -60,22 +60,7 @@ const GET = async () => {
 };
 const PUT = async ({ request }) => {
   try {
-    const { division, aiTool, adoptionPercentage } = await request.json();
-    const id = `${division.toLowerCase().replace(/\s+/g, "-")}-${aiTool.toLowerCase().replace(/\s+/g, "-")}`;
-    const updatedData = await db.insert(adoptionData).values({
-      id,
-      division,
-      aiTool,
-      adoptionPercentage,
-      lastUpdated: (/* @__PURE__ */ new Date()).toISOString()
-    }).onConflictDoUpdate({
-      target: adoptionData.id,
-      set: {
-        adoptionPercentage,
-        lastUpdated: (/* @__PURE__ */ new Date()).toISOString()
-      }
-    }).returning();
-    return json(updatedData[0]);
+    return json({ error: "Updating adoption data is not supported in production" }, { status: 501 });
   } catch (error) {
     console.error("Error updating adoption data:", error);
     return json({ error: "Failed to update adoption data" }, { status: 500 });

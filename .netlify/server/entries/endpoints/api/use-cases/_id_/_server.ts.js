@@ -1,14 +1,12 @@
 import { json } from "@sveltejs/kit";
-import { d as db, u as useCases } from "../../../../../chunks/index2.js";
-import { eq } from "drizzle-orm";
+import { u as useCasesData } from "../../../../../chunks/use-cases-db.js";
 const GET = async ({ params }) => {
   try {
-    const { id } = params;
-    const useCase = await db.select().from(useCases).where(eq(useCases.id, id)).limit(1);
-    if (useCase.length === 0) {
+    const useCase = useCasesData.find((uc) => uc.id === params.id);
+    if (!useCase) {
       return json({ error: "Use case not found" }, { status: 404 });
     }
-    return json(useCase[0]);
+    return json(useCase);
   } catch (error) {
     console.error("Error fetching use case:", error);
     return json({ error: "Failed to fetch use case" }, { status: 500 });
@@ -16,13 +14,7 @@ const GET = async ({ params }) => {
 };
 const PUT = async ({ params, request }) => {
   try {
-    const { id } = params;
-    const data = await request.json();
-    const updatedUseCase = await db.update(useCases).set({ ...data, updatedAt: (/* @__PURE__ */ new Date()).toISOString() }).where(eq(useCases.id, id)).returning();
-    if (updatedUseCase.length === 0) {
-      return json({ error: "Use case not found" }, { status: 404 });
-    }
-    return json(updatedUseCase[0]);
+    return json({ error: "Updating use cases is not supported in production" }, { status: 501 });
   } catch (error) {
     console.error("Error updating use case:", error);
     return json({ error: "Failed to update use case" }, { status: 500 });
@@ -30,12 +22,7 @@ const PUT = async ({ params, request }) => {
 };
 const DELETE = async ({ params }) => {
   try {
-    const { id } = params;
-    const deletedUseCase = await db.delete(useCases).where(eq(useCases.id, id)).returning();
-    if (deletedUseCase.length === 0) {
-      return json({ error: "Use case not found" }, { status: 404 });
-    }
-    return json({ message: "Use case deleted successfully" });
+    return json({ error: "Deleting use cases is not supported in production" }, { status: 501 });
   } catch (error) {
     console.error("Error deleting use case:", error);
     return json({ error: "Failed to delete use case" }, { status: 500 });

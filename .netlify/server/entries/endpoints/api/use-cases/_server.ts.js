@@ -1,6 +1,5 @@
 import { json } from "@sveltejs/kit";
-import { d as db, u as useCases } from "../../../../chunks/index2.js";
-import { like, or, desc } from "drizzle-orm";
+import { u as useCasesData } from "../../../../chunks/use-cases-db.js";
 const GET = async ({ url }) => {
   try {
     const searchParams = url.searchParams;
@@ -8,32 +7,32 @@ const GET = async ({ url }) => {
     const search = searchParams.get("search");
     const status = searchParams.get("status");
     const tags = searchParams.get("tags")?.split(",").filter(Boolean);
-    let query = db.select().from(useCases);
-    const conditions = [];
+    let results = [...useCasesData];
     if (division && division !== "all") {
-      conditions.push(like(useCases.division, `%${division}%`));
+      results = results.filter(
+        (uc) => uc.division.toLowerCase().includes(division.toLowerCase())
+      );
     }
     if (search) {
-      conditions.push(
-        or(
-          like(useCases.title, `%${search}%`),
-          like(useCases.description, `%${search}%`),
-          like(useCases.impact, `%${search}%`)
-        )
+      const searchLower = search.toLowerCase();
+      results = results.filter(
+        (uc) => uc.title.toLowerCase().includes(searchLower) || uc.description.toLowerCase().includes(searchLower) || uc.impact.toLowerCase().includes(searchLower)
       );
     }
     if (status && status !== "all") {
-      conditions.push(like(useCases.status, status));
+      results = results.filter((uc) => uc.status === status);
     }
-    if (conditions.length > 0) {
-      query = query.where(...conditions);
-    }
-    let results = await query.orderBy(desc(useCases.updatedAt));
     if (tags && tags.length > 0) {
-      results = results.filter(
-        (useCase) => tags.some((tag) => useCase.tags.includes(tag))
-      );
+      results = results.filter((useCase) => {
+        const useCaseTags = JSON.parse(useCase.tags);
+        return tags.some((tag) => useCaseTags.includes(tag));
+      });
     }
+    results.sort((a, b) => {
+      const dateA = new Date(a.updatedAt || a.createdAt).getTime();
+      const dateB = new Date(b.updatedAt || b.createdAt).getTime();
+      return dateB - dateA;
+    });
     return json(results);
   } catch (error) {
     console.error("Error fetching use cases:", error);
@@ -43,11 +42,7 @@ const GET = async ({ url }) => {
 const POST = async ({ request }) => {
   try {
     const data = await request.json();
-    const newUseCase = await db.insert(useCases).values({
-      ...data,
-      id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
-    }).returning();
-    return json(newUseCase[0]);
+    return json({ error: "Creating use cases is not supported in production" }, { status: 501 });
   } catch (error) {
     console.error("Error creating use case:", error);
     return json({ error: "Failed to create use case" }, { status: 500 });

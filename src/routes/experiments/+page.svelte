@@ -183,7 +183,7 @@
 	<!-- Current Experiments -->
 	<div class="space-y-4">
 		<div class="flex items-center justify-between">
-			<h2 class="text-2xl font-bold">Current Experiments</h2>
+			<h2 class="text-2xl font-bold text-black">Current Experiments</h2>
 			<Button variant="outline" size="sm">
 				<svelte:component this={Rocket} class="mr-2 h-4 w-4" />
 				Launch New Experiment
@@ -257,7 +257,7 @@
 	<div class="space-y-4">
 		<div class="flex items-center gap-2">
 			<svelte:component this={Lightbulb} class="h-6 w-6 text-yellow-500" />
-			<h2 class="text-2xl font-bold">Suggested Experiments</h2>
+			<h2 class="text-2xl font-bold text-black">Suggested Experiments</h2>
 		</div>
 		
 		<p class="text-black">

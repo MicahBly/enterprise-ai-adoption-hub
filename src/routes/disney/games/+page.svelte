@@ -1,230 +1,254 @@
 <script>
   import { onMount } from 'svelte';
   
-  const featuredGames = [
+  const aiGameDevelopment = [
     {
-      name: 'Disney Dreamlight Valley',
-      platform: 'Multi-platform',
-      genre: 'Life Simulation',
-      description: 'A magical life-sim adventure featuring Disney and Pixar friends',
-      rating: '4.8',
-      players: '5M+',
-      image: '🏡',
-      color: 'from-purple-500 to-pink-500'
+      name: 'Procedural World Generation',
+      technology: 'Neural Networks',
+      implementation: 'Infinite Environments',
+      description: 'AI creates endless, unique worlds and landscapes dynamically',
+      impact: 'High',
+      adoption: '75%',
+      icon: '🌍',
+      color: 'from-green-500 to-emerald-500'
     },
     {
-      name: 'Disney Speedstorm',
-      platform: 'Multi-platform',
-      genre: 'Racing',
-      description: 'High-speed racing action with your favorite Disney characters',
-      rating: '4.6',
-      players: '3M+',
-      image: '🏎️',
+      name: 'Intelligent NPC Behavior',
+      technology: 'Large Language Models',
+      implementation: 'Character AI',
+      description: 'Characters with natural dialogue and adaptive personality systems',
+      impact: 'Very High',
+      adoption: '60%',
+      icon: '🤖',
       color: 'from-blue-500 to-cyan-500'
     },
     {
-      name: 'Kingdom Hearts Series',
-      platform: 'Console/PC',
-      genre: 'Action RPG',
-      description: 'Epic adventures combining Disney worlds with Final Fantasy',
-      rating: '4.9',
-      players: '30M+',
-      image: '🗝️',
-      color: 'from-indigo-500 to-purple-500'
+      name: 'Dynamic Difficulty Adjustment',
+      technology: 'Machine Learning',
+      implementation: 'Real-time Balancing',
+      description: 'Games that adapt challenge levels based on player skill and engagement',
+      impact: 'High',
+      adoption: '85%',
+      icon: '📊',
+      color: 'from-purple-500 to-indigo-500'
     },
     {
-      name: 'Marvel\'s Spider-Man 2',
-      platform: 'PlayStation',
-      genre: 'Action Adventure',
-      description: 'Web-slinging action in an open-world New York City',
-      rating: '4.9',
-      players: '10M+',
-      image: '🕷️',
-      color: 'from-red-500 to-red-700'
+      name: 'Automated Asset Creation',
+      technology: 'Generative AI',
+      implementation: 'Content Pipeline',
+      description: 'AI generates textures, models, and animations reducing development time',
+      impact: 'Very High',
+      adoption: '45%',
+      icon: '🎨',
+      color: 'from-orange-500 to-red-500'
     },
     {
-      name: 'Star Wars Jedi: Survivor',
-      platform: 'Multi-platform',
-      genre: 'Action Adventure',
-      description: 'Continue Cal Kestis\' journey as a Jedi Knight',
-      rating: '4.7',
-      players: '8M+',
-      image: '⚔️',
-      color: 'from-gray-700 to-black'
-    },
-    {
-      name: 'Disney Illusion Island',
-      platform: 'Nintendo Switch',
-      genre: 'Platformer',
-      description: 'Mickey and friends in a hand-animated Metroidvania adventure',
-      rating: '4.5',
-      players: '2M+',
-      image: '🏝️',
-      color: 'from-yellow-500 to-orange-500'
-    }
-  ];
-  
-  const mobileGames = [
-    {
-      name: 'Disney Magic Kingdoms',
-      downloads: '90M+',
-      genre: 'Park Builder',
-      icon: '🏰',
-      description: 'Build your own magical Disney theme park'
-    },
-    {
-      name: 'Disney Heroes: Battle Mode',
-      downloads: '50M+',
-      genre: 'RPG',
-      icon: '🦸',
-      description: 'Team up Disney and Pixar heroes in epic battles'
-    },
-    {
-      name: 'Disney Sorcerer\'s Arena',
-      downloads: '30M+',
-      genre: 'Strategy',
-      icon: '🧙',
-      description: 'Strategic battles with Disney characters'
-    },
-    {
-      name: 'Disney Emoji Blitz',
-      downloads: '70M+',
-      genre: 'Puzzle',
-      icon: '😊',
-      description: 'Match and collect Disney emojis'
-    },
-    {
-      name: 'Disney Mirrorverse',
-      downloads: '20M+',
-      genre: 'Action RPG',
-      icon: '🪞',
-      description: 'Disney guardians in a divergent universe'
-    },
-    {
-      name: 'Disney Getaway Blast',
-      downloads: '40M+',
-      genre: 'Puzzle',
+      name: 'Personalized Content',
+      technology: 'Recommendation AI',
+      implementation: 'Player Analytics',
+      description: 'Tailored quests, rewards, and experiences based on player preferences',
+      impact: 'High',
+      adoption: '70%',
       icon: '🎯',
-      description: 'Pop puzzles on a Disney vacation'
+      color: 'from-pink-500 to-rose-500'
+    },
+    {
+      name: 'Intelligent Game Testing',
+      technology: 'Reinforcement Learning',
+      implementation: 'Automated QA',
+      description: 'AI agents that find bugs and balance issues automatically',
+      impact: 'High',
+      adoption: '40%',
+      icon: '🔍',
+      color: 'from-teal-500 to-cyan-500'
     }
   ];
   
-  const classicGames = [
-    { name: 'Castle of Illusion', year: '1990/2013', platform: 'Multi-platform', icon: '🏰' },
-    { name: 'DuckTales', year: '1989/2013', platform: 'Multi-platform', icon: '🦆' },
-    { name: 'Aladdin', year: '1993', platform: 'SNES/Genesis', icon: '🧞' },
-    { name: 'The Lion King', year: '1994', platform: 'Multi-platform', icon: '🦁' },
-    { name: 'Epic Mickey', year: '2010', platform: 'Wii/Multi', icon: '🖌️' },
-    { name: 'Toy Story', year: '1995', platform: 'Multi-platform', icon: '🤠' }
+  const mobileAITechnologies = [
+    {
+      name: 'Adaptive Touch Controls',
+      maturity: 'Production',
+      category: 'User Interface',
+      icon: '📱',
+      description: 'AI optimizes control schemes based on hand size and play patterns'
+    },
+    {
+      name: 'Battery-Aware Rendering',
+      maturity: 'Advanced',
+      category: 'Performance',
+      icon: '🔋',
+      description: 'AI adjusts graphics quality to preserve battery life without compromising experience'
+    },
+    {
+      name: 'Context-Aware Notifications',
+      maturity: 'Production',
+      category: 'Engagement',
+      icon: '🔔',
+      description: 'Smart push notifications based on player behavior and optimal timing'
+    },
+    {
+      name: 'Network-Adaptive Streaming',
+      maturity: 'Advanced',
+      category: 'Performance',
+      icon: '📡',
+      description: 'AI predicts and adjusts content delivery based on connection quality'
+    },
+    {
+      name: 'Voice Command Recognition',
+      maturity: 'Beta',
+      category: 'Accessibility',
+      icon: '🎤',
+      description: 'Natural language commands for hands-free gaming experiences'
+    },
+    {
+      name: 'Gesture-Based Controls',
+      maturity: 'Experimental',
+      category: 'Innovation',
+      icon: '👋',
+      description: 'Camera-based gesture recognition for immersive touch-free interaction'
+    }
   ];
   
-  const gamingPlatforms = [
+  const proceduralGeneration = [
+    { name: 'Level Architecture', algorithm: 'Wave Function Collapse', complexity: 'High', icon: '🏗️' },
+    { name: 'Character Animations', algorithm: 'Motion Synthesis', complexity: 'Very High', icon: '🎭' },
+    { name: 'Musical Composition', algorithm: 'Transformer Networks', complexity: 'High', icon: '🎵' },
+    { name: 'Narrative Branching', algorithm: 'Story Grammar', complexity: 'Medium', icon: '📖' },
+    { name: 'Texture Generation', algorithm: 'GANs', complexity: 'High', icon: '🎨' },
+    { name: 'Voice Synthesis', algorithm: 'Neural Vocoders', complexity: 'Very High', icon: '🗣️' }
+  ];
+  
+  const aiPlatformCapabilities = [
     {
-      name: 'Console Gaming',
-      icon: '🎮',
-      platforms: ['PlayStation', 'Xbox', 'Nintendo Switch'],
-      games: '50+',
+      name: 'High-Performance Computing',
+      icon: '🖥️',
+      capabilities: ['Real-time Ray Tracing AI', 'Neural Rendering', 'Physics Simulation'],
+      aiModels: '50+',
       color: 'from-purple-600 to-blue-600'
     },
     {
-      name: 'Mobile Gaming',
+      name: 'Edge AI Processing',
       icon: '📱',
-      platforms: ['iOS', 'Android', 'Tablets'],
-      games: '100+',
+      capabilities: ['On-device ML', 'Federated Learning', 'Offline AI'],
+      aiModels: '30+',
       color: 'from-green-500 to-teal-500'
     },
     {
-      name: 'PC Gaming',
-      icon: '💻',
-      platforms: ['Steam', 'Epic Games', 'Disney+'],
-      games: '40+',
+      name: 'Cloud-Native AI',
+      icon: '☁️',
+      capabilities: ['Distributed Training', 'Model Serving', 'Auto-scaling'],
+      aiModels: '100+',
       color: 'from-orange-500 to-red-500'
     }
   ];
   
-  const aiFeatures = [
+  const advancedAIFeatures = [
     {
-      title: 'Smart Matchmaking',
-      description: 'AI-powered player matching for balanced multiplayer experiences',
-      icon: '🤝'
+      title: 'Neural Behavior Trees',
+      description: 'AI characters with complex decision-making and emotional responses',
+      icon: '🧠'
     },
     {
-      title: 'Adaptive Difficulty',
-      description: 'Games that adjust to your skill level in real-time',
-      icon: '📈'
+      title: 'Real-time Animation Synthesis',
+      description: 'AI generates natural movements and expressions dynamically',
+      icon: '🎭'
     },
     {
-      title: 'Personalized Content',
-      description: 'AI curates in-game events and rewards based on play style',
-      icon: '🎁'
+      title: 'Predictive Asset Loading',
+      description: 'AI predicts and preloads content to eliminate loading screens',
+      icon: '⚡'
     },
     {
-      title: 'Voice Interaction',
-      description: 'Talk to your favorite Disney characters with natural AI dialogue',
-      icon: '🎤'
+      title: 'Intelligent Compression',
+      description: 'AI optimizes game assets for minimal storage and bandwidth',
+      icon: '🗜️'
+    },
+    {
+      title: 'Automated Localization',
+      description: 'AI translates and adapts content for global audiences in real-time',
+      icon: '🌐'
+    },
+    {
+      title: 'Emotion Recognition',
+      description: 'AI reads player emotions through gameplay patterns and adapts accordingly',
+      icon: '😊'
     }
   ];
+  
+  // Experiments data
+  let experimentsData = null;
+  
+  onMount(async () => {
+    try {
+      const response = await fetch('/api/experiments');
+      if (response.ok) {
+        experimentsData = await response.json();
+      }
+    } catch (error) {
+      console.error('Failed to load experiments data:', error);
+    }
+  });
   
   let activeCategory = 'all';
 </script>
 
 <svelte:head>
-  <title>Disney Games - Play the Magic | AI Hub</title>
+  <title>AI in Gaming - Disney's Technology Innovation | AI Hub</title>
 </svelte:head>
 
-<!-- Hero Section with Gaming Theme -->
+<!-- Hero Section with AI Gaming Theme -->
 <section class="relative overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white">
   <div class="absolute inset-0 opacity-20">
-    <div class="absolute top-20 left-20 text-8xl animate-pulse">🎮</div>
-    <div class="absolute bottom-20 right-20 text-8xl animate-pulse" style="animation-delay: 0.7s">🕹️</div>
-    <div class="absolute top-1/3 right-1/3 text-6xl animate-pulse" style="animation-delay: 0.3s">🎯</div>
-    <div class="absolute bottom-1/3 left-1/4 text-7xl animate-pulse" style="animation-delay: 1s">🏆</div>
+    <div class="absolute top-20 left-20 text-8xl animate-pulse">🤖</div>
+    <div class="absolute bottom-20 right-20 text-8xl animate-pulse" style="animation-delay: 0.7s">🧠</div>
+    <div class="absolute top-1/3 right-1/3 text-6xl animate-pulse" style="animation-delay: 0.3s">⚡</div>
+    <div class="absolute bottom-1/3 left-1/4 text-7xl animate-pulse" style="animation-delay: 1s">🎯</div>
   </div>
   
   <div class="relative z-10 container mx-auto px-4 py-20">
     <h1 class="text-5xl md:text-7xl font-bold mb-6">
       <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-        Disney Games
+        AI in Gaming
       </span>
     </h1>
     <p class="text-xl md:text-2xl mb-8 text-purple-100">
-      Experience the magic through interactive adventures across all platforms
+      Revolutionizing game development with artificial intelligence and machine learning
     </p>
     <div class="flex flex-wrap gap-4">
       <button class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-        Browse All Games
+        Explore AI Technologies
       </button>
       <button class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-purple-900 transition-all duration-300">
-        Download Mobile Apps
+        View Experiments
       </button>
     </div>
   </div>
 </section>
 
-<!-- Featured Games Section -->
+<!-- AI Game Development Technologies -->
 <section class="container mx-auto px-4 py-16">
-  <h2 class="text-3xl font-bold mb-12 text-gray-900">Featured Games</h2>
+  <h2 class="text-3xl font-bold mb-12 text-gray-900">AI-Powered Game Development</h2>
   
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {#each featuredGames as game}
+    {#each aiGameDevelopment as tech}
       <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-        <div class="absolute inset-0 bg-gradient-to-br {game.color} opacity-90"></div>
+        <div class="absolute inset-0 bg-gradient-to-br {tech.color} opacity-90"></div>
         <div class="relative z-10 p-6 text-white">
           <div class="flex justify-between items-start mb-4">
-            <span class="text-5xl">{game.image}</span>
+            <span class="text-5xl">{tech.icon}</span>
             <div class="text-right">
               <div class="flex items-center text-yellow-300">
-                <span class="text-sm mr-1">⭐</span>
-                <span class="font-bold">{game.rating}</span>
+                <span class="text-sm mr-1">📊</span>
+                <span class="font-bold">{tech.adoption}</span>
               </div>
-              <div class="text-xs opacity-90">{game.players} players</div>
+              <div class="text-xs opacity-90">{tech.impact} Impact</div>
             </div>
           </div>
-          <h3 class="text-xl font-bold mb-2">{game.name}</h3>
-          <p class="text-sm opacity-90 mb-3">{game.description}</p>
+          <h3 class="text-xl font-bold mb-2">{tech.name}</h3>
+          <p class="text-sm opacity-90 mb-3">{tech.description}</p>
           <div class="flex justify-between items-center text-xs">
-            <span class="bg-white/20 px-3 py-1 rounded-full">{game.genre}</span>
-            <span>{game.platform}</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full">{tech.technology}</span>
+            <span>{tech.implementation}</span>
           </div>
         </div>
       </div>
@@ -232,29 +256,29 @@
   </div>
 </section>
 
-<!-- Mobile Games Section -->
+<!-- Mobile AI Technologies Section -->
 <section class="bg-gradient-to-b from-blue-50 to-white py-16">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-12 text-gray-900">Mobile Magic</h2>
-    <p class="text-gray-600 mb-8 max-w-2xl">Play Disney games anywhere, anytime. Our mobile collection brings the magic to your fingertips with free-to-play adventures.</p>
+    <h2 class="text-3xl font-bold mb-12 text-gray-900">Mobile AI Technologies</h2>
+    <p class="text-gray-700 mb-8 max-w-2xl">Advanced AI capabilities optimized for mobile gaming experiences, from performance optimization to accessibility features.</p>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {#each mobileGames as game}
+      {#each mobileAITechnologies as tech}
         <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 group">
           <div class="flex items-start justify-between mb-4">
             <div class="flex items-center">
-              <span class="text-4xl mr-3">{game.icon}</span>
+              <span class="text-4xl mr-3">{tech.icon}</span>
               <div>
-                <h3 class="font-bold text-lg text-gray-900">{game.name}</h3>
-                <p class="text-sm text-gray-500">{game.genre}</p>
+                <h3 class="font-bold text-lg text-gray-900">{tech.name}</h3>
+                <p class="text-sm text-gray-600">{tech.category}</p>
               </div>
             </div>
           </div>
-          <p class="text-gray-600 text-sm mb-4">{game.description}</p>
+          <p class="text-gray-700 text-sm mb-4">{tech.description}</p>
           <div class="flex items-center justify-between">
-            <span class="text-xs text-gray-500">📱 {game.downloads} downloads</span>
+            <span class="text-xs text-gray-600 px-3 py-1 bg-gray-100 rounded-full">{tech.maturity}</span>
             <button class="text-blue-600 hover:text-blue-700 font-semibold text-sm group-hover:translate-x-1 transition-transform">
-              Play Now →
+              Learn More →
             </button>
           </div>
         </div>
@@ -263,19 +287,19 @@
   </div>
 </section>
 
-<!-- Classic Games Section -->
+<!-- Procedural Content Generation Section -->
 <section class="container mx-auto px-4 py-16">
-  <h2 class="text-3xl font-bold mb-12 text-gray-900">Classic Disney Games</h2>
-  <p class="text-gray-600 mb-8 max-w-2xl">Relive the nostalgia with timeless Disney gaming experiences that defined generations.</p>
+  <h2 class="text-3xl font-bold mb-12 text-gray-900">Procedural Content Generation</h2>
+  <p class="text-gray-700 mb-8 max-w-2xl">AI algorithms that create infinite content variations, from game levels to character animations and musical scores.</p>
   
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    {#each classicGames as game}
+    {#each proceduralGeneration as content}
       <div class="bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg p-4 hover:shadow-lg transition-shadow">
         <div class="flex items-center">
-          <span class="text-3xl mr-3">{game.icon}</span>
+          <span class="text-3xl mr-3">{content.icon}</span>
           <div>
-            <h3 class="font-bold text-gray-900">{game.name}</h3>
-            <p class="text-sm text-gray-600">{game.year} • {game.platform}</p>
+            <h3 class="font-bold text-gray-900">{content.name}</h3>
+            <p class="text-sm text-gray-700">{content.algorithm} • {content.complexity} Complexity</p>
           </div>
         </div>
       </div>
@@ -283,25 +307,25 @@
   </div>
 </section>
 
-<!-- Gaming Platforms -->
+<!-- AI Platform Capabilities -->
 <section class="bg-gray-50 py-16">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-12 text-gray-900">Play Anywhere</h2>
+    <h2 class="text-3xl font-bold mb-12 text-gray-900">AI Computing Platforms</h2>
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {#each gamingPlatforms as platform}
+      {#each aiPlatformCapabilities as platform}
         <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
           <div class="absolute inset-0 bg-gradient-to-br {platform.color}"></div>
           <div class="relative z-10 p-8 text-white text-center">
             <div class="text-6xl mb-4">{platform.icon}</div>
             <h3 class="text-2xl font-bold mb-2">{platform.name}</h3>
             <div class="space-y-1 mb-4">
-              {#each platform.platforms as p}
-                <div class="text-sm opacity-90">• {p}</div>
+              {#each platform.capabilities as capability}
+                <div class="text-sm opacity-90">• {capability}</div>
               {/each}
             </div>
-            <div class="text-3xl font-bold">{platform.games}</div>
-            <div class="text-sm opacity-90">Available Games</div>
+            <div class="text-3xl font-bold">{platform.aiModels}</div>
+            <div class="text-sm opacity-90">AI Models</div>
           </div>
         </div>
       {/each}
@@ -309,110 +333,143 @@
   </div>
 </section>
 
-<!-- Disney+ Gaming Content -->
+<!-- AI Research & Development Hub -->
 <section class="container mx-auto px-4 py-16">
   <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       <div>
-        <h2 class="text-3xl font-bold mb-4">Disney+ Gaming Hub</h2>
+        <h2 class="text-3xl font-bold mb-4">AI Research & Development</h2>
         <p class="text-blue-100 mb-6">
-          Stream exclusive gaming content, behind-the-scenes documentaries, and esports tournaments featuring your favorite Disney games.
+          Cutting-edge research initiatives in artificial intelligence for gaming, from neural networks to quantum computing applications.
         </p>
         <ul class="space-y-3 mb-8">
           <li class="flex items-center space-x-2">
-            <span class="text-2xl">📺</span>
-            <span>Game development documentaries</span>
+            <span class="text-2xl">🧬</span>
+            <span>Neural architecture optimization</span>
           </li>
           <li class="flex items-center space-x-2">
-            <span class="text-2xl">🏆</span>
-            <span>Esports tournaments and championships</span>
+            <span class="text-2xl">⚡</span>
+            <span>Real-time AI inference engines</span>
           </li>
           <li class="flex items-center space-x-2">
-            <span class="text-2xl">🎬</span>
-            <span>Gaming-inspired original series</span>
+            <span class="text-2xl">🔬</span>
+            <span>Experimental AI algorithms</span>
           </li>
           <li class="flex items-center space-x-2">
-            <span class="text-2xl">🎮</span>
-            <span>Exclusive gameplay previews</span>
+            <span class="text-2xl">🌐</span>
+            <span>Distributed AI gaming systems</span>
           </li>
         </ul>
         <button class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors">
-          Watch on Disney+
+          View Research Papers
         </button>
       </div>
       <div class="grid grid-cols-2 gap-4">
         <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
-          <div class="text-4xl font-bold mb-2">100+</div>
-          <div class="text-sm">Gaming Shows</div>
+          <div class="text-4xl font-bold mb-2">15+</div>
+          <div class="text-sm">Research Projects</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
+          <div class="text-4xl font-bold mb-2">200+</div>
+          <div class="text-sm">AI Models</div>
         </div>
         <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
           <div class="text-4xl font-bold mb-2">50+</div>
-          <div class="text-sm">Tournaments</div>
+          <div class="text-sm">Publications</div>
         </div>
         <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
-          <div class="text-4xl font-bold mb-2">24/7</div>
-          <div class="text-sm">Live Streams</div>
-        </div>
-        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
-          <div class="text-4xl font-bold mb-2">4K</div>
-          <div class="text-sm">Ultra HD</div>
+          <div class="text-4xl font-bold mb-2">99.9%</div>
+          <div class="text-sm">Model Accuracy</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- AI-Powered Gaming Features -->
+<!-- Advanced AI Gaming Features -->
 <section class="bg-gradient-to-b from-purple-50 to-pink-50 py-16">
   <div class="container mx-auto px-4">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-6 text-gray-900">AI-Enhanced Gaming Magic</h2>
-      <p class="text-lg text-gray-700 mb-12">
-        Experience next-generation Disney gaming powered by cutting-edge artificial intelligence
-      </p>
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-6 text-gray-900">Advanced AI Gaming Technologies</h2>
+        <p class="text-lg text-gray-700 mb-8">
+          Next-generation AI capabilities transforming how games are developed, optimized, and experienced
+        </p>
+      </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {#each aiFeatures as feature}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {#each advancedAIFeatures as feature}
           <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
             <div class="text-4xl mb-4">{feature.icon}</div>
             <h3 class="font-bold text-lg mb-2 text-gray-900">{feature.title}</h3>
-            <p class="text-gray-600">{feature.description}</p>
+            <p class="text-gray-700">{feature.description}</p>
           </div>
         {/each}
       </div>
       
-      <div class="mt-12 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-2xl p-8">
-        <h3 class="text-xl font-bold mb-4 text-gray-900">Coming Soon: Disney AI Game Assistant</h3>
-        <p class="text-gray-700 mb-6">
-          Get personalized gaming tips, walkthroughs, and strategies from an AI companion that knows every Disney game inside and out.
-        </p>
-        <button class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-shadow">
-          Join the Waitlist
-        </button>
-      </div>
+      <!-- Experiments Integration -->
+      {#if experimentsData}
+        <div class="bg-gradient-to-r from-indigo-100 to-purple-100 rounded-2xl p-8">
+          <h3 class="text-xl font-bold mb-4 text-gray-900">Active AI Gaming Experiments</h3>
+          <p class="text-gray-700 mb-6">
+            Current research initiatives exploring the boundaries of AI in game development and player experience.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            {#each experimentsData.recommendations.slice(0, 4) as experiment}
+              <div class="bg-white/70 rounded-lg p-4">
+                <h4 class="font-semibold text-gray-900 mb-2">{experiment.title}</h4>
+                <p class="text-sm text-gray-700 mb-2">{experiment.description}</p>
+                <div class="flex justify-between items-center text-xs">
+                  <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full">{experiment.division}</span>
+                  <span class="font-medium">{experiment.estimatedImpact} Impact</span>
+                </div>
+              </div>
+            {/each}
+          </div>
+          <div class="text-center">
+            <button class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-shadow">
+              View All Experiments
+            </button>
+          </div>
+        </div>
+      {:else}
+        <div class="bg-gradient-to-r from-indigo-100 to-purple-100 rounded-2xl p-8 text-center">
+          <h3 class="text-xl font-bold mb-4 text-gray-900">AI Gaming Research Initiative</h3>
+          <p class="text-gray-700 mb-6">
+            Exploring cutting-edge AI applications in game development, from neural rendering to intelligent content generation.
+          </p>
+          <button class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-shadow">
+            Learn More
+          </button>
+        </div>
+      {/if}
     </div>
   </div>
 </section>
 
-<!-- Stats Section -->
+<!-- AI Gaming Stats Section -->
 <section class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-16">
   <div class="container mx-auto px-4">
+    <div class="text-center mb-8">
+      <h2 class="text-2xl font-bold mb-2">AI Gaming Innovation Metrics</h2>
+      <p class="text-purple-100">Leading the industry in artificial intelligence implementation</p>
+    </div>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
       <div>
-        <div class="text-4xl font-bold mb-2">500M+</div>
-        <div class="text-purple-100">Global Players</div>
+        <div class="text-4xl font-bold mb-2">150+</div>
+        <div class="text-purple-100">AI Models Deployed</div>
       </div>
       <div>
-        <div class="text-4xl font-bold mb-2">200+</div>
-        <div class="text-purple-100">Active Games</div>
+        <div class="text-4xl font-bold mb-2">95%</div>
+        <div class="text-purple-100">Performance Improvement</div>
       </div>
       <div>
-        <div class="text-4xl font-bold mb-2">50+</div>
-        <div class="text-purple-100">Game Studios</div>
+        <div class="text-4xl font-bold mb-2">12</div>
+        <div class="text-purple-100">Active Experiments</div>
       </div>
       <div>
-        <div class="text-4xl font-bold mb-2">15</div>
-        <div class="text-purple-100">Platforms</div>
+        <div class="text-4xl font-bold mb-2">24/7</div>
+        <div class="text-purple-100">AI Operations</div>
       </div>
     </div>
   </div>

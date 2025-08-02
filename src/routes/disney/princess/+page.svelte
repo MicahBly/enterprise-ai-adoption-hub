@@ -1,156 +1,120 @@
 <script>
-  const princesses = [
+  const aiApplications = [
     {
-      name: 'Snow White',
-      movie: 'Snow White and the Seven Dwarfs',
-      year: 1937,
-      icon: '🍎',
-      traits: ['Kind', 'Gentle', 'Optimistic'],
-      color: 'from-yellow-400 to-blue-500'
+      title: 'AI-Powered Character Interactions',
+      description: 'Meet & greets enhanced with real-time language translation and personalized conversations',
+      icon: '🤖',
+      features: [
+        'Real-time voice translation in 30+ languages',
+        'Personalized greetings using guest data',
+        'Emotion recognition for tailored interactions',
+        'Voice synthesis maintaining character authenticity'
+      ],
+      gradient: 'from-purple-500 to-pink-500'
     },
     {
-      name: 'Cinderella',
-      movie: 'Cinderella',
-      year: 1950,
-      icon: '👠',
-      traits: ['Hopeful', 'Hardworking', 'Kind'],
-      color: 'from-blue-400 to-blue-600'
-    },
-    {
-      name: 'Aurora',
-      movie: 'Sleeping Beauty',
-      year: 1959,
-      icon: '🌹',
-      traits: ['Graceful', 'Romantic', 'Gentle'],
-      color: 'from-pink-400 to-purple-500'
-    },
-    {
-      name: 'Ariel',
-      movie: 'The Little Mermaid',
-      year: 1989,
-      icon: '🧜‍♀️',
-      traits: ['Curious', 'Adventurous', 'Determined'],
-      color: 'from-teal-400 to-purple-500'
-    },
-    {
-      name: 'Belle',
-      movie: 'Beauty and the Beast',
-      year: 1991,
+      title: 'Personalized Storytelling Experiences',
+      description: 'AI creates unique princess adventures based on guest preferences and participation',
       icon: '📚',
-      traits: ['Intelligent', 'Brave', 'Compassionate'],
-      color: 'from-yellow-400 to-yellow-600'
+      features: [
+        'Dynamic story generation with guest as co-star',
+        'Adaptive narratives based on age and interests',
+        'Multi-sensory experiences with AR integration',
+        'Personalized keepsake storybooks'
+      ],
+      gradient: 'from-blue-500 to-purple-500'
     },
     {
-      name: 'Jasmine',
-      movie: 'Aladdin',
-      year: 1992,
-      icon: '🏺',
-      traits: ['Independent', 'Strong-willed', 'Free-spirited'],
-      color: 'from-teal-500 to-purple-600'
+      title: 'Voice Synthesis & Localization',
+      description: 'Princess voices authentically recreated in multiple languages using advanced AI',
+      icon: '🎙️',
+      features: [
+        'Character voice preservation across languages',
+        'Culturally adapted dialogue and expressions',
+        'Real-time dubbing for attractions',
+        'Accessibility features for hearing impaired'
+      ],
+      gradient: 'from-pink-500 to-orange-500'
     },
     {
-      name: 'Pocahontas',
-      movie: 'Pocahontas',
-      year: 1995,
-      icon: '🍃',
-      traits: ['Wise', 'Spiritual', 'Brave'],
-      color: 'from-orange-500 to-brown-600'
-    },
-    {
-      name: 'Mulan',
-      movie: 'Mulan',
-      year: 1998,
-      icon: '⚔️',
-      traits: ['Courageous', 'Loyal', 'Clever'],
-      color: 'from-red-500 to-pink-600'
-    },
-    {
-      name: 'Tiana',
-      movie: 'The Princess and the Frog',
-      year: 2009,
-      icon: '🐸',
-      traits: ['Ambitious', 'Hardworking', 'Determined'],
-      color: 'from-green-500 to-yellow-500'
-    },
-    {
-      name: 'Rapunzel',
-      movie: 'Tangled',
-      year: 2010,
-      icon: '🌻',
-      traits: ['Creative', 'Spirited', 'Adventurous'],
-      color: 'from-purple-400 to-pink-500'
-    },
-    {
-      name: 'Merida',
-      movie: 'Brave',
-      year: 2012,
-      icon: '🏹',
-      traits: ['Bold', 'Independent', 'Skilled'],
-      color: 'from-orange-500 to-green-600'
-    },
-    {
-      name: 'Moana',
-      movie: 'Moana',
-      year: 2016,
-      icon: '🌊',
-      traits: ['Brave', 'Determined', 'Caring'],
-      color: 'from-blue-500 to-orange-500'
-    },
-    {
-      name: 'Raya',
-      movie: 'Raya and the Last Dragon',
-      year: 2021,
-      icon: '🐉',
-      traits: ['Warrior', 'Resilient', 'Trustworthy'],
-      color: 'from-blue-600 to-purple-600'
+      title: 'Interactive Magic Mirror Experiences',
+      description: 'AI-powered mirrors provide personalized princess transformations and guidance',
+      icon: '🪞',
+      features: [
+        'Virtual makeover with real-time AR',
+        'Princess coaching and confidence building',
+        'Photo opportunities with AI scene generation',
+        'Personalized princess journey tracking'
+      ],
+      gradient: 'from-purple-500 to-blue-500'
     }
   ];
-  
-  const products = [
-    { category: 'Costumes & Dress-Up', icon: '👗', items: '1000+' },
-    { category: 'Dolls & Toys', icon: '🎎', items: '500+' },
-    { category: 'Books & Stories', icon: '📖', items: '300+' },
-    { category: 'Room Decor', icon: '🏰', items: '400+' },
-    { category: 'Party Supplies', icon: '🎉', items: '200+' },
-    { category: 'Accessories', icon: '👑', items: '600+' }
+
+  const parkIntegrations = [
+    {
+      name: 'Bibbidi Bobbidi Boutique 2.0',
+      description: 'AI-enhanced makeovers with virtual try-ons and personalized styling recommendations',
+      tech: ['Computer Vision', 'AR', 'Recommendation Engine'],
+      link: '/disney/parks'
+    },
+    {
+      name: 'Enchanted Tales with Belle',
+      description: 'Interactive storytelling where AI adapts the narrative to guest participation',
+      tech: ['NLP', 'Real-time Animation', 'Voice Recognition'],
+      link: '/disney/parks'
+    },
+    {
+      name: 'Princess Fairytale Hall',
+      description: 'Smart queuing and personalized meet & greet experiences',
+      tech: ['Guest Recognition', 'Predictive Analytics', 'Translation AI'],
+      link: '/disney/parks'
+    },
+    {
+      name: 'Royal Digital Portraits',
+      description: 'AI-generated artwork placing guests in classic princess scenes',
+      tech: ['Generative AI', 'Style Transfer', 'Scene Composition'],
+      link: '/disney/parks'
+    }
   ];
-  
-  const experiences = [
+
+  const metrics = [
+    { label: 'Languages Supported', value: '45+', icon: '🌍' },
+    { label: 'Personalized Stories/Day', value: '10K+', icon: '📖' },
+    { label: 'Guest Satisfaction', value: '98%', icon: '⭐' },
+    { label: 'Accessibility Features', value: '15+', icon: '♿' }
+  ];
+
+  const futureInnovations = [
     {
-      title: 'Bibbidi Bobbidi Boutique',
-      description: 'Magical makeovers at Disney Parks',
-      icon: '✨'
+      title: 'Holographic Princess Interactions',
+      description: 'Life-sized holographic princesses for immersive storytelling',
+      status: 'In Development'
     },
     {
-      title: 'Character Dining',
-      description: 'Dine with your favorite princesses',
-      icon: '🍽️'
+      title: 'AI Dream Journal',
+      description: 'Track and visualize personal growth through princess values',
+      status: 'Beta Testing'
     },
     {
-      title: 'Princess Meet & Greets',
-      description: 'Personal time with Disney Princesses',
-      icon: '🤝'
-    },
-    {
-      title: 'Enchanted Tales',
-      description: 'Interactive storytelling experiences',
-      icon: '📚'
+      title: 'Voice-Activated Castle Tours',
+      description: 'Personalized audio tours narrated by favorite princesses',
+      status: 'Launching 2025'
     }
   ];
 </script>
 
 <svelte:head>
-  <title>Disney Princess - Dream Big, Princess</title>
+  <title>AI in Disney Princess - Enhancing Magical Experiences</title>
 </svelte:head>
 
 <!-- Hero Section -->
 <section class="relative overflow-hidden bg-gradient-to-br from-pink-400 via-purple-500 to-blue-500 text-white">
   <div class="absolute inset-0">
-    <!-- Sparkles and magic -->
+    <!-- Animated sparkles -->
     <div class="absolute inset-0">
-      {#each Array(40) as _, i}
+      {#each Array(30) as _, i}
         <div 
-          class="absolute text-3xl animate-sparkle"
+          class="absolute text-2xl animate-sparkle"
           style="
             top: {Math.random() * 100}%;
             left: {Math.random() * 100}%;
@@ -167,116 +131,146 @@
   <div class="relative z-10 container mx-auto px-4 py-20">
     <div class="text-center">
       <h1 class="text-5xl md:text-7xl font-bold mb-6">
-        Disney Princess
+        AI-Powered Princess Magic
       </h1>
       <p class="text-2xl md:text-3xl mb-8 text-pink-100">
-        Dream Big, Princess
+        Where Technology Meets Fairy Tales
       </p>
       <p class="text-lg max-w-3xl mx-auto mb-8 text-purple-100">
-        Celebrate courage, kindness, and adventure with the Disney Princesses. 
-        Each princess teaches us that with determination and heart, dreams really do come true.
+        Discover how artificial intelligence is transforming Disney Princess experiences, 
+        creating personalized magical moments that speak to every guest's heart in their own language.
       </p>
-      <div class="text-8xl mb-8">👑</div>
+      <div class="flex justify-center items-center gap-4 text-6xl">
+        <span>👑</span>
+        <span>🤖</span>
+        <span>✨</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Meet the Princesses -->
+<!-- AI Applications -->
 <section class="container mx-auto px-4 py-16">
-  <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Meet the Disney Princesses</h2>
+  <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">
+    AI Enhancing Princess Experiences
+  </h2>
   
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-    {#each princesses as princess}
-      <div class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
-        <div class="bg-gradient-to-br {princess.color} p-6 text-white text-center">
-          <div class="text-5xl mb-3">{princess.icon}</div>
-          <h3 class="text-xl font-bold">{princess.name}</h3>
-        </div>
-        <div class="p-4">
-          <p class="text-sm text-gray-600 mb-2">{princess.movie} ({princess.year})</p>
-          <div class="flex flex-wrap gap-1">
-            {#each princess.traits as trait}
-              <span class="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full">
-                {trait}
-              </span>
-            {/each}
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    {#each aiApplications as app}
+      <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300">
+        <div class="bg-gradient-to-r {app.gradient} p-6 text-white">
+          <div class="flex items-center gap-4">
+            <span class="text-5xl">{app.icon}</span>
+            <h3 class="text-2xl font-bold">{app.title}</h3>
           </div>
+        </div>
+        <div class="p-6">
+          <p class="text-gray-700 mb-4">{app.description}</p>
+          <ul class="space-y-2">
+            {#each app.features as feature}
+              <li class="flex items-start gap-2">
+                <span class="text-purple-500 mt-1">•</span>
+                <span class="text-gray-700">{feature}</span>
+              </li>
+            {/each}
+          </ul>
         </div>
       </div>
     {/each}
   </div>
 </section>
 
-<!-- Princess Values -->
-<section class="bg-gradient-to-b from-pink-50 to-purple-50 py-16">
+<!-- Metrics Dashboard -->
+<section class="bg-gradient-to-b from-purple-50 to-pink-50 py-16">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">The Power of Princess</h2>
+    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">
+      Impact of AI on Princess Experiences
+    </h2>
     
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-      <div class="text-center">
-        <div class="text-6xl mb-4">💪</div>
-        <h3 class="text-xl font-bold text-gray-900 mb-2">Courage</h3>
-        <p class="text-gray-600">Face challenges with bravery and determination</p>
-      </div>
-      <div class="text-center">
-        <div class="text-6xl mb-4">❤️</div>
-        <h3 class="text-xl font-bold text-gray-900 mb-2">Kindness</h3>
-        <p class="text-gray-600">Show compassion and care for others</p>
-      </div>
-      <div class="text-center">
-        <div class="text-6xl mb-4">🌟</div>
-        <h3 class="text-xl font-bold text-gray-900 mb-2">Dreams</h3>
-        <p class="text-gray-600">Believe in yourself and pursue your goals</p>
-      </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+      {#each metrics as metric}
+        <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+          <div class="text-4xl mb-2">{metric.icon}</div>
+          <div class="text-3xl font-bold text-purple-600 mb-1">{metric.value}</div>
+          <div class="text-sm text-gray-700">{metric.label}</div>
+        </div>
+      {/each}
     </div>
   </div>
 </section>
 
-<!-- Princess Products -->
+<!-- Park Integrations -->
 <section class="container mx-auto px-4 py-16">
-  <div class="bg-gradient-to-r from-purple-100 to-pink-100 rounded-3xl p-8 md:p-12">
-    <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Princess Collection</h2>
-    
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-      {#each products as product}
-        <div class="bg-white rounded-xl p-4 text-center shadow-md hover:shadow-lg transition-shadow">
-          <div class="text-3xl mb-2">{product.icon}</div>
-          <p class="font-semibold text-gray-900 text-sm">{product.category}</p>
-          <p class="text-xs text-gray-600">{product.items} Products</p>
+  <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">
+    Princess AI in Disney Parks
+  </h2>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {#each parkIntegrations as integration}
+      <a href={integration.link} class="group block bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300">
+        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+          {integration.name}
+        </h3>
+        <p class="text-gray-700 mb-4">{integration.description}</p>
+        <div class="flex flex-wrap gap-2">
+          {#each integration.tech as tech}
+            <span class="text-xs bg-purple-100 text-purple-700 px-3 py-1 rounded-full">
+              {tech}
+            </span>
+          {/each}
         </div>
-      {/each}
-    </div>
-    
-    <div class="text-center mt-8">
-    </div>
+        <div class="mt-4 text-purple-600 font-semibold group-hover:text-purple-700">
+          Learn more about Park AI →
+        </div>
+      </a>
+    {/each}
   </div>
 </section>
 
-<!-- Princess Experiences -->
-<section class="bg-white py-16">
+<!-- Future Innovations -->
+<section class="bg-gradient-to-r from-purple-100 to-pink-100 py-16">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Live Your Princess Story</h2>
+    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">
+      The Future of Princess Magic
+    </h2>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {#each experiences as experience}
-        <div class="bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl p-6 hover:shadow-lg transition-shadow">
-          <div class="text-4xl mb-4 text-center">{experience.icon}</div>
-          <h3 class="font-bold text-gray-900 text-lg mb-2">{experience.title}</h3>
-          <p class="text-gray-600 text-sm">{experience.description}</p>
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-white rounded-2xl shadow-xl p-8">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Coming Soon</h3>
+        <div class="space-y-6">
+          {#each futureInnovations as innovation}
+            <div class="border-l-4 border-purple-500 pl-6">
+              <div class="flex justify-between items-start mb-2">
+                <h4 class="text-lg font-bold text-gray-900">{innovation.title}</h4>
+                <span class="text-sm bg-purple-100 text-purple-700 px-3 py-1 rounded-full">
+                  {innovation.status}
+                </span>
+              </div>
+              <p class="text-gray-700">{innovation.description}</p>
+            </div>
+          {/each}
         </div>
-      {/each}
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Ultimate Princess Celebration -->
+<!-- Call to Action -->
 <section class="container mx-auto px-4 py-16">
   <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-8 md:p-12 text-white text-center">
-    <h2 class="text-3xl font-bold mb-6">Create Your Own Fairy Tale</h2>
+    <h2 class="text-3xl font-bold mb-6">Experience AI-Enhanced Princess Magic</h2>
     <p class="text-xl mb-8 text-purple-100 max-w-3xl mx-auto">
-      From enchanting products to magical experiences at Disney Parks, 
-      make every day a princess adventure
+      From personalized storytelling to multilingual character interactions, 
+      AI is making princess dreams more accessible and magical than ever before.
     </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/disney/parks" class="bg-white text-purple-600 px-8 py-3 rounded-full font-bold hover:bg-purple-50 transition-colors">
+        Explore Park Experiences
+      </a>
+      <a href="/disney" class="bg-purple-500 text-white px-8 py-3 rounded-full font-bold hover:bg-purple-400 transition-colors">
+        View All Disney AI
+      </a>
+    </div>
   </div>
 </section>
 

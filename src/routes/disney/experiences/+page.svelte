@@ -156,10 +156,10 @@
           <p class="text-blue-100 text-sm">{park.location}</p>
         </div>
         <div class="p-6">
-          <h4 class="font-semibold text-gray-700 mb-3">Highlights:</h4>
+          <h4 class="font-semibold text-gray-900 mb-3">Highlights:</h4>
           <ul class="space-y-2">
             {#each park.highlights as highlight}
-              <li class="text-sm text-gray-600 flex items-center">
+              <li class="text-sm text-gray-900 flex items-center">
                 <span class="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2"></span>
                 {highlight}
               </li>
@@ -184,10 +184,10 @@
         <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6">
           <div class="text-4xl mb-4">{experience.icon}</div>
           <h3 class="text-xl font-bold mb-2">{experience.title}</h3>
-          <p class="text-gray-600 mb-4">{experience.description}</p>
+          <p class="text-gray-900 mb-4">{experience.description}</p>
           <ul class="space-y-1">
             {#each experience.features as feature}
-              <li class="text-sm text-gray-700">• {feature}</li>
+              <li class="text-sm text-gray-900">• {feature}</li>
             {/each}
           </ul>
         </div>
@@ -206,7 +206,7 @@
         <div class="bg-white rounded-xl p-4 text-center hover:shadow-lg transition-shadow">
           <div class="text-3xl mb-2">{product.icon}</div>
           <h3 class="font-semibold text-sm mb-1">{product.category}</h3>
-          <p class="text-xs text-gray-600">{product.items} Products</p>
+          <p class="text-xs text-gray-900">{product.items} Products</p>
         </div>
       {/each}
     </div>
@@ -223,7 +223,7 @@
 <section class="bg-gray-50 py-16">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-bold mb-4 text-center">AI-Enhanced Park Experience</h2>
-    <p class="text-lg text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+    <p class="text-lg text-gray-900 text-center mb-12 max-w-3xl mx-auto">
       Discover how cutting-edge technology creates more magical moments throughout your Disney visit
     </p>
     
@@ -232,7 +232,7 @@
         <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
           <div class="text-4xl mb-4 text-center">{feature.icon}</div>
           <h3 class="font-bold text-lg mb-2">{feature.title}</h3>
-          <p class="text-gray-600 text-sm">{feature.description}</p>
+          <p class="text-gray-900 text-sm">{feature.description}</p>
         </div>
       {/each}
     </div>

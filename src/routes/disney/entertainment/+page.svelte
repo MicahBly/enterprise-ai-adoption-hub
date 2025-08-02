@@ -90,7 +90,7 @@
 
 <!-- Studios Grid -->
 <section class="container mx-auto px-4 py-16">
-  <h2 class="text-3xl font-bold mb-12">Our Legendary Studios</h2>
+  <h2 class="text-3xl font-bold text-gray-900 mb-12">Our Legendary Studios</h2>
   
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {#each studios as studio}
@@ -100,15 +100,15 @@
           <div class="flex items-center mb-4">
             <span class="text-4xl mr-3">{studio.logo}</span>
             <div>
-              <h3 class="text-xl font-bold">{studio.name}</h3>
-              <p class="text-sm text-gray-600">{studio.description}</p>
+              <h3 class="text-xl font-bold text-gray-900">{studio.name}</h3>
+              <p class="text-sm text-gray-900">{studio.description}</p>
             </div>
           </div>
           <div class="mt-4">
-            <h4 class="text-sm font-semibold text-gray-700 mb-2">Recent Releases:</h4>
+            <h4 class="text-sm font-semibold text-gray-900 mb-2">Recent Releases:</h4>
             <ul class="space-y-1">
               {#each studio.recent as title}
-                <li class="text-sm text-gray-600 flex items-center">
+                <li class="text-sm text-gray-900 flex items-center">
                   <span class="w-1.5 h-1.5 bg-gradient-to-r {studio.color} rounded-full mr-2"></span>
                   {title}
                 </li>
@@ -124,15 +124,15 @@
 <!-- TV Networks -->
 <section class="bg-gray-50 py-16">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-12">Television Networks</h2>
+    <h2 class="text-3xl font-bold text-gray-900 mb-12">Television Networks</h2>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {#each tvNetworks as network}
         <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6">
-          <h3 class="text-xl font-bold mb-2">{network.name}</h3>
-          <p class="text-gray-600 mb-4">{network.description}</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">{network.name}</h3>
+          <p class="text-gray-900 mb-4">{network.description}</p>
           <div class="flex items-center justify-between">
-            <span class="text-sm text-gray-500">{network.shows} Active Shows</span>
+            <span class="text-sm text-gray-900">{network.shows} Active Shows</span>
             <button class="text-purple-600 hover:text-purple-700 font-semibold text-sm">
               View Shows →
             </button>
@@ -145,7 +145,7 @@
 
 <!-- Streaming Platforms -->
 <section class="container mx-auto px-4 py-16">
-  <h2 class="text-3xl font-bold mb-12">Streaming Excellence</h2>
+  <h2 class="text-3xl font-bold text-gray-900 mb-12">Streaming Excellence</h2>
   
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     {#each streamingStats as platform}
@@ -155,7 +155,7 @@
           <div class="text-4xl font-bold mb-2">{platform.subscribers}</div>
           <div class="text-sm opacity-90">Subscribers</div>
         </div>
-        <p class="text-gray-600">{platform.content}</p>
+        <p class="text-gray-900">{platform.content}</p>
       </div>
     {/each}
   </div>
@@ -165,39 +165,39 @@
 <section class="bg-gradient-to-r from-purple-100 to-pink-100 py-16">
   <div class="container mx-auto px-4">
     <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-6">AI-Powered Entertainment</h2>
-      <p class="text-lg text-gray-700 mb-8">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6">AI-Powered Entertainment</h2>
+      <p class="text-lg text-gray-900 mb-8">
         Discover how artificial intelligence enhances every aspect of Disney Entertainment
       </p>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
         <div class="bg-white rounded-xl p-6 shadow-md">
-          <h3 class="font-bold text-lg mb-3 flex items-center">
+          <h3 class="font-bold text-gray-900 text-lg mb-3 flex items-center">
             <span class="text-2xl mr-2">🎨</span>
             Content Creation
           </h3>
-          <p class="text-gray-600">AI-assisted animation, visual effects, and storytelling tools that bring imagination to life faster than ever.</p>
+          <p class="text-gray-900">AI-assisted animation, visual effects, and storytelling tools that bring imagination to life faster than ever.</p>
         </div>
         <div class="bg-white rounded-xl p-6 shadow-md">
-          <h3 class="font-bold text-lg mb-3 flex items-center">
+          <h3 class="font-bold text-gray-900 text-lg mb-3 flex items-center">
             <span class="text-2xl mr-2">🎯</span>
             Personalization
           </h3>
-          <p class="text-gray-600">Smart recommendations that help viewers discover their next favorite movie or show across all platforms.</p>
+          <p class="text-gray-900">Smart recommendations that help viewers discover their next favorite movie or show across all platforms.</p>
         </div>
         <div class="bg-white rounded-xl p-6 shadow-md">
-          <h3 class="font-bold text-lg mb-3 flex items-center">
+          <h3 class="font-bold text-gray-900 text-lg mb-3 flex items-center">
             <span class="text-2xl mr-2">📊</span>
             Analytics
           </h3>
-          <p class="text-gray-600">Data-driven insights that help create content audiences love while optimizing production workflows.</p>
+          <p class="text-gray-900">Data-driven insights that help create content audiences love while optimizing production workflows.</p>
         </div>
         <div class="bg-white rounded-xl p-6 shadow-md">
-          <h3 class="font-bold text-lg mb-3 flex items-center">
+          <h3 class="font-bold text-gray-900 text-lg mb-3 flex items-center">
             <span class="text-2xl mr-2">🌍</span>
             Localization
           </h3>
-          <p class="text-gray-600">AI-powered dubbing and subtitling that brings Disney magic to audiences worldwide in their language.</p>
+          <p class="text-gray-900">AI-powered dubbing and subtitling that brings Disney magic to audiences worldwide in their language.</p>
         </div>
       </div>
     </div>

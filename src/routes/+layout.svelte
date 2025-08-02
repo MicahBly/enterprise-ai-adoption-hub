@@ -16,6 +16,7 @@
 
 <div class="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
   <!-- Navigation Bar -->
+  {#if !$page.url.pathname.startsWith('/disney')}
   <nav class="bg-white dark:bg-gray-800 shadow-lg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
@@ -166,6 +167,7 @@
       </div>
     </div>
   </nav>
+  {/if}
 
   <!-- Main Content -->
   <main>

@@ -96,7 +96,7 @@
     <!-- Industry Recognition -->
     <div class="inline-flex items-center px-6 py-3 bg-orange-500/20 backdrop-blur rounded-full border border-orange-500/30">
       <span class="text-orange-400 mr-2">⭐</span>
-      <span class="text-white font-medium">Industry Standard AI Portfolio</span>
+      <span class="text-white font-medium">Micah Bly's AI Portfolio</span>
       <span class="text-orange-400 ml-2">⭐</span>
     </div>
   </div>

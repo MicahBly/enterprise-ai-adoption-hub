@@ -174,7 +174,7 @@
             <span class="text-3xl">{useCase.icon}</span>
             <span class="text-xs font-bold text-red-400">View Details</span>
           </div>
-          <h3 class="font-semibold mb-2 text-gray-900">{useCase.title}</h3>
+          <h3 class="font-semibold mb-2 text-white">{useCase.title}</h3>
           <p class="text-sm text-gray-300 mb-3">{useCase.description}</p>
           <div class="space-y-1">
             {#each Object.entries(useCase.metrics).slice(0, 2) as [key, value]}

@@ -2,185 +2,153 @@
   import { onMount } from 'svelte';
   import { fade, fly, scale } from 'svelte/transition';
   
-  let activePhase = 1;
-  let selectedCharacter = null;
+  let selectedTech = null;
+  let activeCategory = 'vfx';
   
-  const mcuPhases = [
+  const aiTechnologies = [
     {
-      phase: 1,
-      title: "Phase One: Avengers Assembled",
-      years: "2008-2012",
-      films: [
-        { title: "Iron Man", year: 2008, boxOffice: "$585.2M" },
-        { title: "The Incredible Hulk", year: 2008, boxOffice: "$264.8M" },
-        { title: "Iron Man 2", year: 2010, boxOffice: "$623.9M" },
-        { title: "Thor", year: 2011, boxOffice: "$449.3M" },
-        { title: "Captain America: The First Avenger", year: 2011, boxOffice: "$370.6M" },
-        { title: "The Avengers", year: 2012, boxOffice: "$1.519B" }
+      id: 'vfx',
+      title: 'AI-Enhanced Visual Effects',
+      icon: '🎨',
+      description: 'Revolutionary VFX powered by machine learning',
+      features: [
+        {
+          title: 'Smart Rotoscoping',
+          description: 'AI-powered object isolation reduces manual work from days to hours',
+          impact: '90% time reduction'
+        },
+        {
+          title: 'Deep Compositing',
+          description: 'Neural networks seamlessly blend CGI elements with live action',
+          impact: 'Photorealistic integration'
+        },
+        {
+          title: 'Motion Capture Enhancement',
+          description: 'AI fills in missing mocap data and enhances performer movements',
+          impact: 'More natural character animation'
+        },
+        {
+          title: 'Intelligent Upscaling',
+          description: 'AI upscales footage to 8K while preserving detail and reducing noise',
+          impact: 'Future-proof content'
+        }
       ]
     },
     {
-      phase: 2,
-      title: "Phase Two: Evolution",
-      years: "2013-2015",
-      films: [
-        { title: "Iron Man 3", year: 2013, boxOffice: "$1.215B" },
-        { title: "Thor: The Dark World", year: 2013, boxOffice: "$644.8M" },
-        { title: "Captain America: The Winter Soldier", year: 2014, boxOffice: "$714.4M" },
-        { title: "Guardians of the Galaxy", year: 2014, boxOffice: "$773.3M" },
-        { title: "Avengers: Age of Ultron", year: 2015, boxOffice: "$1.403B" },
-        { title: "Ant-Man", year: 2015, boxOffice: "$519.3M" }
+      id: 'characters',
+      title: 'Digital Character Creation',
+      icon: '🦸',
+      description: 'Bringing heroes and villains to life with AI',
+      features: [
+        {
+          title: 'De-aging Technology',
+          description: 'Advanced AI algorithms create younger versions of actors',
+          impact: 'Seamless timeline storytelling'
+        },
+        {
+          title: 'Digital Doubles',
+          description: 'AI generates photorealistic digital actors for dangerous stunts',
+          impact: 'Enhanced safety and possibilities'
+        },
+        {
+          title: 'Facial Animation AI',
+          description: 'Machine learning captures subtle expressions and emotions',
+          impact: 'More believable CGI characters'
+        },
+        {
+          title: 'Voice Synthesis',
+          description: 'AI preserves character voices across different ages and scenarios',
+          impact: 'Consistent character portrayal'
+        }
       ]
     },
     {
-      phase: 3,
-      title: "Phase Three: Infinity Saga",
-      years: "2016-2019",
-      films: [
-        { title: "Captain America: Civil War", year: 2016, boxOffice: "$1.153B" },
-        { title: "Doctor Strange", year: 2016, boxOffice: "$677.8M" },
-        { title: "Guardians of the Galaxy Vol. 2", year: 2017, boxOffice: "$863.8M" },
-        { title: "Spider-Man: Homecoming", year: 2017, boxOffice: "$880.2M" },
-        { title: "Thor: Ragnarok", year: 2017, boxOffice: "$854M" },
-        { title: "Black Panther", year: 2018, boxOffice: "$1.349B" },
-        { title: "Avengers: Infinity War", year: 2018, boxOffice: "$2.048B" },
-        { title: "Ant-Man and the Wasp", year: 2018, boxOffice: "$622.7M" },
-        { title: "Captain Marvel", year: 2019, boxOffice: "$1.128B" },
-        { title: "Avengers: Endgame", year: 2019, boxOffice: "$2.798B" },
-        { title: "Spider-Man: Far From Home", year: 2019, boxOffice: "$1.132B" }
+      id: 'action',
+      title: 'Action Sequence Planning',
+      icon: '💥',
+      description: 'AI-driven choreography and visualization',
+      features: [
+        {
+          title: 'Previs AI',
+          description: 'AI generates multiple action sequence variations for directors',
+          impact: 'Faster creative iteration'
+        },
+        {
+          title: 'Physics Simulation',
+          description: 'ML models predict realistic physics for superhero movements',
+          impact: 'Believable action scenes'
+        },
+        {
+          title: 'Crowd Simulation',
+          description: 'AI creates intelligent crowd behaviors for battle scenes',
+          impact: 'Epic scale battles'
+        },
+        {
+          title: 'Camera Path Optimization',
+          description: 'AI suggests optimal camera movements for dynamic shots',
+          impact: 'More engaging cinematography'
+        }
       ]
     },
     {
-      phase: 4,
-      title: "Phase Four: New Beginnings",
-      years: "2021-2022",
-      films: [
-        { title: "Black Widow", year: 2021, boxOffice: "$379.8M" },
-        { title: "Shang-Chi", year: 2021, boxOffice: "$432.2M" },
-        { title: "Eternals", year: 2021, boxOffice: "$402.1M" },
-        { title: "Spider-Man: No Way Home", year: 2021, boxOffice: "$1.922B" },
-        { title: "Doctor Strange in the Multiverse of Madness", year: 2022, boxOffice: "$956.0M" },
-        { title: "Thor: Love and Thunder", year: 2022, boxOffice: "$760.9M" },
-        { title: "Black Panther: Wakanda Forever", year: 2022, boxOffice: "$859.2M" }
-      ],
-      series: ["WandaVision", "The Falcon and the Winter Soldier", "Loki", "What If...?", "Hawkeye", "Moon Knight", "Ms. Marvel", "She-Hulk"]
-    },
-    {
-      phase: 5,
-      title: "Phase Five: The Multiverse Saga",
-      years: "2023-2024",
-      films: [
-        { title: "Ant-Man and the Wasp: Quantumania", year: 2023, boxOffice: "$476.1M" },
-        { title: "Guardians of the Galaxy Vol. 3", year: 2023, boxOffice: "$845.6M" },
-        { title: "The Marvels", year: 2023, boxOffice: "$206.1M" },
-        { title: "Deadpool & Wolverine", year: 2024, boxOffice: "$1.338B" }
-      ],
-      series: ["Secret Invasion", "Loki Season 2", "Echo", "Agatha All Along"]
-    },
-    {
-      phase: 6,
-      title: "Phase Six: The Saga Continues",
-      years: "2025-2027",
-      films: [
-        { title: "Captain America: Brave New World", year: 2025, status: "upcoming" },
-        { title: "Thunderbolts*", year: 2025, status: "upcoming" },
-        { title: "The Fantastic Four: First Steps", year: 2025, status: "upcoming" },
-        { title: "Blade", year: 2025, status: "upcoming" },
-        { title: "Avengers: Doomsday", year: 2026, status: "upcoming" },
-        { title: "Avengers: Secret Wars", year: 2027, status: "upcoming" }
-      ],
-      series: ["Daredevil: Born Again", "Ironheart", "Wonder Man"]
+      id: 'production',
+      title: 'Production Innovation',
+      icon: '🎬',
+      description: 'AI streamlining the filmmaking process',
+      features: [
+        {
+          title: 'Script Analysis',
+          description: 'AI analyzes scripts for VFX requirements and budget estimation',
+          impact: 'Accurate pre-production planning'
+        },
+        {
+          title: 'Automated Dailies',
+          description: 'AI reviews and categorizes daily footage for faster editing',
+          impact: '50% faster post-production'
+        },
+        {
+          title: 'Virtual Production',
+          description: 'AI-powered LED volumes create immersive filming environments',
+          impact: 'Real-time in-camera effects'
+        },
+        {
+          title: 'Color Grading AI',
+          description: 'Intelligent color matching across different shots and scenes',
+          impact: 'Consistent visual style'
+        }
+      ]
     }
   ];
   
-  const featuredContent = [
+  const caseStudies = [
     {
-      title: "Deadpool & Wolverine",
-      type: "Film",
-      releaseDate: "July 26, 2024",
-      description: "The Merc with a Mouth meets the X-Men's fiercest warrior",
-      image: "🎬",
-      boxOffice: "$1.338B"
+      title: "Thanos Creation",
+      film: "Avengers: Infinity War & Endgame",
+      description: "Revolutionary motion capture and AI facial mapping brought the Mad Titan to life",
+      technologies: ["Performance Capture", "Facial AI", "Digital Human Tech"],
+      icon: "👊"
     },
     {
-      title: "Loki Season 2",
-      type: "Series",
-      releaseDate: "October 2023",
-      description: "The God of Mischief's timeline-hopping adventures continue",
-      image: "📺",
-      rating: "87%"
+      title: "The Multiverse",
+      film: "Doctor Strange in the Multiverse of Madness",
+      description: "AI-generated reality distortions and dimensional transitions",
+      technologies: ["Reality Engine", "AI Simulation", "Quantum Rendering"],
+      icon: "🌀"
     },
     {
-      title: "Captain America: Brave New World",
-      type: "Film",
-      releaseDate: "February 14, 2025",
-      description: "Sam Wilson takes up the shield as the new Captain America",
-      image: "🛡️",
-      status: "Coming Soon"
+      title: "Quantum Realm",
+      film: "Ant-Man and the Wasp: Quantumania",
+      description: "Procedural AI creation of microscopic and surreal environments",
+      technologies: ["Procedural Generation", "AI World Building", "Particle Systems"],
+      icon: "🔬"
     }
   ];
   
-  const marvelCharacters = [
-    {
-      name: "Iron Man",
-      realName: "Tony Stark",
-      powers: "Genius intellect, powered armor suit",
-      firstAppearance: "Iron Man (2008)",
-      icon: "🤖"
-    },
-    {
-      name: "Captain America",
-      realName: "Steve Rogers / Sam Wilson",
-      powers: "Super soldier serum, vibranium shield",
-      firstAppearance: "Captain America: The First Avenger (2011)",
-      icon: "🛡️"
-    },
-    {
-      name: "Thor",
-      realName: "Thor Odinson",
-      powers: "Asgardian strength, Mjolnir/Stormbreaker",
-      firstAppearance: "Thor (2011)",
-      icon: "⚡"
-    },
-    {
-      name: "Black Widow",
-      realName: "Natasha Romanoff",
-      powers: "Master spy, expert combatant",
-      firstAppearance: "Iron Man 2 (2010)",
-      icon: "🕷️"
-    },
-    {
-      name: "Spider-Man",
-      realName: "Peter Parker",
-      powers: "Spider powers, web-slinging",
-      firstAppearance: "Captain America: Civil War (2016)",
-      icon: "🕸️"
-    },
-    {
-      name: "Black Panther",
-      realName: "T'Challa / Shuri",
-      powers: "Vibranium suit, enhanced abilities",
-      firstAppearance: "Captain America: Civil War (2016)",
-      icon: "🐾"
-    }
-  ];
-  
-  const boxOfficeAchievements = [
-    { title: "Avengers: Endgame", amount: "$2.798B", rank: "#2 All-Time" },
-    { title: "Avengers: Infinity War", amount: "$2.048B", rank: "#5 All-Time" },
-    { title: "Spider-Man: No Way Home", amount: "$1.922B", rank: "#7 All-Time" },
-    { title: "The Avengers", amount: "$1.519B", rank: "#10 All-Time" },
-    { title: "Total MCU Box Office", amount: "$30+ Billion", rank: "Highest-Grossing Film Franchise" }
-  ];
-  
-  const upcomingReleases = [
-    { date: "Feb 14, 2025", title: "Captain America: Brave New World", type: "Film" },
-    { date: "May 2, 2025", title: "Thunderbolts*", type: "Film" },
-    { date: "July 25, 2025", title: "The Fantastic Four: First Steps", type: "Film" },
-    { date: "Nov 7, 2025", title: "Blade", type: "Film" },
-    { date: "March 2025", title: "Daredevil: Born Again", type: "Disney+ Series" },
-    { date: "May 1, 2026", title: "Avengers: Doomsday", type: "Film" },
-    { date: "May 7, 2027", title: "Avengers: Secret Wars", type: "Film" }
+  const aiStats = [
+    { label: "VFX Shots Using AI", value: "85%", trend: "+25% YoY" },
+    { label: "Production Time Saved", value: "40%", trend: "Per Film" },
+    { label: "AI-Enhanced Scenes", value: "2,500+", trend: "Per Blockbuster" },
+    { label: "Digital Characters", value: "200+", trend: "Across MCU" }
   ];
   
   let scrollY = 0;
@@ -215,7 +183,7 @@
       </div>
       <p class="text-gray-300 text-xl md:text-2xl max-w-3xl mx-auto"
          in:fade={{ duration: 1000, delay: 900 }}>
-        Home to Earth's Mightiest Heroes and the Marvel Cinematic Universe
+        Pioneering AI Technology in Cinematic Storytelling
       </p>
     </div>
     
@@ -228,86 +196,77 @@
   </div>
 </section>
 
-<!-- MCU Phases Overview -->
+<!-- AI Technology Categories -->
 <section class="py-20 bg-gradient-to-b from-black to-gray-900">
   <div class="container mx-auto px-4">
-    <h2 class="text-5xl font-black text-center text-white mb-16">THE MCU PHASES</h2>
+    <h2 class="text-5xl font-black text-center text-white mb-16">AI IN MARVEL PRODUCTIONS</h2>
     
-    <!-- Phase Selector -->
+    <!-- Technology Selector -->
     <div class="flex flex-wrap justify-center gap-4 mb-12">
-      {#each mcuPhases as phase}
+      {#each aiTechnologies as tech}
         <button
-          on:click={() => activePhase = phase.phase}
-          class="px-6 py-3 rounded-lg font-bold transition-all duration-300 {
-            activePhase === phase.phase 
+          on:click={() => activeCategory = tech.id}
+          class="px-6 py-3 rounded-lg font-bold transition-all duration-300 flex items-center gap-2 {
+            activeCategory === tech.id 
               ? 'bg-red-600 text-white scale-110 shadow-lg shadow-red-600/50' 
               : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
           }"
         >
-          Phase {phase.phase}
+          <span class="text-2xl">{tech.icon}</span>
+          <span>{tech.title}</span>
         </button>
       {/each}
     </div>
     
-    <!-- Phase Details -->
-    {#each mcuPhases as phase}
-      {#if activePhase === phase.phase}
+    <!-- Technology Details -->
+    {#each aiTechnologies as tech}
+      {#if activeCategory === tech.id}
         <div class="bg-gray-800/50 rounded-2xl p-8 backdrop-blur-sm border border-red-600/30"
              in:fade={{ duration: 300 }}>
-          <h3 class="text-3xl font-bold text-red-500 mb-2">{phase.title}</h3>
-          <p class="text-gray-400 mb-6">{phase.years}</p>
+          <h3 class="text-3xl font-bold text-red-500 mb-2">{tech.title}</h3>
+          <p class="text-gray-400 mb-8 text-lg">{tech.description}</p>
           
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {#each phase.films as film}
-              <div class="bg-black/50 rounded-lg p-4 border border-gray-700 hover:border-red-600 transition-colors">
-                <h4 class="font-bold text-white">{film.title}</h4>
-                <div class="flex justify-between items-center mt-2">
-                  <span class="text-gray-400">{film.year}</span>
-                  <span class="text-green-400 font-semibold">{film.boxOffice || film.status || 'TBA'}</span>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {#each tech.features as feature}
+              <div class="bg-black/50 rounded-lg p-6 border border-gray-700 hover:border-red-600 transition-all duration-300 group">
+                <h4 class="font-bold text-white text-xl mb-2 group-hover:text-red-400 transition-colors">{feature.title}</h4>
+                <p class="text-gray-400 mb-3">{feature.description}</p>
+                <div class="flex items-center gap-2">
+                  <span class="text-red-500">→</span>
+                  <span class="text-green-400 font-semibold">{feature.impact}</span>
                 </div>
               </div>
             {/each}
           </div>
-          
-          {#if phase.series}
-            <div class="mt-8">
-              <h4 class="text-xl font-bold text-red-500 mb-4">Disney+ Series</h4>
-              <div class="flex flex-wrap gap-3">
-                {#each phase.series as series}
-                  <span class="px-4 py-2 bg-red-900/30 text-red-300 rounded-full text-sm">
-                    {series}
-                  </span>
-                {/each}
-              </div>
-            </div>
-          {/if}
         </div>
       {/if}
     {/each}
   </div>
 </section>
 
-<!-- Featured Films and Series -->
+<!-- AI Case Studies -->
 <section class="py-20 bg-gray-900">
   <div class="container mx-auto px-4">
-    <h2 class="text-5xl font-black text-center text-white mb-16">FEATURED CONTENT</h2>
+    <h2 class="text-5xl font-black text-center text-white mb-16">BREAKTHROUGH AI IMPLEMENTATIONS</h2>
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {#each featuredContent as content, i}
+      {#each caseStudies as study, i}
         <div class="group relative overflow-hidden rounded-xl bg-black border-2 border-red-600/30 hover:border-red-600 transition-all duration-300 transform hover:scale-105"
              in:fly={{ y: 50, delay: i * 100, duration: 500 }}>
           <div class="p-8">
-            <div class="text-6xl mb-4">{content.image}</div>
+            <div class="text-6xl mb-4">{study.icon}</div>
             <span class="inline-block px-3 py-1 bg-red-600 text-white text-xs font-bold rounded-full mb-3">
-              {content.type}
+              Case Study
             </span>
-            <h3 class="text-2xl font-bold text-white mb-2">{content.title}</h3>
-            <p class="text-gray-400 mb-4">{content.description}</p>
-            <div class="flex justify-between items-center">
-              <span class="text-sm text-gray-500">{content.releaseDate}</span>
-              <span class="text-green-400 font-bold">
-                {content.boxOffice || content.rating || content.status}
-              </span>
+            <h3 class="text-2xl font-bold text-white mb-2">{study.title}</h3>
+            <p class="text-gray-500 text-sm mb-3">{study.film}</p>
+            <p class="text-gray-400 mb-4">{study.description}</p>
+            <div class="flex flex-wrap gap-2">
+              {#each study.technologies as tech}
+                <span class="text-xs px-2 py-1 bg-red-900/30 text-red-300 rounded-full">
+                  {tech}
+                </span>
+              {/each}
             </div>
           </div>
           <div class="absolute inset-0 bg-gradient-to-t from-red-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -317,124 +276,272 @@
   </div>
 </section>
 
-<!-- Upcoming Releases Timeline -->
+<!-- AI Impact Statistics -->
 <section class="py-20 bg-black relative overflow-hidden">
   <div class="absolute inset-0 comic-speed-lines opacity-10"></div>
   <div class="container mx-auto px-4 relative z-10">
-    <h2 class="text-5xl font-black text-center text-white mb-16">UPCOMING RELEASES</h2>
+    <h2 class="text-5xl font-black text-center text-white mb-16">AI IMPACT BY THE NUMBERS</h2>
     
-    <div class="max-w-4xl mx-auto">
-      {#each upcomingReleases as release, i}
-        <div class="flex items-center mb-8 group"
-             in:fly={{ x: i % 2 === 0 ? -50 : 50, delay: i * 100, duration: 500 }}>
-          <div class="flex-1 {i % 2 === 0 ? 'text-right pr-8' : 'order-3 pl-8'}">
-            <h3 class="text-xl font-bold text-white group-hover:text-red-500 transition-colors">
-              {release.title}
-            </h3>
-            <p class="text-gray-400">{release.type}</p>
-          </div>
-          <div class="relative">
-            <div class="w-4 h-4 bg-red-600 rounded-full border-4 border-gray-900 relative z-10"></div>
-            {#if i < upcomingReleases.length - 1}
-              <div class="absolute top-4 left-1/2 transform -translate-x-1/2 w-0.5 h-16 bg-red-600/30"></div>
-            {/if}
-          </div>
-          <div class="flex-1 {i % 2 === 0 ? 'order-3 pl-8' : 'pr-8'}">
-            <span class="text-red-500 font-bold">{release.date}</span>
-          </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+      {#each aiStats as stat, i}
+        <div class="bg-gradient-to-br from-red-900/20 to-black p-8 rounded-xl border-2 border-red-600/30 text-center transform hover:scale-105 transition-all duration-300"
+             in:scale={{ delay: i * 100, duration: 500 }}>
+          <h3 class="text-gray-400 text-sm uppercase tracking-wider mb-2">{stat.label}</h3>
+          <p class="text-5xl font-black text-red-500 mb-2">{stat.value}</p>
+          <p class="text-green-400 text-sm font-semibold">{stat.trend}</p>
         </div>
       {/each}
+    </div>
+    
+    <div class="mt-16 text-center">
+      <a href="/disney/studios/vfx" 
+         class="inline-flex items-center gap-3 px-8 py-4 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-colors duration-300 group">
+        <span>Explore VFX Use Cases</span>
+        <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- Marvel Characters Showcase -->
+<!-- AI Innovation Timeline -->
 <section class="py-20 bg-gradient-to-b from-gray-900 to-black">
   <div class="container mx-auto px-4">
-    <h2 class="text-5xl font-black text-center text-white mb-16">MARVEL HEROES</h2>
+    <h2 class="text-5xl font-black text-center text-white mb-16">AI INNOVATION MILESTONES</h2>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {#each marvelCharacters as character, i}
-        <button
-          on:click={() => selectedCharacter = selectedCharacter === character ? null : character}
-          class="relative bg-gradient-to-br from-red-900/20 to-black p-6 rounded-xl border-2 border-red-600/30 hover:border-red-600 transition-all duration-300 transform hover:scale-105 text-left"
-          in:scale={{ delay: i * 100, duration: 500 }}>
-          <div class="text-5xl mb-4">{character.icon}</div>
-          <h3 class="text-2xl font-bold text-white mb-1">{character.name}</h3>
-          <p class="text-gray-400 text-sm mb-2">{character.realName}</p>
-          
-          {#if selectedCharacter === character}
-            <div class="mt-4 pt-4 border-t border-red-600/30" in:fade={{ duration: 200 }}>
-              <p class="text-gray-300 mb-2"><span class="text-red-500 font-bold">Powers:</span> {character.powers}</p>
-              <p class="text-gray-300"><span class="text-red-500 font-bold">MCU Debut:</span> {character.firstAppearance}</p>
+    <div class="max-w-4xl mx-auto">
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-red-600 to-red-900"></div>
+        
+        <!-- Timeline items -->
+        <div class="space-y-12">
+          <div class="relative flex items-center" in:fly={{ x: -50, duration: 500 }}>
+            <div class="flex-1 text-right pr-8">
+              <h3 class="text-xl font-bold text-white">Motion Capture Revolution</h3>
+              <p class="text-gray-400">Advanced AI-driven performance capture for Hulk</p>
             </div>
-          {/if}
-        </button>
-      {/each}
-    </div>
-  </div>
-</section>
-
-<!-- Box Office Achievements -->
-<section class="py-20 bg-red-950/20">
-  <div class="container mx-auto px-4">
-    <h2 class="text-5xl font-black text-center text-white mb-16">BOX OFFICE DOMINANCE</h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {#each boxOfficeAchievements as achievement, i}
-        <div class="bg-black/60 backdrop-blur-sm rounded-xl p-8 border-2 border-red-600/30 text-center transform hover:scale-105 transition-all duration-300"
-             in:fly={{ y: 50, delay: i * 100, duration: 500 }}>
-          <h3 class="text-xl font-bold text-white mb-2">{achievement.title}</h3>
-          <p class="text-4xl font-black text-red-500 mb-2">{achievement.amount}</p>
-          <p class="text-gray-400">{achievement.rank}</p>
+            <div class="w-4 h-4 bg-red-600 rounded-full border-4 border-black relative z-10"></div>
+            <div class="flex-1 pl-8">
+              <span class="text-red-500 font-bold">2012</span>
+            </div>
+          </div>
+          
+          <div class="relative flex items-center" in:fly={{ x: 50, duration: 500, delay: 100 }}>
+            <div class="flex-1 text-right pr-8">
+              <span class="text-red-500 font-bold">2018</span>
+            </div>
+            <div class="w-4 h-4 bg-red-600 rounded-full border-4 border-black relative z-10"></div>
+            <div class="flex-1 pl-8">
+              <h3 class="text-xl font-bold text-white">Digital Human Breakthrough</h3>
+              <p class="text-gray-400">Photorealistic Thanos with AI facial mapping</p>
+            </div>
+          </div>
+          
+          <div class="relative flex items-center" in:fly={{ x: -50, duration: 500, delay: 200 }}>
+            <div class="flex-1 text-right pr-8">
+              <h3 class="text-xl font-bold text-white">De-aging Perfected</h3>
+              <p class="text-gray-400">Seamless time-travel scenes in Endgame</p>
+            </div>
+            <div class="w-4 h-4 bg-red-600 rounded-full border-4 border-black relative z-10"></div>
+            <div class="flex-1 pl-8">
+              <span class="text-red-500 font-bold">2019</span>
+            </div>
+          </div>
+          
+          <div class="relative flex items-center" in:fly={{ x: 50, duration: 500, delay: 300 }}>
+            <div class="flex-1 text-right pr-8">
+              <span class="text-red-500 font-bold">2023</span>
+            </div>
+            <div class="w-4 h-4 bg-red-600 rounded-full border-4 border-black relative z-10"></div>
+            <div class="flex-1 pl-8">
+              <h3 class="text-xl font-bold text-white">Quantum Realm AI</h3>
+              <p class="text-gray-400">Procedural world generation for Quantumania</p>
+            </div>
+          </div>
+          
+          <div class="relative flex items-center" in:fly={{ x: -50, duration: 500, delay: 400 }}>
+            <div class="flex-1 text-right pr-8">
+              <h3 class="text-xl font-bold text-white">Next-Gen Virtual Production</h3>
+              <p class="text-gray-400">AI-powered real-time environments</p>
+            </div>
+            <div class="w-4 h-4 bg-red-600 rounded-full border-4 border-black relative z-10 animate-pulse"></div>
+            <div class="flex-1 pl-8">
+              <span class="text-red-500 font-bold">2025+</span>
+            </div>
+          </div>
         </div>
-      {/each}
-    </div>
-    
-    <div class="mt-12 text-center">
-      <div class="inline-block bg-gradient-to-r from-red-600 to-red-800 rounded-xl p-8">
-        <p class="text-white text-xl mb-2">The Marvel Cinematic Universe</p>
-        <p class="text-4xl font-black text-white">30+ Films | 10+ Series | 15+ Years</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Disney+ Marvel Content -->
+<!-- AI Technology Partners -->
+<section class="py-20 bg-red-950/20">
+  <div class="container mx-auto px-4">
+    <h2 class="text-5xl font-black text-center text-white mb-16">TECHNOLOGY PARTNERSHIPS</h2>
+    
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-black/60 backdrop-blur-sm rounded-xl p-8 border-2 border-red-600/30">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-2xl font-bold text-red-400 mb-4">VFX Partners</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2 mt-1">▸</span>
+                <div>
+                  <span class="font-bold text-white">Industrial Light & Magic</span>
+                  <p class="text-gray-400 text-sm">AI-powered VFX pipeline</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2 mt-1">▸</span>
+                <div>
+                  <span class="font-bold text-white">Weta Digital</span>
+                  <p class="text-gray-400 text-sm">Machine learning character animation</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2 mt-1">▸</span>
+                <div>
+                  <span class="font-bold text-white">Framestore</span>
+                  <p class="text-gray-400 text-sm">Neural rendering technology</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2 mt-1">▸</span>
+                <div>
+                  <span class="font-bold text-white">Digital Domain</span>
+                  <p class="text-gray-400 text-sm">AI facial capture systems</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-red-400 mb-4">AI Technology Stack</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2 mt-1">▸</span>
+                <div>
+                  <span class="font-bold text-white">NVIDIA Omniverse</span>
+                  <p class="text-gray-400 text-sm">Real-time collaboration platform</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2 mt-1">▸</span>
+                <div>
+                  <span class="font-bold text-white">Unreal Engine 5</span>
+                  <p class="text-gray-400 text-sm">Virtual production environments</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2 mt-1">▸</span>
+                <div>
+                  <span class="font-bold text-white">Custom Marvel AI</span>
+                  <p class="text-gray-400 text-sm">Proprietary character systems</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2 mt-1">▸</span>
+                <div>
+                  <span class="font-bold text-white">Volume Capture Tech</span>
+                  <p class="text-gray-400 text-sm">LED wall integration</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Future of AI in Marvel -->
 <section class="py-20 bg-gradient-to-b from-black to-gray-900">
   <div class="container mx-auto px-4">
-    <h2 class="text-5xl font-black text-center text-white mb-4">MARVEL ON</h2>
-    <div class="text-center mb-12">
-      <span class="text-6xl font-black bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-        Disney+
-      </span>
-    </div>
+    <h2 class="text-5xl font-black text-center text-white mb-16">THE FUTURE OF MARVEL AI</h2>
     
-    <div class="max-w-4xl mx-auto bg-gray-800/50 rounded-2xl p-8 backdrop-blur-sm border border-blue-600/30">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <h3 class="text-2xl font-bold text-blue-400 mb-4">Exclusive Series</h3>
-          <ul class="space-y-2 text-gray-300">
-            <li class="flex items-center"><span class="text-blue-500 mr-2">▸</span> WandaVision</li>
-            <li class="flex items-center"><span class="text-blue-500 mr-2">▸</span> The Falcon and the Winter Soldier</li>
-            <li class="flex items-center"><span class="text-blue-500 mr-2">▸</span> Loki</li>
-            <li class="flex items-center"><span class="text-blue-500 mr-2">▸</span> What If...?</li>
-            <li class="flex items-center"><span class="text-blue-500 mr-2">▸</span> Hawkeye</li>
-            <li class="flex items-center"><span class="text-blue-500 mr-2">▸</span> Moon Knight</li>
-            <li class="flex items-center"><span class="text-blue-500 mr-2">▸</span> Ms. Marvel</li>
-            <li class="flex items-center"><span class="text-blue-500 mr-2">▸</span> She-Hulk: Attorney at Law</li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-2xl font-bold text-blue-400 mb-4">Coming Soon</h3>
-          <ul class="space-y-2 text-gray-300">
-            <li class="flex items-center"><span class="text-blue-500 mr-2">▸</span> Daredevil: Born Again</li>
-            <li class="flex items-center"><span class="text-blue-500 mr-2">▸</span> Ironheart</li>
-            <li class="flex items-center"><span class="text-blue-500 mr-2">▸</span> Wonder Man</li>
-            <li class="flex items-center"><span class="text-blue-500 mr-2">▸</span> Armor Wars</li>
-          </ul>
-          <div class="mt-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-gray-800/50 rounded-2xl p-8 backdrop-blur-sm border border-red-600/30">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-2xl font-bold text-red-400 mb-4">Next-Gen Technologies</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2 mt-1">▸</span>
+                <div>
+                  <span class="font-bold text-white">AI Director Assistant</span>
+                  <p class="text-gray-400 text-sm">Real-time shot composition suggestions</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2 mt-1">▸</span>
+                <div>
+                  <span class="font-bold text-white">Autonomous Character AI</span>
+                  <p class="text-gray-400 text-sm">Self-animating background characters</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2 mt-1">▸</span>
+                <div>
+                  <span class="font-bold text-white">Predictive Rendering</span>
+                  <p class="text-gray-400 text-sm">AI anticipates and pre-renders scenes</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2 mt-1">▸</span>
+                <div>
+                  <span class="font-bold text-white">Neural Story Engine</span>
+                  <p class="text-gray-400 text-sm">AI-assisted narrative development</p>
+                </div>
+              </li>
+            </ul>
           </div>
+          <div>
+            <h3 class="text-2xl font-bold text-red-400 mb-4">Research Initiatives</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2 mt-1">▸</span>
+                <div>
+                  <span class="font-bold text-white">Quantum Computing VFX</span>
+                  <p class="text-gray-400 text-sm">Exponentially faster rendering</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2 mt-1">▸</span>
+                <div>
+                  <span class="font-bold text-white">Holographic Projection</span>
+                  <p class="text-gray-400 text-sm">True 3D filming environments</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2 mt-1">▸</span>
+                <div>
+                  <span class="font-bold text-white">AI Stunt Coordination</span>
+                  <p class="text-gray-400 text-sm">Predictive safety systems</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2 mt-1">▸</span>
+                <div>
+                  <span class="font-bold text-white">Generative World Building</span>
+                  <p class="text-gray-400 text-sm">Infinite environment creation</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+          <p class="text-gray-400 mb-4">Marvel Studios continues to push the boundaries of what's possible in cinema through cutting-edge AI technology</p>
+          <a href="/disney/studios/vfx" 
+             class="inline-flex items-center gap-3 px-6 py-3 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-colors duration-300 group">
+            <span>Learn More About VFX Innovation</span>
+            <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>

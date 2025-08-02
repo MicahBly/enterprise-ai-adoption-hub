@@ -12,152 +12,156 @@
     return () => clearInterval(interval);
   });
   
-  // Breaking news ticker items
+  // AI sports journalism breaking news
   const breakingNews = [
-    { id: 1, text: "BREAKING: Lakers acquire All-Star guard in blockbuster trade", urgent: true },
-    { id: 2, text: "NFL MVP frontrunner suffers season-ending injury in practice", urgent: true },
-    { id: 3, text: "Manchester United sacks manager after Champions League exit", urgent: false },
-    { id: 4, text: "NBA suspends star player for 25 games following altercation", urgent: true },
-    { id: 5, text: "College Football Playoff rankings shake up top 4 teams", urgent: false },
-    { id: 6, text: "Yankees sign Japanese pitcher to record 10-year deal", urgent: false }
+    { id: 1, text: "BREAKTHROUGH: AI generates real-time game summaries with 95% accuracy", urgent: true },
+    { id: 2, text: "ESPN deploys automated highlight detection across all live sports", urgent: true },
+    { id: 3, text: "Machine learning models predict player performance with unprecedented precision", urgent: false },
+    { id: 4, text: "Natural language processing revolutionizes sports commentary automation", urgent: true },
+    { id: 5, text: "AI-powered player tracking delivers new advanced analytics insights", urgent: false },
+    { id: 6, text: "Automated journalism produces 10,000+ game recaps in minutes", urgent: false }
   ];
   
-  // Top stories
+  // AI in Sports Media Top Stories
   const topStories = [
     {
       id: 1,
-      headline: "Chiefs Clinch Home Field Advantage Throughout Playoffs",
-      summary: "Patrick Mahomes throws 4 TDs as Kansas City dominates division rival to secure top seed",
-      image: "🏈",
-      category: "NFL",
-      author: "Adam Schefter",
+      headline: "AI-Generated Game Summaries Transform Sports Journalism",
+      summary: "Advanced natural language processing creates comprehensive game recaps in seconds, maintaining ESPN's editorial quality while scaling content production",
+      image: "🤖",
+      category: "AI Journalism",
+      author: "ESPN AI Lab",
       time: "2 hours ago",
       featured: true
     },
     {
       id: 2,
-      headline: "LeBron James Becomes NBA's All-Time Minutes Leader",
-      summary: "Historic milestone achieved in Lakers' overtime victory against the Celtics",
-      image: "🏀",
-      category: "NBA", 
-      author: "Adrian Wojnarowski",
+      headline: "Real-Time Stats Integration Powered by Machine Learning",
+      summary: "Automated data collection and analysis delivers instant advanced statistics during live broadcasts, enhancing viewer experience",
+      image: "📊",
+      category: "AI Analytics", 
+      author: "ESPN Data Science Team",
       time: "4 hours ago",
       featured: true
     },
     {
       id: 3,
-      headline: "Alabama Stuns Georgia in SEC Championship Thriller",
-      summary: "Tide's last-second field goal sends them to College Football Playoff",
-      image: "🏈",
-      category: "College Football",
-      author: "Kirk Herbstreit",
+      headline: "Automated Sports Commentary Reaches Human-Level Quality",
+      summary: "Neural networks trained on decades of ESPN commentary now generate play-by-play analysis indistinguishable from human broadcasters",
+      image: "🎙️",
+      category: "AI Commentary",
+      author: "ESPN Innovation Lab",
       time: "6 hours ago",
       featured: true
     }
   ];
   
-  // News by sport categories
-  const sportNews = {
-    NFL: [
-      { title: "Cowboys fire defensive coordinator after playoff miss", time: "1h ago", hot: true },
-      { title: "Bills QB returns to practice ahead of wild card game", time: "3h ago" },
-      { title: "Rookie of the Year race heats up in final weeks", time: "5h ago" },
-      { title: "Patriots begin head coaching search", time: "7h ago" }
+  // AI Technologies in Sports Media
+  const aiTechnologies = {
+    "Automated Journalism": [
+      { title: "GPT-4 models generate 500+ game recaps daily with 99% accuracy", time: "1h ago", hot: true },
+      { title: "Real-time article creation from live data feeds deployed", time: "3h ago" },
+      { title: "AI fact-checking system prevents sports misinformation", time: "5h ago" },
+      { title: "Multilingual content generation expands global reach", time: "7h ago" }
     ],
-    NBA: [
-      { title: "Warriors' dynasty era officially ends with trade request", time: "2h ago", hot: true },
-      { title: "Celtics extend win streak to 15 games", time: "4h ago" },
-      { title: "MVP ladder: New leader emerges after strong December", time: "6h ago" },
-      { title: "Knicks star to miss 6-8 weeks with knee injury", time: "8h ago" }
+    "Computer Vision": [
+      { title: "Advanced player tracking analyzes every movement on field", time: "2h ago", hot: true },
+      { title: "Automated highlight detection identifies key moments instantly", time: "4h ago" },
+      { title: "Injury prediction models achieve 85% accuracy rate", time: "6h ago" },
+      { title: "Ball tracking technology enhances officiating precision", time: "8h ago" }
     ],
-    MLB: [
-      { title: "Free agency frenzy: 5 All-Stars sign mega deals", time: "3h ago", hot: true },
-      { title: "Dodgers pursue Japanese phenom in bidding war", time: "5h ago" },
-      { title: "Hall of Fame ballot released with controversial names", time: "7h ago" },
-      { title: "Spring training schedules announced", time: "9h ago" }
+    "Predictive Analytics": [
+      { title: "Machine learning models forecast game outcomes with 78% accuracy", time: "3h ago", hot: true },
+      { title: "Player performance metrics predict future All-Stars", time: "5h ago" },
+      { title: "Draft analysis AI identifies hidden talent prospects", time: "7h ago" },
+      { title: "Weather impact algorithms improve betting predictions", time: "9h ago" }
     ],
-    Soccer: [
-      { title: "Real Madrid advances to Champions League semifinals", time: "1h ago", hot: true },
-      { title: "Premier League title race goes down to the wire", time: "3h ago" },
-      { title: "USMNT announces World Cup qualifying roster", time: "5h ago" },
-      { title: "Barcelona wonderkid signs record extension", time: "7h ago" }
+    "Natural Language": [
+      { title: "Voice synthesis creates personalized sports updates", time: "1h ago", hot: true },
+      { title: "Sentiment analysis tracks fan reactions in real-time", time: "3h ago" },
+      { title: "Automated interview transcription speeds content creation", time: "5h ago" },
+      { title: "Translation AI breaks down language barriers in sports", time: "7h ago" }
     ],
-    NHL: [
-      { title: "Bruins set franchise record with 20th straight win", time: "2h ago", hot: true },
-      { title: "Trade deadline preview: 10 players on the move", time: "4h ago" },
-      { title: "Avalanche lose star forward to injury", time: "6h ago" },
-      { title: "Rookie goalie posts third straight shutout", time: "8h ago" }
+    "Data Integration": [
+      { title: "Real-time stats API processes 1M+ data points per game", time: "2h ago", hot: true },
+      { title: "Cross-platform analytics unify viewer engagement metrics", time: "4h ago" },
+      { title: "Historical data mining reveals century-old sports trends", time: "6h ago" },
+      { title: "Biometric integration provides unprecedented player insights", time: "8h ago" }
     ],
-    College: [
-      { title: "March Madness bracket revealed with major surprises", time: "1h ago", hot: true },
-      { title: "Top recruit flips commitment on signing day", time: "3h ago" },
-      { title: "Coach K's successor leads Duke to ACC title", time: "5h ago" },
-      { title: "NIL deals reshape college athletics landscape", time: "7h ago" }
+    "Personalization": [
+      { title: "AI curators deliver custom sports content to 50M+ users", time: "1h ago", hot: true },
+      { title: "Recommendation engines increase fan engagement by 40%", time: "3h ago" },
+      { title: "Dynamic content adaptation matches viewer preferences", time: "5h ago" },
+      { title: "Behavioral analysis optimizes content delivery timing", time: "7h ago" }
     ]
   };
   
-  // Video highlights
-  const videoHighlights = [
+  // AI-Powered Content Demonstrations
+  const aiDemonstrations = [
     {
       id: 1,
-      title: "Mahomes' Magical 70-Yard TD Pass",
-      duration: "0:45",
+      title: "AI Game Summary Generation Demo",
+      duration: "2:45",
       views: "2.3M",
-      category: "NFL",
-      live: false
+      category: "AI Journalism",
+      live: false,
+      description: "Watch AI create comprehensive game recaps in real-time"
     },
     {
       id: 2,
-      title: "LIVE: Lakers vs Celtics 4th Quarter",
+      title: "LIVE: AI Commentary Training Session",
       duration: "LIVE",
       views: "450K watching",
-      category: "NBA",
-      live: true
+      category: "AI Commentary",
+      live: true,
+      description: "Neural networks learning play-by-play analysis"
     },
     {
       id: 3,
-      title: "Top 10 Plays of the Week",
+      title: "Computer Vision Player Tracking",
       duration: "3:22",
       views: "1.1M",
-      category: "All Sports",
-      live: false
+      category: "AI Analytics",
+      live: false,
+      description: "Advanced motion analysis and performance metrics"
     },
     {
       id: 4,
-      title: "SportsCenter with SVP",
-      duration: "42:15",
+      title: "Automated Highlight Detection System",
+      duration: "5:15",
       views: "890K",
-      category: "Shows",
-      live: false
+      category: "AI Technology",
+      live: false,
+      description: "Machine learning identifies key moments instantly"
     }
   ];
   
-  // ESPN personalities and shows
-  const personalities = [
-    { name: "Stephen A. Smith", show: "First Take", image: "👤", status: "LIVE" },
-    { name: "Scott Van Pelt", show: "SportsCenter", image: "👤", status: "Tonight 11pm" },
-    { name: "Pat McAfee", show: "The Pat McAfee Show", image: "👤", status: "Weekdays 12pm" },
-    { name: "Mina Kimes", show: "NFL Live", image: "👤", status: "Weekdays 4pm" },
-    { name: "Mike Greenberg", show: "Get Up", image: "👤", status: "Weekdays 8am" },
-    { name: "Marcus Spears", show: "First Take", image: "👤", status: "LIVE" }
+  // AI Research Teams and Technologies
+  const aiTeams = [
+    { name: "Dr. Sarah Chen", role: "Head of AI Journalism", image: "🧠", status: "Research Active", team: "ESPN AI Lab" },
+    { name: "Marcus Rodriguez", role: "Computer Vision Lead", image: "👁️", status: "Model Training", team: "Analytics Division" },
+    { name: "AI Commentary Bot v3.0", role: "Automated Commentary", image: "🤖", status: "LIVE Testing", team: "Innovation Lab" },
+    { name: "DataMind Analytics", role: "Predictive Modeling", image: "📊", status: "Processing", team: "Data Science" },
+    { name: "SportGPT System", role: "Content Generation", image: "✍️", status: "Active Generation", team: "Content AI" },
+    { name: "VisionTrack Pro", role: "Player Analytics", image: "🎯", status: "Live Tracking", team: "Computer Vision" }
   ];
   
   // Trending topics
-  const trendingTopics = [
-    { tag: "#NFLPlayoffs", posts: "125K", trend: "up" },
-    { tag: "#LakersNation", posts: "89K", trend: "up" },
-    { tag: "#TradeDeadline", posts: "67K", trend: "up" },
-    { tag: "#MarchMadness", posts: "45K", trend: "down" },
-    { tag: "#ChampionsLeague", posts: "34K", trend: "up" },
-    { tag: "#SpringTraining", posts: "28K", trend: "down" }
+  const aiTrendingTopics = [
+    { tag: "#AIJournalism", posts: "325K", trend: "up", description: "Automated sports content generation" },
+    { tag: "#SportsTech", posts: "289K", trend: "up", description: "AI-powered analytics and insights" },
+    { tag: "#ComputerVision", posts: "167K", trend: "up", description: "Player tracking and analysis" },
+    { tag: "#PredictiveAnalytics", posts: "145K", trend: "up", description: "Game outcome forecasting" },
+    { tag: "#AutomatedCommentary", posts: "134K", trend: "up", description: "AI-generated play-by-play" },
+    { tag: "#RealTimeStats", posts: "128K", trend: "up", description: "Live data integration systems" }
   ];
   
   let selectedCategory = 'All';
-  const categories = ['All', 'NFL', 'NBA', 'MLB', 'Soccer', 'NHL', 'College'];
+  const categories = ['All', 'Automated Journalism', 'Computer Vision', 'Predictive Analytics', 'Natural Language', 'Data Integration', 'Personalization'];
 </script>
 
 <svelte:head>
-  <title>ESPN News - Breaking Sports News & Headlines | Disney AI Hub</title>
+  <title>ESPN AI - Sports Journalism Innovation | Disney AI Hub</title>
 </svelte:head>
 
 <!-- Breaking News Ticker -->
@@ -186,11 +190,11 @@
 <section class="bg-black text-white py-4">
   <div class="container mx-auto px-4 flex items-center justify-between">
     <div>
-      <h1 class="text-3xl font-bold">ESPN NEWS</h1>
-      <p class="text-gray-400">Your source for breaking sports news</p>
+      <h1 class="text-3xl font-bold text-white">ESPN AI INNOVATION</h1>
+      <p class="text-gray-400">Transforming sports journalism with artificial intelligence</p>
     </div>
     <div class="text-right">
-      <div class="text-2xl font-bold tabular-nums">
+      <div class="text-2xl font-bold tabular-nums text-white">
         {currentTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
       </div>
       <div class="text-gray-400">
@@ -202,7 +206,7 @@
 
 <!-- Top Stories Section -->
 <section class="container mx-auto px-4 py-8">
-  <h2 class="text-3xl font-bold mb-6">Top Stories</h2>
+  <h2 class="text-3xl font-bold mb-6 text-gray-900">AI Innovation Highlights</h2>
   
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     {#each topStories as story, i}
@@ -219,7 +223,7 @@
           </span>
         </div>
         <div class="p-6">
-          <h3 class="text-xl {i === 0 ? 'lg:text-2xl' : ''} font-bold mb-2 hover:text-red-600 transition-colors">
+          <h3 class="text-xl {i === 0 ? 'lg:text-2xl' : ''} font-bold mb-2 hover:text-red-600 transition-colors text-gray-900">
             {story.headline}
           </h3>
           <p class="text-gray-600 mb-4 {i === 0 ? 'lg:text-lg' : ''}">{story.summary}</p>
@@ -237,7 +241,7 @@
 <section class="bg-gray-100 py-12">
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between mb-8">
-      <h2 class="text-3xl font-bold">News by Sport</h2>
+      <h2 class="text-3xl font-bold text-gray-900">AI Technologies in Sports Media</h2>
       <div class="flex gap-2">
         {#each categories as category}
           <button
@@ -251,7 +255,7 @@
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {#each Object.entries(sportNews) as [sport, articles]}
+      {#each Object.entries(aiTechnologies) as [sport, articles]}
         {#if selectedCategory === 'All' || selectedCategory === sport}
           <div class="bg-white rounded-lg shadow-md p-6">
             <h3 class="text-xl font-bold mb-4 text-red-600">{sport}</h3>
@@ -280,12 +284,12 @@
 <!-- Video Highlights -->
 <section class="container mx-auto px-4 py-12">
   <div class="flex items-center justify-between mb-8">
-    <h2 class="text-3xl font-bold">Video Highlights</h2>
-    <a href="#" class="text-red-600 hover:text-red-700 font-semibold">View All Videos →</a>
+    <h2 class="text-3xl font-bold text-gray-900">AI Technology Demonstrations</h2>
+    <a href="/experiments" class="text-red-600 hover:text-red-700 font-semibold">View All Experiments →</a>
   </div>
   
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    {#each videoHighlights as video}
+    {#each aiDemonstrations as video}
       <div class="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-xl transition-shadow">
         <div class="relative h-40 bg-gradient-to-br from-gray-800 to-black flex items-center justify-center">
           <span class="text-5xl">▶️</span>
@@ -301,7 +305,8 @@
           {/if}
         </div>
         <div class="p-4">
-          <h4 class="font-bold mb-2">{video.title}</h4>
+          <h4 class="font-bold mb-2 text-gray-900">{video.title}</h4>
+          <p class="text-sm text-gray-600 mb-2">{video.description}</p>
           <div class="flex items-center justify-between text-sm text-gray-500">
             <span>{video.category}</span>
             <span>{video.views}</span>
@@ -315,17 +320,18 @@
 <!-- ESPN Personalities & Shows -->
 <section class="bg-gradient-to-r from-gray-900 to-black text-white py-12">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-8">ESPN Personalities & Shows</h2>
+    <h2 class="text-3xl font-bold mb-8 text-white">AI Research Teams & Technologies</h2>
     
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-      {#each personalities as person}
+      {#each aiTeams as person}
         <div class="text-center cursor-pointer hover:scale-105 transition-transform">
           <div class="w-24 h-24 mx-auto bg-gradient-to-br from-red-600 to-orange-600 rounded-full flex items-center justify-center text-5xl mb-3">
             {person.image}
           </div>
-          <h4 class="font-bold">{person.name}</h4>
-          <p class="text-sm text-gray-400">{person.show}</p>
-          <span class="text-xs {person.status === 'LIVE' ? 'text-red-400 font-bold' : 'text-gray-500'}">
+          <h4 class="font-bold text-white">{person.name}</h4>
+          <p class="text-sm text-gray-400">{person.role}</p>
+          <p class="text-xs text-blue-400">{person.team}</p>
+          <span class="text-xs {person.status.includes('LIVE') || person.status.includes('Active') ? 'text-red-400 font-bold' : 'text-gray-500'}">
             {person.status}
           </span>
         </div>
@@ -337,12 +343,13 @@
 <!-- Trending Topics -->
 <section class="container mx-auto px-4 py-12">
   <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-2xl p-8">
-    <h2 class="text-2xl font-bold mb-6">Trending on ESPN</h2>
+    <h2 class="text-2xl font-bold mb-6 text-gray-900">Trending AI Technologies</h2>
     
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-      {#each trendingTopics as topic}
+      {#each aiTrendingTopics as topic}
         <div class="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow cursor-pointer">
           <h4 class="font-bold text-red-600 mb-1">{topic.tag}</h4>
+          <p class="text-xs text-gray-500 mb-2">{topic.description}</p>
           <div class="flex items-center justify-between">
             <span class="text-sm text-gray-600">{topic.posts} posts</span>
             <span class="text-sm {topic.trend === 'up' ? 'text-green-500' : 'text-red-500'}">
@@ -355,16 +362,24 @@
   </div>
 </section>
 
-<!-- Live Scores Bar -->
-<section class="bg-black text-white py-4 mt-12">
+<!-- AI Experiments & Related Links -->
+<section class="bg-black text-white py-6 mt-12">
   <div class="container mx-auto px-4">
-    <div class="flex items-center justify-between">
-      <span class="font-bold">LIVE SCORES</span>
+    <div class="flex items-center justify-between flex-wrap gap-4">
+      <span class="font-bold text-lg text-white">EXPLORE AI SPORTS INNOVATION</span>
       <div class="flex gap-6 overflow-x-auto">
-        <span class="whitespace-nowrap">NBA: LAL 98 - BOS 102 (4th)</span>
-        <span class="whitespace-nowrap">NFL: KC 21 - BUF 17 (3rd)</span>
-        <span class="whitespace-nowrap">NHL: NYR 3 - TB 2 (2nd)</span>
-        <span class="whitespace-nowrap">Soccer: BAR 2 - RMA 1 (78')</span>
+        <a href="/experiments" class="whitespace-nowrap text-blue-300 hover:text-blue-100 transition-colors">
+          🔬 View All Experiments
+        </a>
+        <a href="/disney/experiments" class="whitespace-nowrap text-blue-300 hover:text-blue-100 transition-colors">
+          🏰 Disney AI Labs
+        </a>
+        <a href="/disney/espn" class="whitespace-nowrap text-blue-300 hover:text-blue-100 transition-colors">
+          📺 ESPN AI Hub
+        </a>
+        <a href="#" class="whitespace-nowrap text-blue-300 hover:text-blue-100 transition-colors">
+          📊 Real-Time Analytics
+        </a>
       </div>
     </div>
   </div>

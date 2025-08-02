@@ -1,62 +1,122 @@
 <script>
-  const studios = [
+  const aiInitiatives = [
     {
-      name: 'Walt Disney Animation Studios',
-      logo: '🏰',
-      description: 'Home of timeless animated classics',
-      recent: ['Wish', 'Encanto', 'Raya and the Last Dragon'],
-      color: 'from-blue-500 to-purple-500'
+      name: 'Animation AI Studio',
+      icon: '🎨',
+      description: 'Revolutionary AI tools transforming animation production',
+      highlights: ['AI-assisted character animation', 'Automated in-betweening', 'Style transfer technology'],
+      link: '/use-cases/animation-ai',
+      color: 'from-purple-500 to-pink-500'
     },
     {
-      name: 'Pixar Animation Studios',
-      logo: '🎈',
-      description: 'Where imagination comes to life',
-      recent: ['Elemental', 'Turning Red', 'Lightyear'],
-      color: 'from-yellow-400 to-orange-500'
+      name: 'VFX AI Pipeline',
+      icon: '🎬',
+      description: 'Next-generation visual effects powered by machine learning',
+      highlights: ['Real-time compositing', 'AI rotoscoping', 'Deep learning for CGI'],
+      link: '/use-cases/vfx-enhancement',
+      color: 'from-blue-500 to-cyan-500'
     },
     {
-      name: 'Marvel Studios',
-      logo: '🦸',
-      description: 'The Marvel Cinematic Universe',
-      recent: ['The Marvels', 'Guardians Vol. 3', 'Quantumania'],
-      color: 'from-red-500 to-red-700'
+      name: 'Content Intelligence',
+      icon: '🧠',
+      description: 'Data-driven insights for content creation and distribution',
+      highlights: ['Predictive analytics', 'Audience segmentation', 'Performance forecasting'],
+      link: '/use-cases/content-analytics',
+      color: 'from-green-500 to-teal-500'
     },
     {
-      name: 'Lucasfilm',
-      logo: '⚔️',
-      description: 'A galaxy far, far away',
-      recent: ['Ahsoka', 'The Mandalorian', 'Indiana Jones 5'],
-      color: 'from-gray-700 to-black'
+      name: 'Streaming Personalization',
+      icon: '📺',
+      description: 'AI-powered recommendations across Disney+ and Hulu',
+      highlights: ['Neural collaborative filtering', 'Context-aware suggestions', 'Multi-platform optimization'],
+      link: '/use-cases/streaming-personalization',
+      color: 'from-orange-500 to-red-500'
     },
     {
-      name: '20th Century Studios',
-      logo: '🎬',
-      description: 'Iconic films for generations',
-      recent: ['Avatar: The Way of Water', 'The Menu', 'Amsterdam'],
-      color: 'from-blue-600 to-blue-800'
+      name: 'Production Optimization',
+      icon: '⚡',
+      description: 'AI tools streamlining film and TV production workflows',
+      highlights: ['Automated scheduling', 'Resource optimization', 'Cost prediction models'],
+      link: '/use-cases/production-efficiency',
+      color: 'from-yellow-500 to-orange-500'
     },
     {
-      name: 'Searchlight Pictures',
-      logo: '🔦',
-      description: 'Award-winning independent films',
-      recent: ['Poor Things', 'The Banshees of Inisherin', 'Nomadland'],
-      color: 'from-gray-600 to-gray-800'
+      name: 'AI Localization',
+      icon: '🌍',
+      description: 'Breaking language barriers with advanced AI dubbing',
+      highlights: ['Voice synthesis', 'Lip-sync automation', 'Cultural adaptation'],
+      link: '/use-cases/ai-dubbing',
+      color: 'from-indigo-500 to-purple-500'
     }
   ];
-  
-  const tvNetworks = [
-    { name: 'ABC', description: 'America\'s Broadcasting Company', shows: 52 },
-    { name: 'FX', description: 'Fearless storytelling', shows: 38 },
-    { name: 'Freeform', description: 'Young adult programming', shows: 24 },
-    { name: 'National Geographic', description: 'Explore your world', shows: 45 },
-    { name: 'Disney Channel', description: 'Family entertainment', shows: 31 },
-    { name: 'Disney Junior', description: 'Preschool programming', shows: 18 }
+
+  const studioAIProjects = [
+    {
+      studio: 'Walt Disney Animation Studios',
+      projects: [
+        { name: 'Neural Animation System', status: 'Production', impact: 'High' },
+        { name: 'AI Storyboarding Assistant', status: 'Pilot', impact: 'Medium' },
+        { name: 'Character Rigging ML', status: 'Research', impact: 'High' }
+      ]
+    },
+    {
+      studio: 'Pixar Animation Studios',
+      projects: [
+        { name: 'RenderMan AI Acceleration', status: 'Production', impact: 'High' },
+        { name: 'Crowd Simulation AI', status: 'Production', impact: 'Medium' },
+        { name: 'Texture Generation Network', status: 'Pilot', impact: 'Medium' }
+      ]
+    },
+    {
+      studio: 'Marvel Studios',
+      projects: [
+        { name: 'Digital Human AI', status: 'Production', impact: 'High' },
+        { name: 'Action Sequence Previz', status: 'Pilot', impact: 'Medium' },
+        { name: 'VFX Shot Optimization', status: 'Production', impact: 'High' }
+      ]
+    },
+    {
+      studio: 'Lucasfilm/ILM',
+      projects: [
+        { name: 'StageCraft AI Enhancement', status: 'Production', impact: 'High' },
+        { name: 'DeepFake Detection', status: 'Production', impact: 'High' },
+        { name: 'Virtual Production AI', status: 'Research', impact: 'High' }
+      ]
+    }
   ];
-  
-  const streamingStats = [
-    { platform: 'Disney+', subscribers: '150M+', content: '10,000+ titles' },
-    { platform: 'Hulu', subscribers: '48M+', content: '70,000+ titles' },
-    { platform: 'Bundle', subscribers: '12M+', content: 'Best of both' }
+
+  const experiments = [
+    {
+      title: 'Generative Storytelling',
+      description: 'AI-assisted narrative development',
+      status: 'Active',
+      link: '/experiments/generative-storytelling'
+    },
+    {
+      title: 'Virtual Actor Creation',
+      description: 'Digital human performance capture',
+      status: 'Beta',
+      link: '/experiments/virtual-actors'
+    },
+    {
+      title: 'Real-time Translation',
+      description: 'Live dubbing for streaming content',
+      status: 'Testing',
+      link: '/experiments/real-time-translation'
+    },
+    {
+      title: 'AI Music Composition',
+      description: 'Automated scoring for productions',
+      status: 'Research',
+      link: '/experiments/ai-music'
+    }
+  ];
+
+  const metrics = [
+    { label: 'AI Projects Active', value: '127', trend: '+23%' },
+    { label: 'Production Time Saved', value: '40%', trend: '+15%' },
+    { label: 'Cost Reduction', value: '$45M', trend: '+28%' },
+    { label: 'Content Processed', value: '10K hrs', trend: '+67%' }
   ];
 </script>
 
@@ -67,75 +127,89 @@
 <!-- Hero Section -->
 <section class="relative overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-pink-900 text-white">
   <div class="absolute inset-0 opacity-20">
-    <div class="absolute top-10 left-10 text-8xl animate-pulse">🎬</div>
-    <div class="absolute bottom-10 right-10 text-8xl animate-pulse" style="animation-delay: 0.5s">🎭</div>
-    <div class="absolute top-1/2 left-1/3 text-6xl animate-pulse" style="animation-delay: 1s">🎪</div>
+    <div class="absolute top-10 left-10 text-8xl animate-pulse">🤖</div>
+    <div class="absolute bottom-10 right-10 text-8xl animate-pulse" style="animation-delay: 0.5s">🎬</div>
+    <div class="absolute top-1/2 left-1/3 text-6xl animate-pulse" style="animation-delay: 1s">🎨</div>
   </div>
   
   <div class="relative z-10 container mx-auto px-4 py-20">
-    <h1 class="text-5xl md:text-6xl font-bold mb-6">Disney Entertainment</h1>
+    <h1 class="text-5xl md:text-6xl font-bold mb-6">Entertainment AI Hub</h1>
     <p class="text-xl md:text-2xl mb-8 text-purple-100">
-      Where storytelling magic happens across film, television, and streaming
+      Revolutionizing storytelling through artificial intelligence across animation, VFX, and streaming
     </p>
     <div class="flex flex-wrap gap-4">
-      <button class="bg-white text-purple-900 px-6 py-3 rounded-full font-semibold hover:bg-purple-100 transition-colors">
-        Explore Movies
-      </button>
-      <button class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-900 transition-colors">
-        TV Shows
-      </button>
+      <a href="/use-cases" class="bg-white text-purple-900 px-6 py-3 rounded-full font-semibold hover:bg-purple-100 transition-colors">
+        Explore Use Cases
+      </a>
+      <a href="/experiments" class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-900 transition-colors">
+        View Experiments
+      </a>
     </div>
   </div>
 </section>
 
-<!-- Studios Grid -->
+<!-- AI Initiatives -->
 <section class="container mx-auto px-4 py-16">
-  <h2 class="text-3xl font-bold text-gray-900 mb-12">Our Legendary Studios</h2>
+  <h2 class="text-3xl font-bold text-gray-900 mb-12">Key AI Initiatives</h2>
   
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {#each studios as studio}
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <div class="absolute inset-0 bg-gradient-to-br {studio.color} opacity-10 group-hover:opacity-20 transition-opacity"></div>
+    {#each aiInitiatives as initiative}
+      <a href={initiative.link} class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 block">
+        <div class="absolute inset-0 bg-gradient-to-br {initiative.color} opacity-10 group-hover:opacity-20 transition-opacity"></div>
         <div class="relative p-6">
           <div class="flex items-center mb-4">
-            <span class="text-4xl mr-3">{studio.logo}</span>
+            <span class="text-4xl mr-3">{initiative.icon}</span>
             <div>
-              <h3 class="text-xl font-bold text-gray-900">{studio.name}</h3>
-              <p class="text-sm text-gray-900">{studio.description}</p>
+              <h3 class="text-xl font-bold text-gray-900">{initiative.name}</h3>
+              <p class="text-sm text-gray-900">{initiative.description}</p>
             </div>
           </div>
           <div class="mt-4">
-            <h4 class="text-sm font-semibold text-gray-900 mb-2">Recent Releases:</h4>
+            <h4 class="text-sm font-semibold text-gray-900 mb-2">Key Features:</h4>
             <ul class="space-y-1">
-              {#each studio.recent as title}
+              {#each initiative.highlights as highlight}
                 <li class="text-sm text-gray-900 flex items-center">
-                  <span class="w-1.5 h-1.5 bg-gradient-to-r {studio.color} rounded-full mr-2"></span>
-                  {title}
+                  <span class="w-1.5 h-1.5 bg-gradient-to-r {initiative.color} rounded-full mr-2"></span>
+                  <span class="text-gray-900">{highlight}</span>
                 </li>
               {/each}
             </ul>
           </div>
+          <div class="mt-4 flex items-center text-sm font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">
+            <span class="text-gray-900 group-hover:text-purple-600">Learn More</span>
+            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
         </div>
-      </div>
+      </a>
     {/each}
   </div>
 </section>
 
-<!-- TV Networks -->
+<!-- Studio AI Projects -->
 <section class="bg-gray-50 py-16">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-gray-900 mb-12">Television Networks</h2>
+    <h2 class="text-3xl font-bold text-gray-900 mb-12">AI Projects by Studio</h2>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {#each tvNetworks as network}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {#each studioAIProjects as studioData}
         <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6">
-          <h3 class="text-xl font-bold text-gray-900 mb-2">{network.name}</h3>
-          <p class="text-gray-900 mb-4">{network.description}</p>
-          <div class="flex items-center justify-between">
-            <span class="text-sm text-gray-900">{network.shows} Active Shows</span>
-            <button class="text-purple-600 hover:text-purple-700 font-semibold text-sm">
-              View Shows →
-            </button>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">{studioData.studio}</h3>
+          <div class="space-y-3">
+            {#each studioData.projects as project}
+              <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div>
+                  <div class="font-semibold text-gray-900">{project.name}</div>
+                  <div class="text-sm text-gray-600">Impact: {project.impact}</div>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-2 py-1 text-xs rounded-full {project.status === 'Production' ? 'bg-green-100 text-green-800' : project.status === 'Pilot' ? 'bg-yellow-100 text-yellow-800' : 'bg-blue-100 text-blue-800'}">
+                    <span class="text-gray-800">{project.status}</span>
+                  </span>
+                </div>
+              </div>
+            {/each}
           </div>
         </div>
       {/each}
@@ -143,62 +217,58 @@
   </div>
 </section>
 
-<!-- Streaming Platforms -->
+<!-- AI Impact Metrics -->
 <section class="container mx-auto px-4 py-16">
-  <h2 class="text-3xl font-bold text-gray-900 mb-12">Streaming Excellence</h2>
+  <h2 class="text-3xl font-bold text-gray-900 mb-12">AI Impact Metrics</h2>
   
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    {#each streamingStats as platform}
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    {#each metrics as metric}
       <div class="text-center">
-        <div class="bg-gradient-to-br from-blue-500 to-purple-500 text-white rounded-2xl p-8 mb-4">
-          <h3 class="text-2xl font-bold mb-2">{platform.platform}</h3>
-          <div class="text-4xl font-bold mb-2">{platform.subscribers}</div>
-          <div class="text-sm opacity-90">Subscribers</div>
+        <div class="bg-gradient-to-br from-blue-500 to-purple-500 text-white rounded-2xl p-6 mb-4">
+          <div class="text-3xl font-bold mb-2">{metric.value}</div>
+          <div class="text-sm opacity-90">{metric.label}</div>
+          <div class="text-xs mt-2 bg-white bg-opacity-20 rounded-full px-2 py-1">
+            {metric.trend}
+          </div>
         </div>
-        <p class="text-gray-900">{platform.content}</p>
       </div>
     {/each}
   </div>
 </section>
 
-<!-- AI Integration Section -->
+<!-- Active Experiments -->
 <section class="bg-gradient-to-r from-purple-100 to-pink-100 py-16">
   <div class="container mx-auto px-4">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl font-bold text-gray-900 mb-6">AI-Powered Entertainment</h2>
-      <p class="text-lg text-gray-900 mb-8">
-        Discover how artificial intelligence enhances every aspect of Disney Entertainment
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Active AI Experiments</h2>
+      <p class="text-lg text-gray-900 mb-12 text-center">
+        Cutting-edge research and development projects pushing the boundaries of entertainment AI
       </p>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-        <div class="bg-white rounded-xl p-6 shadow-md">
-          <h3 class="font-bold text-gray-900 text-lg mb-3 flex items-center">
-            <span class="text-2xl mr-2">🎨</span>
-            Content Creation
-          </h3>
-          <p class="text-gray-900">AI-assisted animation, visual effects, and storytelling tools that bring imagination to life faster than ever.</p>
-        </div>
-        <div class="bg-white rounded-xl p-6 shadow-md">
-          <h3 class="font-bold text-gray-900 text-lg mb-3 flex items-center">
-            <span class="text-2xl mr-2">🎯</span>
-            Personalization
-          </h3>
-          <p class="text-gray-900">Smart recommendations that help viewers discover their next favorite movie or show across all platforms.</p>
-        </div>
-        <div class="bg-white rounded-xl p-6 shadow-md">
-          <h3 class="font-bold text-gray-900 text-lg mb-3 flex items-center">
-            <span class="text-2xl mr-2">📊</span>
-            Analytics
-          </h3>
-          <p class="text-gray-900">Data-driven insights that help create content audiences love while optimizing production workflows.</p>
-        </div>
-        <div class="bg-white rounded-xl p-6 shadow-md">
-          <h3 class="font-bold text-gray-900 text-lg mb-3 flex items-center">
-            <span class="text-2xl mr-2">🌍</span>
-            Localization
-          </h3>
-          <p class="text-gray-900">AI-powered dubbing and subtitling that brings Disney magic to audiences worldwide in their language.</p>
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {#each experiments as experiment}
+          <a href={experiment.link} class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 group">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-gray-900 text-lg group-hover:text-purple-600 transition-colors">{experiment.title}</h3>
+              <span class="px-2 py-1 text-xs rounded-full {experiment.status === 'Active' ? 'bg-green-100 text-green-800' : experiment.status === 'Beta' ? 'bg-blue-100 text-blue-800' : experiment.status === 'Testing' ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800'}">
+                <span class="text-gray-800">{experiment.status}</span>
+              </span>
+            </div>
+            <p class="text-gray-900 text-sm mb-4">{experiment.description}</p>
+            <div class="flex items-center text-sm font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">
+              <span class="text-gray-900 group-hover:text-purple-600">View Details</span>
+              <svg class="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
+        {/each}
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="/experiments" class="bg-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-purple-700 transition-colors">
+          View All Experiments
+        </a>
       </div>
     </div>
   </div>

@@ -1,102 +1,140 @@
 <script>
-  const resorts = [
+  const aiFeatures = [
     {
-      name: 'Disney\'s Grand Floridian Resort & Spa',
-      location: 'Walt Disney World',
-      icon: '🏰',
-      features: ['Monorail Access', 'Victorian Elegance', 'Magic Kingdom Views']
+      title: 'AI-Powered Booking Optimization',
+      description: 'Machine learning algorithms analyze booking patterns to suggest optimal reservation times and maximize point value',
+      icon: '🤖',
+      benefits: ['Best availability predictions', 'Point optimization strategies', 'Waitlist success forecasting']
     },
     {
-      name: 'Disney\'s Polynesian Villas & Bungalows',
-      location: 'Walt Disney World',
-      icon: '🌺',
-      features: ['Over-Water Bungalows', 'South Pacific Theme', 'Seven Seas Lagoon']
+      title: 'Predictive Resort Maintenance',
+      description: 'AI monitors resort conditions and predicts maintenance needs to minimize guest disruptions',
+      icon: '🔧',
+      benefits: ['Proactive issue resolution', 'Minimal downtime', 'Enhanced guest satisfaction']
     },
     {
-      name: 'Aulani, A Disney Resort & Spa',
-      location: 'Ko Olina, Hawaii',
-      icon: '🏝️',
-      features: ['Hawaiian Paradise', 'Beachfront', 'Cultural Activities']
+      title: 'Personalized Vacation Planning',
+      description: 'AI analyzes your vacation history and preferences to create custom itineraries and experiences',
+      icon: '✨',
+      benefits: ['Tailored activity suggestions', 'Dining recommendations', 'Crowd pattern predictions']
     },
     {
-      name: 'Disney\'s Riviera Resort',
-      location: 'Walt Disney World',
-      icon: '🎨',
-      features: ['European Elegance', 'Skyliner Access', 'Rooftop Restaurant']
-    },
-    {
-      name: 'The Villas at Disneyland Hotel',
-      location: 'Disneyland Resort',
-      icon: '🎢',
-      features: ['Grand Villas', 'Downtown Disney', 'Park Views']
-    },
-    {
-      name: 'Disney\'s Beach Club Villas',
-      location: 'Walt Disney World',
-      icon: '🏖️',
-      features: ['Stormalong Bay Pool', 'Boardwalk Access', 'Beach Theme']
+      title: 'Smart Room Technology',
+      description: 'AI-enabled room features that learn and adapt to your preferences throughout your stay',
+      icon: '🏠',
+      benefits: ['Automated climate control', 'Personalized lighting', 'Voice-activated services']
     }
   ];
   
-  const memberBenefits = [
+  const aiApplications = [
     {
-      title: 'Flexible Vacations',
-      description: 'Stay at any DVC resort worldwide',
-      icon: '🌍'
+      category: 'Booking Intelligence',
+      icon: '📊',
+      features: [
+        'Real-time availability prediction',
+        'Dynamic point value optimization',
+        'Seasonal demand forecasting',
+        'Alternative resort suggestions'
+      ]
     },
     {
-      title: 'Member Extras',
-      description: 'Exclusive events and discounts',
-      icon: '⭐'
+      category: 'Guest Experience',
+      icon: '🎯',
+      features: [
+        'Personalized welcome experiences',
+        'AI concierge services',
+        'Smart itinerary planning',
+        'Preference learning systems'
+      ]
     },
     {
-      title: 'Home Resort Booking',
-      description: '11-month advance reservations',
-      icon: '📅'
+      category: 'Operations Excellence',
+      icon: '⚡',
+      features: [
+        'Predictive housekeeping scheduling',
+        'Energy usage optimization',
+        'Staff allocation efficiency',
+        'Maintenance prioritization'
+      ]
     },
     {
-      title: 'Banking & Borrowing',
-      description: 'Flexible point management',
-      icon: '💰'
+      category: 'Member Services',
+      icon: '💎',
+      features: [
+        'Virtual member assistants',
+        'Automated point management',
+        'Personalized communication',
+        'Predictive member support'
+      ]
     }
   ];
   
-  const exchangeOptions = [
-    { name: 'Disney Collection', destinations: '14 Resorts', icon: '🏰' },
-    { name: 'RCI Exchange', destinations: '4,000+ Resorts', icon: '🗺️' },
-    { name: 'Concierge Collection', destinations: '1,000+ Hotels', icon: '🏨' },
-    { name: 'Adventures by Disney', destinations: '40+ Destinations', icon: '🎒' },
-    { name: 'Disney Cruise Line', destinations: 'All Ships', icon: '🚢' }
+  const smartRoomFeatures = [
+    {
+      name: 'Adaptive Climate Control',
+      description: 'AI learns your temperature preferences and adjusts automatically',
+      icon: '🌡️'
+    },
+    {
+      name: 'Voice-Activated Magic',
+      description: 'Control room features and get resort information with voice commands',
+      icon: '🎤'
+    },
+    {
+      name: 'Smart Entertainment',
+      description: 'Personalized content recommendations based on family preferences',
+      icon: '📺'
+    },
+    {
+      name: 'Automated Lighting',
+      description: 'Lighting that adapts to time of day and your activities',
+      icon: '💡'
+    }
   ];
   
-  const roomTypes = [
-    { type: 'Deluxe Studio', sleeps: 'Up to 5', features: 'Kitchenette, 1 Bath' },
-    { type: 'One-Bedroom Villa', sleeps: 'Up to 5', features: 'Full Kitchen, Washer/Dryer' },
-    { type: 'Two-Bedroom Villa', sleeps: 'Up to 9', features: 'Full Kitchen, 2 Baths' },
-    { type: 'Three-Bedroom Grand Villa', sleeps: 'Up to 12', features: 'Luxury Amenities' }
+  const futureInnovations = [
+    {
+      title: 'Virtual Resort Tours',
+      description: 'AI-powered VR experiences for exploring resorts before booking',
+      timeline: 'Coming 2025'
+    },
+    {
+      title: 'Predictive Vacation Planning',
+      description: 'AI suggests optimal vacation times based on your calendar and preferences',
+      timeline: 'In Development'
+    },
+    {
+      title: 'Real-Time Translation Services',
+      description: 'AI-powered language translation for international destinations',
+      timeline: 'Pilot Program'
+    },
+    {
+      title: 'Biometric Room Access',
+      description: 'Facial recognition and fingerprint access for enhanced security',
+      timeline: 'Testing Phase'
+    }
   ];
 </script>
 
 <svelte:head>
-  <title>Disney Vacation Club - Vacation Ownership Magic</title>
+  <title>AI in Disney Vacation Club - Enhancing Magical Experiences</title>
 </svelte:head>
 
 <!-- Hero Section -->
 <section class="relative overflow-hidden bg-gradient-to-br from-purple-800 via-purple-600 to-pink-600 text-white">
   <div class="absolute inset-0 opacity-20">
-    <!-- Castle and stars pattern -->
+    <!-- AI network pattern -->
     <div class="absolute inset-0">
-      {#each Array(30) as _, i}
+      {#each Array(20) as _, i}
         <div 
-          class="absolute text-2xl"
+          class="absolute w-2 h-2 bg-white rounded-full"
           style="
             top: {Math.random() * 100}%;
             left: {Math.random() * 100}%;
-            animation: twinkle {3 + Math.random() * 2}s ease-in-out infinite;
-            animation-delay: {Math.random() * 3}s;
+            animation: pulse {2 + Math.random() * 2}s ease-in-out infinite;
+            animation-delay: {Math.random() * 2}s;
           "
         >
-          ⭐
         </div>
       {/each}
     </div>
@@ -105,53 +143,65 @@
   <div class="relative z-10 container mx-auto px-4 py-20">
     <div class="text-center">
       <h1 class="text-5xl md:text-7xl font-bold mb-6">
-        Disney Vacation Club
+        AI-Enhanced Disney Vacation Club
       </h1>
       <p class="text-2xl md:text-3xl mb-8 text-purple-100">
-        Welcome Home to Magic
+        Where Technology Meets Magic
       </p>
       <p class="text-lg max-w-3xl mx-auto mb-8 text-purple-200">
-        Own a piece of the magic with Disney Vacation Club membership. 
-        Enjoy magical vacations year after year at Disney destinations around the world.
+        Discover how artificial intelligence is transforming the Disney Vacation Club experience, 
+        from intelligent booking systems to personalized vacation planning and smart resort technology.
       </p>
     </div>
   </div>
 </section>
 
-<!-- Member Benefits -->
+<!-- AI Features -->
 <section class="container mx-auto px-4 py-16">
-  <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Membership Magic</h2>
+  <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">AI-Powered Vacation Excellence</h2>
   
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    {#each memberBenefits as benefit}
-      <div class="bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
-        <div class="text-5xl mb-4">{benefit.icon}</div>
-        <h3 class="font-bold text-gray-900 text-lg mb-2">{benefit.title}</h3>
-        <p class="text-gray-700">{benefit.description}</p>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {#each aiFeatures as feature}
+      <div class="bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl p-8 hover:shadow-xl transition-shadow">
+        <div class="flex items-start mb-4">
+          <div class="text-5xl mr-4">{feature.icon}</div>
+          <div class="flex-1">
+            <h3 class="font-bold text-gray-900 text-xl mb-2">{feature.title}</h3>
+            <p class="text-gray-700 mb-4">{feature.description}</p>
+            <ul class="space-y-2">
+              {#each feature.benefits as benefit}
+                <li class="text-sm text-gray-600 flex items-center">
+                  <span class="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2"></span>
+                  {benefit}
+                </li>
+              {/each}
+            </ul>
+          </div>
+        </div>
       </div>
     {/each}
   </div>
 </section>
 
-<!-- Featured Resorts -->
+<!-- AI Applications -->
 <section class="bg-gray-50 py-16">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Our Home Resorts</h2>
+    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">AI Applications Across DVC</h2>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {#each resorts as resort}
-        <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
-          <div class="bg-gradient-to-br from-purple-500 to-pink-500 p-6 text-white">
-            <div class="text-5xl mb-3">{resort.icon}</div>
-            <h3 class="text-xl font-bold mb-1">{resort.name}</h3>
-            <p class="text-purple-100">{resort.location}</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {#each aiApplications as app}
+        <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
+          <div class="bg-gradient-to-br from-purple-500 to-pink-500 p-6 text-white text-center">
+            <div class="text-5xl mb-3">{app.icon}</div>
+            <h3 class="text-xl font-bold">{app.category}</h3>
           </div>
           <div class="p-6">
-            <h4 class="font-semibold text-gray-900 mb-3">Resort Features:</h4>
-            <ul class="space-y-2">
-              {#each resort.features as feature}
-                <li class="text-sm text-gray-700 flex items-center">
-                  <span class="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2"></span>
+            <ul class="space-y-3">
+              {#each app.features as feature}
+                <li class="text-sm text-gray-700 flex items-start">
+                  <svg class="w-5 h-5 text-purple-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
                   {feature}
                 </li>
               {/each}
@@ -163,84 +213,134 @@
   </div>
 </section>
 
-<!-- Room Types -->
+<!-- Smart Room Technology -->
 <section class="container mx-auto px-4 py-16">
   <div class="bg-gradient-to-r from-purple-100 to-pink-100 rounded-3xl p-8 md:p-12">
-    <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Villa Accommodations</h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {#each roomTypes as room}
-        <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-          <h3 class="font-bold text-gray-900 text-lg mb-2">{room.type}</h3>
-          <p class="text-purple-600 font-semibold mb-2">{room.sleeps}</p>
-          <p class="text-sm text-gray-600">{room.features}</p>
-        </div>
-      {/each}
-    </div>
-  </div>
-</section>
-
-<!-- Exchange Options -->
-<section class="bg-gradient-to-b from-blue-50 to-white py-16">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Beyond Disney Resorts</h2>
-    <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
-      Your membership opens doors to thousands of vacation options worldwide through our exchange programs
+    <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Smart Room Technology</h2>
+    <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+      Experience the future of hospitality with AI-powered room features that learn and adapt to your preferences
     </p>
     
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-      {#each exchangeOptions as option}
-        <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition-shadow hover:scale-105 transform duration-300">
-          <div class="text-4xl mb-3">{option.icon}</div>
-          <h3 class="font-bold text-gray-900">{option.name}</h3>
-          <p class="text-sm text-gray-600">{option.destinations}</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {#each smartRoomFeatures as feature}
+        <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow text-center">
+          <div class="text-4xl mb-3">{feature.icon}</div>
+          <h3 class="font-bold text-gray-900 text-lg mb-2">{feature.name}</h3>
+          <p class="text-sm text-gray-600">{feature.description}</p>
         </div>
       {/each}
     </div>
   </div>
 </section>
 
-<!-- How It Works -->
+<!-- Booking Optimization -->
+<section class="bg-gradient-to-b from-blue-50 to-white py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">AI-Powered Booking Intelligence</h2>
+    
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-white rounded-2xl shadow-xl p-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Optimization Engine</h3>
+            <p class="text-gray-700 mb-4">
+              Our AI analyzes millions of booking patterns to help you maximize your DVC points and find the perfect vacation times.
+            </p>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <span class="text-purple-500 mr-2">▸</span>
+                <span class="text-gray-700">Real-time availability predictions with 95% accuracy</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-purple-500 mr-2">▸</span>
+                <span class="text-gray-700">Point value optimization across all seasons</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-purple-500 mr-2">▸</span>
+                <span class="text-gray-700">Waitlist success probability calculations</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Personalized Recommendations</h3>
+            <p class="text-gray-700 mb-4">
+              Machine learning creates custom vacation suggestions based on your family's unique preferences and history.
+            </p>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <span class="text-purple-500 mr-2">▸</span>
+                <span class="text-gray-700">Alternative resort suggestions when preferred unavailable</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-purple-500 mr-2">▸</span>
+                <span class="text-gray-700">Optimal booking window notifications</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-purple-500 mr-2">▸</span>
+                <span class="text-gray-700">Historical data-driven insights</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Predictive Maintenance -->
 <section class="container mx-auto px-4 py-16">
   <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-8 md:p-12 text-white">
-    <h2 class="text-3xl font-bold mb-8 text-center">How DVC Works</h2>
+    <h2 class="text-3xl font-bold mb-8 text-center">Predictive Resort Maintenance</h2>
+    <p class="text-center text-purple-100 mb-8 max-w-3xl mx-auto">
+      Advanced AI systems monitor resort infrastructure 24/7, predicting and preventing issues before they impact your vacation
+    </p>
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <div class="text-center">
         <div class="w-16 h-16 bg-white text-purple-600 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-          1
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+          </svg>
         </div>
-        <h3 class="font-bold text-lg mb-2">Purchase Points</h3>
-        <p class="text-purple-100">Buy a real estate interest in a DVC Resort</p>
+        <h3 class="font-bold text-lg mb-2">IoT Monitoring</h3>
+        <p class="text-purple-100">Thousands of sensors track system performance in real-time</p>
       </div>
       <div class="text-center">
         <div class="w-16 h-16 bg-white text-purple-600 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-          2
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
         </div>
-        <h3 class="font-bold text-lg mb-2">Book Vacations</h3>
-        <p class="text-purple-100">Use points to reserve accommodations</p>
+        <h3 class="font-bold text-lg mb-2">Predictive Analytics</h3>
+        <p class="text-purple-100">AI predicts maintenance needs with 98% accuracy</p>
       </div>
       <div class="text-center">
         <div class="w-16 h-16 bg-white text-purple-600 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-          3
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+          </svg>
         </div>
-        <h3 class="font-bold text-lg mb-2">Create Memories</h3>
-        <p class="text-purple-100">Enjoy magical vacations year after year</p>
+        <h3 class="font-bold text-lg mb-2">Proactive Resolution</h3>
+        <p class="text-purple-100">Issues resolved before guests notice disruption</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Member Testimonial -->
+<!-- Future Innovations -->
 <section class="bg-gray-50 py-16">
   <div class="container mx-auto px-4">
-    <div class="max-w-4xl mx-auto text-center">
-      <div class="text-6xl mb-6">💜</div>
-      <blockquote class="text-2xl text-gray-700 italic mb-6">
-        "Being DVC members has given our family the gift of guaranteed magical memories. 
-        Every year, we know we'll have incredible vacations waiting for us."
-      </blockquote>
-      <p class="text-gray-600">- The Johnson Family, Members Since 2015</p>
+    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">The Future of AI in DVC</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+      {#each futureInnovations as innovation}
+        <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+          <div class="text-purple-600 font-semibold text-sm mb-2">{innovation.timeline}</div>
+          <h3 class="font-bold text-gray-900 text-lg mb-2">{innovation.title}</h3>
+          <p class="text-sm text-gray-600">{innovation.description}</p>
+        </div>
+      {/each}
     </div>
   </div>
 </section>
@@ -248,21 +348,22 @@
 <!-- Call to Action -->
 <section class="container mx-auto px-4 py-16">
   <div class="bg-gradient-to-r from-purple-700 to-pink-700 rounded-3xl p-8 md:p-12 text-white text-center">
-    <h2 class="text-4xl font-bold mb-6">Start Your Membership Journey</h2>
+    <h2 class="text-4xl font-bold mb-6">Experience the Future of Vacation Ownership</h2>
     <p class="text-xl mb-8 text-purple-100 max-w-3xl mx-auto">
-      Learn how Disney Vacation Club can make every vacation as magical as the first
+      Discover how AI technology is revolutionizing the Disney Vacation Club experience, 
+      creating more magical and personalized vacations than ever before
     </p>
   </div>
 </section>
 
 <style>
-  @keyframes twinkle {
+  @keyframes pulse {
     0%, 100% { 
-      opacity: 0.3;
+      opacity: 0.2;
       transform: scale(0.8);
     }
     50% { 
-      opacity: 1;
+      opacity: 0.8;
       transform: scale(1.2);
     }
   }

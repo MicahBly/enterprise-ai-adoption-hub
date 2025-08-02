@@ -1,123 +1,205 @@
 <script>
-  const nowShowing = [
+  const aiAnimationFeatures = [
     {
-      title: 'Moana 2',
-      studio: 'Walt Disney Animation',
-      rating: 'PG',
-      poster: '🌊',
-      description: 'Moana journeys to the far seas of Oceania'
+      title: 'AI-Powered Animation In-Betweening',
+      studio: 'Walt Disney Animation Studios',
+      icon: '🎨',
+      description: 'Revolutionary AI system that automatically generates intermediate frames between key animation poses, reducing manual work by 70%',
+      benefits: ['70% reduction in animation time', 'Consistent motion quality', 'Animator focus on creative work'],
+      status: 'Production Ready',
+      href: '/disney/use-cases'
     },
     {
-      title: 'Mufasa: The Lion King',
-      studio: 'Walt Disney Pictures',
-      rating: 'PG',
-      poster: '🦁',
-      description: 'The story of how Mufasa became king'
+      title: 'AI Visual Effects Enhancement',
+      studio: 'Industrial Light & Magic (ILM)',
+      icon: '✨',
+      description: 'Advanced AI algorithms enhance visual effects rendering, particle simulations, and environmental details in real-time',
+      benefits: ['Real-time VFX preview', '50% faster render times', 'Photorealistic enhancements'],
+      status: 'In Production',
+      href: '/disney/use-cases'
     },
     {
-      title: 'Inside Out 2',
-      studio: 'Pixar',
-      rating: 'PG',
-      poster: '🧠',
-      description: 'Riley navigates the complexities of teenage emotions'
+      title: 'AI Script Analysis & Development',
+      studio: 'Walt Disney Studios',
+      icon: '📝',
+      description: 'Machine learning models analyze scripts for pacing, character development, and audience engagement predictions',
+      benefits: ['Data-driven story insights', 'Character arc optimization', 'Audience sentiment prediction'],
+      status: 'Active Experiment',
+      href: '/disney/experiments'
     },
     {
-      title: 'Deadpool & Wolverine',
-      studio: 'Marvel Studios',
-      rating: 'R',
-      poster: '⚔️',
-      description: 'The merc with a mouth meets the X-Man'
+      title: 'AI-Driven Motion Capture Enhancement',
+      studio: 'Walt Disney Animation Studios',
+      icon: '🏃',
+      description: 'AI enhances motion capture data, filling gaps and smoothing performances for more natural character movement',
+      benefits: ['Reduced mocap cleanup time', 'Natural motion interpolation', 'Multi-actor scene processing'],
+      status: 'Production Ready',
+      href: '/disney/use-cases'
     }
   ];
-  
-  const comingSoon = [
+
+  const aiProductionTools = [
     {
-      title: 'Captain America: Brave New World',
-      studio: 'Marvel Studios',
-      date: 'February 2025',
-      poster: '🛡️'
+      name: 'Neural Rendering Engine',
+      category: 'Visual Effects',
+      icon: '🖼️',
+      description: 'AI-powered rendering that predicts and optimizes light behavior',
+      impact: '60% faster renders'
     },
     {
-      title: 'Snow White',
-      studio: 'Walt Disney Pictures',
-      date: 'March 2025',
-      poster: '🍎'
+      name: 'Character AI Assistant',
+      category: 'Animation',
+      icon: '🤖',
+      description: 'Helps animators maintain character consistency across scenes',
+      impact: '40% fewer revisions'
     },
     {
-      title: 'Thunderbolts*',
-      studio: 'Marvel Studios',
-      date: 'May 2025',
-      poster: '⚡'
+      name: 'Scene Composition AI',
+      category: 'Cinematography',
+      icon: '🎬',
+      description: 'Suggests optimal camera angles and shot compositions',
+      impact: 'Enhanced visual storytelling'
     },
     {
-      title: 'Elio',
-      studio: 'Pixar',
-      date: 'June 2025',
-      poster: '👽'
+      name: 'Audio AI Processor',
+      category: 'Sound Design',
+      icon: '🎵',
+      description: 'Automatically syncs sound effects and enhances dialogue clarity',
+      impact: '50% faster audio post'
     }
   ];
-  
-  const collections = [
-    { name: 'Marvel Cinematic Universe', count: 33, icon: '🦸', href: '/disney/studios/marvel' },
-    { name: 'Star Wars Saga', count: 12, icon: '⚔️', href: '/disney/studios/lucasfilm' },
-    { name: 'Pixar Films', count: 27, icon: '🎨', href: '/disney/studios/pixar' },
-    { name: 'Disney Classics', count: 62, icon: '🏰', href: '/disney/studios/walt-disney-animation' },
-    { name: 'Live Action Remakes', count: 18, icon: '🎬', href: '/disney/movies/live-action' },
-    { name: '20th Century Catalog', count: 2000, icon: '🦊', href: '/disney/studios/20th-century' }
+
+  const aiExperiments = [
+    {
+      title: 'Generative Background Art',
+      description: 'AI creates detailed background environments from concept sketches',
+      progress: 75,
+      icon: '🏞️'
+    },
+    {
+      title: 'Emotion-Driven Animation',
+      description: 'AI adjusts character animations based on emotional context',
+      progress: 60,
+      icon: '😊'
+    },
+    {
+      title: 'Predictive Audience Analytics',
+      description: 'Machine learning predicts audience reactions to story elements',
+      progress: 85,
+      icon: '📊'
+    },
+    {
+      title: 'AI Storyboard Generation',
+      description: 'Converts written scenes into initial storyboard sketches',
+      progress: 45,
+      icon: '🎨'
+    }
   ];
-  
-  const movieCategories = [
-    { name: 'Action & Adventure', icon: '💥' },
-    { name: 'Animation', icon: '🎨' },
-    { name: 'Comedy', icon: '😄' },
-    { name: 'Drama', icon: '🎭' },
-    { name: 'Family', icon: '👨‍👩‍👧‍👦' },
-    { name: 'Fantasy', icon: '🧙' },
-    { name: 'Horror', icon: '👻' },
-    { name: 'Musical', icon: '🎵' },
-    { name: 'Sci-Fi', icon: '🚀' },
-    { name: 'Superhero', icon: '🦸' }
+
+  const successMetrics = [
+    { metric: 'Animation Time Saved', value: '70%', icon: '⏱️' },
+    { metric: 'VFX Render Speed', value: '2.5x', icon: '🚀' },
+    { metric: 'Production Cost Reduction', value: '40%', icon: '💰' },
+    { metric: 'Creative Freedom Increase', value: '85%', icon: '🎯' }
   ];
 </script>
 
 <svelte:head>
-  <title>Disney Movies - All Films & Collections</title>
+  <title>AI in Movie Production - Disney Studios Innovation</title>
 </svelte:head>
 
 <!-- Hero Section -->
 <section class="relative overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-pink-900 text-white">
   <div class="absolute inset-0 opacity-20">
-    <div class="absolute top-10 right-10 text-9xl">🎬</div>
-    <div class="absolute bottom-10 left-10 text-9xl">🍿</div>
+    <div class="absolute top-10 right-10 text-9xl">🤖</div>
+    <div class="absolute bottom-10 left-10 text-9xl">🎬</div>
   </div>
   
   <div class="relative z-10 container mx-auto px-4 py-20">
-    <h1 class="text-5xl md:text-6xl font-bold mb-6">Disney Movies</h1>
+    <h1 class="text-5xl md:text-6xl font-bold mb-6">AI in Movie Production</h1>
     <p class="text-xl md:text-2xl mb-8 text-purple-100">
-      From timeless classics to blockbuster hits
+      Revolutionizing animation, VFX, and storytelling with artificial intelligence
     </p>
+    <a href="/disney/use-cases" class="inline-flex items-center bg-white text-purple-900 px-6 py-3 rounded-lg font-semibold hover:bg-purple-100 transition-colors">
+      Explore AI Use Cases
+      <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </a>
   </div>
 </section>
 
-<!-- Now Showing -->
+<!-- Key AI Features -->
 <section class="container mx-auto px-4 py-16">
-  <h2 class="text-3xl font-bold mb-8 flex items-center">
-    <span class="w-3 h-3 bg-red-500 rounded-full animate-pulse mr-3"></span>
-    Now Showing in Theaters
-  </h2>
+  <h2 class="text-3xl font-bold mb-12 text-center text-gray-900">AI-Powered Production Features</h2>
   
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    {#each nowShowing as movie}
-      <div class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
-        <div class="aspect-[2/3] bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-8xl">
-          {movie.poster}
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    {#each aiAnimationFeatures as feature}
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
+        <div class="bg-gradient-to-r from-purple-500 to-pink-500 p-6 text-white">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-5xl">{feature.icon}</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full text-sm font-semibold">
+              {feature.status}
+            </span>
+          </div>
+          <h3 class="text-2xl font-bold mb-2">{feature.title}</h3>
+          <p class="text-sm text-purple-100">{feature.studio}</p>
         </div>
         <div class="p-6">
-          <h3 class="text-xl font-bold mb-1">{movie.title}</h3>
-          <p class="text-sm text-gray-900 mb-2">{movie.studio}</p>
-          <p class="text-sm text-gray-900 mb-3">{movie.description}</p>
-          <div class="flex items-center justify-between">
-            <span class="text-xs bg-gray-100 px-2 py-1 rounded">{movie.rating}</span>
+          <p class="text-gray-700 mb-4">{feature.description}</p>
+          <div class="space-y-2 mb-6">
+            {#each feature.benefits as benefit}
+              <div class="flex items-center text-sm text-gray-600">
+                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-600">{benefit}</span>
+              </div>
+            {/each}
+          </div>
+          <a href={feature.href} class="text-purple-600 font-semibold hover:text-purple-800 transition-colors">
+            Learn More →
+          </a>
+        </div>
+      </div>
+    {/each}
+  </div>
+</section>
+
+<!-- Success Metrics -->
+<section class="bg-gradient-to-r from-purple-100 to-pink-100 py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-12 text-center text-gray-900">Production Impact</h2>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+      {#each successMetrics as item}
+        <div class="bg-white rounded-xl p-6 text-center shadow-md">
+          <div class="text-4xl mb-3">{item.icon}</div>
+          <div class="text-3xl font-bold text-purple-600 mb-1">{item.value}</div>
+          <p class="text-sm text-gray-600">{item.metric}</p>
+        </div>
+      {/each}
+    </div>
+  </div>
+</section>
+
+<!-- AI Production Tools -->
+<section class="container mx-auto px-4 py-16">
+  <h2 class="text-3xl font-bold mb-8 text-gray-900">AI Production Tools</h2>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {#each aiProductionTools as tool}
+      <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
+        <div class="flex items-start">
+          <span class="text-4xl mr-4">{tool.icon}</span>
+          <div class="flex-1">
+            <h3 class="text-xl font-bold mb-1 text-gray-900">{tool.name}</h3>
+            <p class="text-sm text-purple-600 mb-2">{tool.category}</p>
+            <p class="text-gray-700 mb-3">{tool.description}</p>
+            <div class="text-sm font-semibold text-green-600">
+              <span class="text-green-600">Impact: {tool.impact}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -125,66 +207,55 @@
   </div>
 </section>
 
-<!-- Coming Soon -->
+<!-- Active Experiments -->
 <section class="bg-gray-50 py-16">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-8">Coming Soon</h2>
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4 text-gray-900">Active AI Experiments</h2>
+      <p class="text-xl text-gray-700">Exploring the future of filmmaking</p>
+    </div>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {#each comingSoon as movie}
-        <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 text-center">
-          <div class="text-6xl mb-4">{movie.poster}</div>
-          <h3 class="font-bold text-lg mb-1">{movie.title}</h3>
-          <p class="text-sm text-gray-900 mb-2">{movie.studio}</p>
-          <p class="text-purple-600 font-semibold">{movie.date}</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      {#each aiExperiments as experiment}
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <div class="flex items-center mb-4">
+            <span class="text-3xl mr-3">{experiment.icon}</span>
+            <h3 class="text-lg font-bold flex-1 text-gray-900">{experiment.title}</h3>
+          </div>
+          <p class="text-gray-800 mb-4">{experiment.description}</p>
+          <div class="relative bg-gray-200 rounded-full h-2">
+            <div class="absolute top-0 left-0 h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full" style="width: {experiment.progress}%"></div>
+          </div>
+          <p class="text-sm text-gray-600 mt-2">Progress: {experiment.progress}%</p>
         </div>
       {/each}
     </div>
-  </div>
-</section>
-
-<!-- Movie Collections -->
-<section class="container mx-auto px-4 py-16">
-  <h2 class="text-3xl font-bold mb-8">Explore Collections</h2>
-  
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {#each collections as collection}
-      <a href={collection.href} class="group bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl p-6 text-white hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-        <div class="flex items-center justify-between mb-4">
-          <span class="text-5xl">{collection.icon}</span>
-          <span class="bg-white/20 px-3 py-1 rounded-full text-sm">
-            {collection.count} Films
-          </span>
-        </div>
-        <h3 class="text-xl font-bold mb-2">{collection.name}</h3>
-        <p class="text-blue-100">Explore the complete collection →</p>
+    
+    <div class="text-center mt-8">
+      <a href="/disney/experiments" class="inline-flex items-center bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
+        View All Experiments
+        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
       </a>
-    {/each}
-  </div>
-</section>
-
-<!-- Browse by Genre -->
-<section class="bg-gradient-to-r from-purple-100 to-pink-100 py-16">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-8 text-center">Browse by Genre</h2>
-    
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
-      {#each movieCategories as category}
-        <button class="bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-all hover:scale-105 text-center">
-          <div class="text-3xl mb-2">{category.icon}</div>
-          <p class="text-sm font-semibold">{category.name}</p>
-        </button>
-      {/each}
     </div>
   </div>
 </section>
 
-<!-- Streaming Info -->
+<!-- CTA Section -->
 <section class="container mx-auto px-4 py-16">
   <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white text-center">
-    <h2 class="text-3xl font-bold mb-4">Stream Thousands of Movies</h2>
+    <h2 class="text-3xl font-bold mb-4">The Future of Filmmaking is AI-Powered</h2>
     <p class="text-xl mb-8 text-blue-100">
-      Disney, Pixar, Marvel, Star Wars, and more available on Disney+
+      Discover how Disney Studios is revolutionizing movie production with cutting-edge AI technology
     </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/disney/use-cases" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+        Explore Use Cases
+      </a>
+      <a href="/disney/experiments" class="bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-400 transition-colors">
+        View AI Experiments
+      </a>
+    </div>
   </div>
 </section>

@@ -1,103 +1,133 @@
 <script>
-  const featuredShows = [
+  import { base } from '$app/paths';
+  
+  const aiTechnologies = [
     {
-      title: 'Ahsoka',
-      network: 'Disney+',
-      genre: 'Sci-Fi',
-      icon: '⚔️',
-      description: 'Former Jedi Knight investigates an emerging threat',
-      new: true
+      title: 'Content Personalization Engine',
+      category: 'Streaming',
+      icon: '🎯',
+      description: 'Advanced ML algorithms analyze viewing patterns to deliver personalized content recommendations across Disney+ and Hulu',
+      impact: '35% increase in viewer engagement',
+      features: [
+        'Real-time preference learning',
+        'Multi-profile household optimization',
+        'Cross-platform sync'
+      ]
     },
     {
-      title: 'Percy Jackson and the Olympians',
-      network: 'Disney+',
-      genre: 'Fantasy',
-      icon: '⚡',
-      description: 'A boy discovers he\'s the son of Poseidon',
-      new: true
+      title: 'AI Production Scheduler',
+      category: 'Production',
+      icon: '📅',
+      description: 'Intelligent scheduling system optimizes crew, location, and resource allocation for TV productions',
+      impact: '25% reduction in production delays',
+      features: [
+        'Resource conflict resolution',
+        'Weather-aware scheduling',
+        'Budget optimization'
+      ]
     },
     {
-      title: 'The Bear',
-      network: 'FX/Hulu',
-      genre: 'Drama',
-      icon: '👨‍🍳',
-      description: 'A chef returns to run his family sandwich shop',
-      award: 'Emmy Winner'
+      title: 'Automated Captioning & Translation',
+      category: 'Accessibility',
+      icon: '💬',
+      description: 'Neural networks generate accurate closed captions and translations in 30+ languages',
+      impact: '80% faster localization',
+      features: [
+        'Context-aware translation',
+        'Dialect recognition',
+        'Real-time processing'
+      ]
     },
     {
-      title: 'Bluey',
-      network: 'Disney Junior',
-      genre: 'Family',
-      icon: '🐕',
-      description: 'Adventures of a Blue Heeler puppy',
-      popular: true
+      title: 'Recommendation Algorithm',
+      category: 'Discovery',
+      icon: '🔍',
+      description: 'Disney+ recommendation engine uses collaborative filtering and deep learning for content discovery',
+      impact: '40% improved content discovery',
+      features: [
+        'Mood-based recommendations',
+        'Viewing time optimization',
+        'Family-friendly filtering'
+      ]
     }
   ];
   
-  const networks = [
+  const productionAI = [
     {
-      name: 'ABC',
-      shows: [
-        { title: 'Abbott Elementary', status: 'New Season' },
-        { title: 'The Good Doctor', status: 'Final Season' },
-        { title: 'Grey\'s Anatomy', status: 'Season 20' },
-        { title: 'The Bachelor', status: 'New Episodes' }
+      name: 'Pre-Production',
+      tools: [
+        { title: 'Script Analysis AI', status: 'Deployed', description: 'Analyzes scripts for production requirements' },
+        { title: 'Location Scouting ML', status: 'Testing', description: 'Matches script needs with location databases' },
+        { title: 'Budget Predictor', status: 'Deployed', description: 'AI-driven budget estimation based on script' },
+        { title: 'Casting Assistant', status: 'Planning', description: 'AI-powered talent matching system' }
       ],
       color: 'from-blue-500 to-blue-700'
     },
     {
-      name: 'FX',
-      shows: [
-        { title: 'The Bear', status: 'Season 3' },
-        { title: 'Shogun', status: 'New Series' },
-        { title: 'American Horror Story', status: 'Season 12' },
-        { title: 'What We Do in the Shadows', status: 'Final Season' }
-      ],
-      color: 'from-gray-700 to-black'
-    },
-    {
-      name: 'Disney Channel',
-      shows: [
-        { title: 'Miraculous', status: 'New Episodes' },
-        { title: 'Big City Greens', status: 'Season 4' },
-        { title: 'The Ghost and Molly McGee', status: 'Season 2' },
-        { title: 'Hamster & Gretel', status: 'New Series' }
+      name: 'Production',
+      tools: [
+        { title: 'Smart Scheduling', status: 'Deployed', description: 'Optimizes daily shooting schedules' },
+        { title: 'Equipment Tracker', status: 'Deployed', description: 'AI inventory management system' },
+        { title: 'Scene Continuity AI', status: 'Testing', description: 'Ensures visual continuity between takes' },
+        { title: 'Performance Capture', status: 'Testing', description: 'Enhanced motion capture processing' }
       ],
       color: 'from-purple-500 to-pink-500'
     },
     {
-      name: 'National Geographic',
-      shows: [
-        { title: 'Life Below Zero', status: 'Season 21' },
-        { title: 'Genius', status: 'MLK/X' },
-        { title: 'Gordon Ramsay: Uncharted', status: 'Season 4' },
-        { title: 'Secrets of the Elephants', status: 'New' }
+      name: 'Post-Production',
+      tools: [
+        { title: 'Auto Color Grading', status: 'Deployed', description: 'AI-assisted color correction' },
+        { title: 'Sound Design AI', status: 'Testing', description: 'Automated foley and sound effects' },
+        { title: 'Edit Assistant', status: 'Deployed', description: 'Suggests optimal cut points' },
+        { title: 'VFX Enhancement', status: 'Deployed', description: 'AI-powered visual effects tools' }
       ],
-      color: 'from-yellow-600 to-yellow-800'
+      color: 'from-green-500 to-teal-600'
+    },
+    {
+      name: 'Distribution',
+      tools: [
+        { title: 'Format Optimizer', status: 'Deployed', description: 'Optimizes video for different devices' },
+        { title: 'Thumbnail Generator', status: 'Deployed', description: 'AI creates engaging thumbnails' },
+        { title: 'Release Timing AI', status: 'Testing', description: 'Predicts optimal release windows' },
+        { title: 'Market Analysis', status: 'Deployed', description: 'AI-driven audience insights' }
+      ],
+      color: 'from-orange-500 to-red-500'
     }
   ];
   
-  const disneyPlusOriginals = [
-    { title: 'Loki', genre: 'Marvel', seasons: 2, icon: '🎭' },
-    { title: 'The Mandalorian', genre: 'Star Wars', seasons: 3, icon: '🪐' },
-    { title: 'WandaVision', genre: 'Marvel', seasons: 1, icon: '🔮' },
-    { title: 'Obi-Wan Kenobi', genre: 'Star Wars', seasons: 1, icon: '⚔️' },
-    { title: 'Ms. Marvel', genre: 'Marvel', seasons: 1, icon: '✨' },
-    { title: 'Andor', genre: 'Star Wars', seasons: 1, icon: '🌟' }
+  const streamingMetrics = [
+    { title: 'Personalization Accuracy', value: '87%', icon: '🎯' },
+    { title: 'Content Discovery Rate', value: '64%', icon: '🔍' },
+    { title: 'Translation Languages', value: '30+', icon: '🌍' },
+    { title: 'Caption Accuracy', value: '98.5%', icon: '📝' },
+    { title: 'Production Efficiency', value: '+40%', icon: '⚡' },
+    { title: 'Cost Reduction', value: '25%', icon: '💰' }
   ];
   
-  const genres = [
-    { name: 'Comedy', icon: '😄', count: 45 },
-    { name: 'Drama', icon: '🎭', count: 38 },
-    { name: 'Reality', icon: '📺', count: 52 },
-    { name: 'Kids', icon: '🧸', count: 89 },
-    { name: 'Documentary', icon: '🎥', count: 67 },
-    { name: 'Animation', icon: '🎨', count: 73 }
+  const caseStudies = [
+    { 
+      title: 'The Mandalorian Production', 
+      description: 'How AI-driven virtual production revolutionized TV filmmaking',
+      link: `${base}/disney/use-cases#visual-effects-enhancement`,
+      icon: '🎬'
+    },
+    { 
+      title: 'Disney+ Launch Success', 
+      description: 'AI personalization engine drives 150M+ subscriber growth',
+      link: `${base}/disney/use-cases#content-recommendation`,
+      icon: '🚀'
+    },
+    { 
+      title: 'Global Content Localization', 
+      description: 'Neural translation enables same-day global releases',
+      link: `${base}/experiments`,
+      icon: '🌐'
+    }
   ];
 </script>
 
 <svelte:head>
-  <title>Disney TV Shows - Series & Originals</title>
+  <title>AI in TV Production - Disney AI Adoption Hub</title>
 </svelte:head>
 
 <!-- Hero Section -->
@@ -105,64 +135,93 @@
   <div class="absolute inset-0 opacity-20">
     <div class="grid grid-cols-8 gap-4 p-8">
       {#each Array(16) as _, i}
-        <div class="text-5xl animate-pulse" style="animation-delay: {i * 0.2}s">📺</div>
+        <div class="text-5xl animate-pulse" style="animation-delay: {i * 0.2}s">🤖</div>
       {/each}
     </div>
   </div>
   
   <div class="relative z-10 container mx-auto px-4 py-20">
-    <h1 class="text-5xl md:text-6xl font-bold mb-6">Disney TV Shows</h1>
+    <h1 class="text-5xl md:text-6xl font-bold mb-6">AI in TV Production</h1>
     <p class="text-xl md:text-2xl mb-8 text-purple-100">
-      Award-winning series across every network and platform
+      Transforming television production and streaming with artificial intelligence
     </p>
+    <div class="flex flex-wrap gap-4">
+      <a 
+        href="{base}/disney/use-cases#content-recommendation" 
+        class="bg-white text-purple-900 px-6 py-3 rounded-lg font-semibold hover:bg-purple-100 transition-colors"
+      >
+        View AI Use Cases
+      </a>
+      <a 
+        href="{base}/experiments" 
+        class="bg-purple-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+      >
+        Explore Experiments
+      </a>
+    </div>
   </div>
 </section>
 
-<!-- Featured Shows -->
+<!-- AI Technologies -->
 <section class="container mx-auto px-4 py-16">
-  <h2 class="text-3xl font-bold mb-8 text-gray-900">Featured Shows</h2>
+  <h2 class="text-3xl font-bold mb-8 text-gray-900">AI Technologies in TV Production</h2>
   
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    {#each featuredShows as show}
+    {#each aiTechnologies as tech}
       <div class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
         <div class="relative">
           <div class="aspect-video bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-6xl">
-            {show.icon}
+            {tech.icon}
           </div>
-          {#if show.new}
-            <span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">NEW</span>
-          {/if}
-          {#if show.award}
-            <span class="absolute top-4 left-4 bg-yellow-500 text-black px-3 py-1 rounded-full text-xs font-bold">{show.award}</span>
-          {/if}
+          <span class="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold">
+            {tech.category}
+          </span>
         </div>
         <div class="p-6">
-          <h3 class="text-xl font-bold mb-1 text-gray-900">{show.title}</h3>
-          <p class="text-sm text-gray-600 mb-2">{show.network} • {show.genre}</p>
-          <p class="text-sm text-gray-700">{show.description}</p>
+          <h3 class="text-xl font-bold mb-2 text-gray-900">{tech.title}</h3>
+          <p class="text-sm text-gray-700 mb-3">{tech.description}</p>
+          <div class="bg-green-50 text-green-800 px-3 py-2 rounded-lg text-sm font-medium mb-3">
+            Impact: {tech.impact}
+          </div>
+          <ul class="space-y-1">
+            {#each tech.features as feature}
+              <li class="text-xs text-gray-600 flex items-center">
+                <span class="text-purple-500 mr-2">•</span>
+                <span class="text-gray-600">{feature}</span>
+              </li>
+            {/each}
+          </ul>
         </div>
       </div>
     {/each}
   </div>
 </section>
 
-<!-- Network Shows -->
+<!-- Production Pipeline AI -->
 <section class="bg-gray-50 py-16">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-8 text-gray-900">Shows by Network</h2>
+    <h2 class="text-3xl font-bold mb-8 text-gray-900">AI Across the Production Pipeline</h2>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {#each networks as network}
+      {#each productionAI as stage}
         <div class="bg-white rounded-xl shadow-md overflow-hidden">
-          <div class="bg-gradient-to-r {network.color} text-white p-4">
-            <h3 class="text-xl font-bold">{network.name}</h3>
+          <div class="bg-gradient-to-r {stage.color} text-white p-4">
+            <h3 class="text-xl font-bold">{stage.name}</h3>
           </div>
           <div class="p-4">
             <ul class="space-y-3">
-              {#each network.shows as show}
-                <li class="flex items-center justify-between">
-                  <span class="font-medium text-gray-900">{show.title}</span>
-                  <span class="text-xs bg-gray-100 px-2 py-1 rounded text-gray-600">{show.status}</span>
+              {#each stage.tools as tool}
+                <li>
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="font-medium text-gray-900 text-sm">{tool.title}</span>
+                    <span class="text-xs px-2 py-1 rounded
+                      {tool.status === 'Deployed' ? 'bg-green-100 text-green-800' : 
+                       tool.status === 'Testing' ? 'bg-yellow-100 text-yellow-800' : 
+                       'bg-gray-100 text-gray-600'}">
+                      <span class="text-gray-800">{tool.status}</span>
+                    </span>
+                  </div>
+                  <p class="text-xs text-gray-600">{tool.description}</p>
                 </li>
               {/each}
             </ul>
@@ -173,72 +232,112 @@
   </div>
 </section>
 
-<!-- Disney+ Originals -->
+<!-- Disney+ Recommendation Engine -->
 <section class="container mx-auto px-4 py-16">
   <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 text-white">
-    <h2 class="text-3xl font-bold mb-8">Disney+ Originals</h2>
+    <h2 class="text-3xl font-bold mb-8">Disney+ AI Recommendation Engine</h2>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {#each disneyPlusOriginals as show}
-        <div class="bg-white/10 backdrop-blur rounded-lg p-6 hover:bg-white/20 transition-colors">
-          <div class="flex items-start justify-between mb-3">
-            <span class="text-4xl">{show.icon}</span>
-            <span class="bg-white/20 px-2 py-1 rounded text-xs">
-              {show.seasons} Season{show.seasons > 1 ? 's' : ''}
-            </span>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div>
+        <p class="text-lg mb-6 text-blue-100">
+          Our advanced recommendation algorithm powers content discovery for 150+ million subscribers worldwide
+        </p>
+        <div class="space-y-4">
+          <div class="bg-white/10 backdrop-blur rounded-lg p-4">
+            <h3 class="font-semibold mb-2 text-white">Collaborative Filtering</h3>
+            <p class="text-sm text-blue-100">Analyzes viewing patterns across similar user profiles</p>
           </div>
-          <h3 class="text-xl font-bold mb-1 text-gray-900">{show.title}</h3>
-          <p class="text-blue-100">{show.genre} Series</p>
+          <div class="bg-white/10 backdrop-blur rounded-lg p-4">
+            <h3 class="font-semibold mb-2 text-white">Content-Based Analysis</h3>
+            <p class="text-sm text-blue-100">Deep learning models understand content themes and attributes</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur rounded-lg p-4">
+            <h3 class="font-semibold mb-2 text-white">Contextual Awareness</h3>
+            <p class="text-sm text-blue-100">Considers time of day, device, and viewing history</p>
+          </div>
+        </div>
+        <a 
+          href="{base}/disney/use-cases#content-recommendation" 
+          class="inline-block mt-6 bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+        >
+          Learn More About Our Recommendation System
+        </a>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        {#each streamingMetrics.slice(0, 4) as metric}
+          <div class="bg-white/10 backdrop-blur rounded-lg p-6 text-center">
+            <div class="text-4xl mb-2">{metric.icon}</div>
+            <div class="text-2xl font-bold mb-1">{metric.value}</div>
+            <div class="text-sm text-blue-100">{metric.title}</div>
+          </div>
+        {/each}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Key Metrics -->
+<section class="bg-gradient-to-b from-purple-100 to-pink-100 py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-8 text-center text-gray-900">AI Impact Metrics</h2>
+    
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      {#each streamingMetrics as metric}
+        <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all hover:scale-105 text-center">
+          <div class="text-4xl mb-2">{metric.icon}</div>
+          <p class="text-2xl font-bold text-gray-900">{metric.value}</p>
+          <p class="text-sm text-gray-600">{metric.title}</p>
         </div>
       {/each}
     </div>
-    
   </div>
 </section>
 
-<!-- Browse by Genre -->
-<section class="bg-gradient-to-b from-purple-100 to-pink-100 py-16">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-8 text-center text-gray-900">Browse by Genre</h2>
+<!-- Case Studies -->
+<section class="container mx-auto px-4 py-16">
+  <div class="bg-gradient-to-r from-orange-500 to-red-500 rounded-3xl p-8 md:p-12 text-white">
+    <h2 class="text-3xl font-bold mb-8">Success Stories</h2>
     
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-      {#each genres as genre}
-        <button class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all hover:scale-105 text-center">
-          <div class="text-4xl mb-2">{genre.icon}</div>
-          <p class="font-semibold text-gray-900">{genre.name}</p>
-          <p class="text-sm text-gray-600">{genre.count} Shows</p>
-        </button>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {#each caseStudies as study}
+        <a 
+          href="{study.link}"
+          class="bg-white/10 backdrop-blur rounded-lg p-6 hover:bg-white/20 transition-all transform hover:scale-105"
+        >
+          <div class="text-4xl mb-4">{study.icon}</div>
+          <h3 class="text-xl font-bold mb-2 text-white">{study.title}</h3>
+          <p class="text-orange-100">{study.description}</p>
+          <div class="mt-4 text-sm font-semibold flex items-center text-white">
+            <span class="text-white">Read Case Study</span>
+            <span class="ml-2 text-white">→</span>
+          </div>
+        </a>
       {/each}
     </div>
   </div>
 </section>
 
-<!-- Live TV CTA -->
-<section class="container mx-auto px-4 py-16">
-  <div class="bg-gradient-to-r from-orange-500 to-red-500 rounded-3xl p-8 md:p-12 text-white">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-      <div>
-        <h2 class="text-3xl font-bold mb-4">Watch Live TV</h2>
-        <p class="text-lg mb-6 text-orange-100">
-          Stream your favorite shows live on ABC, ESPN, FX and more with Hulu + Live TV
-        </p>
-        <ul class="space-y-2 mb-8">
-          <li class="flex items-center">
-            <span class="text-2xl mr-3">📡</span>
-            <span>90+ live channels</span>
-          </li>
-          <li class="flex items-center">
-            <span class="text-2xl mr-3">💾</span>
-            <span>Unlimited DVR</span>
-          </li>
-          <li class="flex items-center">
-            <span class="text-2xl mr-3">📱</span>
-            <span>Watch on any device</span>
-          </li>
-        </ul>
-      </div>
-      <div class="text-center">
-        <div class="text-9xl">📺</div>
+<!-- Integration with Experiments -->
+<section class="bg-gray-50 py-16">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4 text-gray-900">Explore AI Experiments</h2>
+      <p class="text-lg text-gray-600 mb-8">
+        Discover how Disney is pushing the boundaries of AI in television production and streaming
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a 
+          href="{base}/experiments" 
+          class="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+        >
+          View All Experiments
+        </a>
+        <a 
+          href="{base}/disney/use-cases" 
+          class="bg-white text-purple-600 border-2 border-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors"
+        >
+          Browse Use Cases
+        </a>
       </div>
     </div>
   </div>

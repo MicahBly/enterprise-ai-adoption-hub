@@ -1,231 +1,326 @@
 <script>
-  const ships = [
+  const aiInnovations = [
     {
-      name: 'Disney Wish',
-      year: 2022,
-      capacity: '4,000 guests',
-      highlights: ['AquaMouse', 'Star Wars Hyperspace Lounge', 'Worlds of Marvel Restaurant'],
-      icon: '🚢'
+      title: 'AI-Powered Route Optimization',
+      description: 'Advanced algorithms analyze weather patterns, ocean currents, and fuel efficiency to optimize cruise routes in real-time',
+      features: [
+        'Real-time weather prediction and avoidance',
+        'Fuel consumption optimization',
+        'Dynamic itinerary adjustments',
+        'Port congestion prediction'
+      ],
+      icon: '🧭',
+      impact: '15% reduction in fuel consumption'
     },
     {
-      name: 'Disney Dream',
-      year: 2011,
-      capacity: '4,000 guests',
-      highlights: ['AquaDuck', 'Remy Restaurant', 'Vanellope\'s Sweets & Treats'],
+      title: 'Predictive Maintenance Systems',
+      description: 'Machine learning models monitor ship systems 24/7 to predict and prevent equipment failures before they occur',
+      features: [
+        'Engine performance monitoring',
+        'Vibration analysis for early detection',
+        'Automated maintenance scheduling',
+        'Spare parts inventory optimization'
+      ],
+      icon: '🔧',
+      impact: '40% reduction in unexpected breakdowns'
+    },
+    {
+      title: 'Personalized Guest Experiences',
+      description: 'AI creates unique, tailored experiences for each guest based on preferences, behavior, and real-time feedback',
+      features: [
+        'Customized dining recommendations',
+        'Activity and entertainment matching',
+        'Personalized shore excursion suggestions',
+        'Real-time language translation services'
+      ],
+      icon: '✨',
+      impact: '92% guest satisfaction rating'
+    },
+    {
+      title: 'Smart Cabin Technology',
+      description: 'IoT sensors and AI create intelligent living spaces that adapt to guest preferences automatically',
+      features: [
+        'Voice-controlled room automation',
+        'Predictive climate control',
+        'Smart lighting based on circadian rhythms',
+        'Automated service requests'
+      ],
+      icon: '🏠',
+      impact: '30% energy savings per cabin'
+    }
+  ];
+
+  const operationalAI = [
+    {
+      category: 'Navigation & Safety',
+      applications: [
+        'Autonomous collision avoidance systems',
+        'AI-powered bridge decision support',
+        'Computer vision for man-overboard detection',
+        'Predictive stability management'
+      ],
       icon: '⚓'
     },
     {
-      name: 'Disney Fantasy',
-      year: 2012,
-      capacity: '4,000 guests',
-      highlights: ['AquaLab', 'Europa District', 'Bibbidi Bobbidi Boutique'],
-      icon: '🛳️'
+      category: 'Guest Services',
+      applications: [
+        'AI concierge and virtual assistants',
+        'Facial recognition for seamless boarding',
+        'Sentiment analysis for service improvement',
+        'Predictive crowd management'
+      ],
+      icon: '🛎️'
     },
     {
-      name: 'Disney Magic',
-      year: 1998,
-      capacity: '2,700 guests',
-      highlights: ['AquaDunk', 'Rapunzel\'s Royal Table', 'Marvel Day at Sea'],
+      category: 'Environmental Impact',
+      applications: [
+        'AI-optimized waste management',
+        'Smart water consumption monitoring',
+        'Emission reduction algorithms',
+        'Marine life detection and avoidance'
+      ],
       icon: '🌊'
     },
     {
-      name: 'Disney Wonder',
-      year: 1999,
-      capacity: '2,700 guests',
-      highlights: ['Twist \'n\' Spout', 'Tiana\'s Place', 'Frozen Adventures'],
-      icon: '🏝️'
+      category: 'Crew Operations',
+      applications: [
+        'AI-powered crew scheduling',
+        'Training simulations with VR/AR',
+        'Performance analytics and coaching',
+        'Automated compliance monitoring'
+      ],
+      icon: '👥'
     }
   ];
-  
-  const destinations = [
-    { region: 'Caribbean', icon: '🏖️', sailings: '200+/year', highlights: 'Castaway Cay Private Island' },
-    { region: 'Bahamas', icon: '🦩', sailings: '150+/year', highlights: 'Nassau & Castaway Cay' },
-    { region: 'Europe', icon: '🏰', sailings: 'Summer Season', highlights: 'Mediterranean & Northern Europe' },
-    { region: 'Alaska', icon: '🏔️', sailings: 'May-September', highlights: 'Glaciers & Wildlife' },
-    { region: 'Mexico', icon: '🌮', sailings: 'Year-round', highlights: 'Cabo, Mazatlán, Puerto Vallarta' },
-    { region: 'Hawaii', icon: '🌺', sailings: 'Select Dates', highlights: '10+ Night Voyages' }
+
+  const futureInnovations = [
+    {
+      innovation: 'Autonomous Ship Operations',
+      timeline: '2025-2027',
+      description: 'Semi-autonomous navigation systems with remote monitoring capabilities'
+    },
+    {
+      innovation: 'Digital Twin Technology',
+      timeline: '2024-2025',
+      description: 'Complete virtual replicas of ships for testing and optimization'
+    },
+    {
+      innovation: 'Quantum Computing Integration',
+      timeline: '2026-2028',
+      description: 'Ultra-complex route optimization across entire fleets'
+    }
   ];
-  
-  const onboardActivities = [
-    { category: 'Entertainment', items: ['Broadway Shows', 'Character Meet & Greets', 'Deck Parties', 'Movies'], icon: '🎭' },
-    { category: 'Dining', items: ['Rotational Dining', 'Adult-Exclusive', 'Quick Service', '24-Hour Room Service'], icon: '🍽️' },
-    { category: 'Kids Clubs', items: ['Oceaneer Club', 'Oceaneer Lab', 'Edge (Tweens)', 'Vibe (Teens)'], icon: '🎈' },
-    { category: 'Relaxation', items: ['Senses Spa', 'Adult-Only Pool', 'Rainforest Room', 'Quiet Cove'], icon: '🧘' }
-  ];
-  
-  const upcomingShips = [
-    { name: 'Disney Treasure', launch: '2024', feature: 'Adventure-themed with Moana' },
-    { name: 'Disney Destiny', launch: '2025', feature: 'Heroes and Villains theme' },
-    { name: 'Disney Adventure', launch: '2025', feature: 'Asia-Pacific exclusive' }
+
+  const metrics = [
+    { label: 'AI Systems Deployed', value: '200+', icon: '🤖' },
+    { label: 'Data Points Analyzed/Day', value: '50M+', icon: '📊' },
+    { label: 'Predictive Accuracy', value: '94%', icon: '🎯' },
+    { label: 'Operational Efficiency Gain', value: '35%', icon: '📈' }
   ];
 </script>
 
 <svelte:head>
-  <title>Disney Cruise Line - Magic at Sea</title>
+  <title>AI Innovation in Cruise Operations - Disney Cruise Line</title>
 </svelte:head>
 
 <!-- Hero Section -->
 <section class="relative overflow-hidden bg-gradient-to-br from-blue-800 via-blue-600 to-cyan-500 text-white">
   <div class="absolute inset-0">
-    <!-- Ocean waves animation -->
-    <div class="absolute bottom-0 left-0 right-0 h-32 bg-blue-900/20">
-      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-full">
-        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" 
-              fill="currentColor" class="text-blue-700/30 animate-wave"/>
-      </svg>
+    <!-- Tech grid background -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="grid grid-cols-12 gap-1 h-full">
+        {#each Array(48) as _, i}
+          <div class="border border-white/20 rounded animate-pulse" style="animation-delay: {i * 0.1}s"></div>
+        {/each}
+      </div>
     </div>
   </div>
   
   <div class="relative z-10 container mx-auto px-4 py-20">
     <div class="text-center">
       <h1 class="text-5xl md:text-7xl font-bold mb-6">
-        Disney Cruise Line
+        AI-Powered Cruise Innovation
       </h1>
       <p class="text-2xl md:text-3xl mb-8 text-blue-100">
-        Where Magic Meets the Sea
+        Transforming Maritime Operations with Artificial Intelligence
       </p>
+      <div class="flex flex-wrap justify-center gap-6 mt-12">
+        {#each metrics as metric}
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+            <div class="text-4xl mb-2">{metric.icon}</div>
+            <div class="text-3xl font-bold">{metric.value}</div>
+            <div class="text-sm text-blue-200">{metric.label}</div>
+          </div>
+        {/each}
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Fleet Overview -->
+<!-- AI Innovations -->
 <section class="container mx-auto px-4 py-16">
-  <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Our Magical Fleet</h2>
+  <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Core AI Innovations</h2>
   
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {#each ships as ship}
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    {#each aiInnovations as innovation}
       <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
-        <div class="bg-gradient-to-br from-blue-500 to-cyan-500 p-8 text-white text-center">
-          <div class="text-6xl mb-4">{ship.icon}</div>
-          <h3 class="text-2xl font-bold">{ship.name}</h3>
-          <p class="text-blue-100">Launched {ship.year}</p>
+        <div class="bg-gradient-to-br from-blue-500 to-purple-500 p-6 text-white">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold">{innovation.title}</h3>
+            <div class="text-5xl">{innovation.icon}</div>
+          </div>
+          <p class="text-blue-100">{innovation.description}</p>
         </div>
         <div class="p-6">
-          <p class="text-gray-600 mb-4">{ship.capacity}</p>
-          <h4 class="font-semibold text-gray-900 mb-2">Ship Highlights:</h4>
-          <ul class="space-y-1">
-            {#each ship.highlights as highlight}
-              <li class="text-sm text-gray-700 flex items-center">
-                <span class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-                {highlight}
+          <h4 class="font-semibold text-gray-900 mb-3">Key Features:</h4>
+          <ul class="space-y-2 mb-4">
+            {#each innovation.features as feature}
+              <li class="flex items-start">
+                <span class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3 mt-1.5 flex-shrink-0"></span>
+                <span class="text-gray-700">{feature}</span>
               </li>
             {/each}
           </ul>
+          <div class="pt-4 border-t border-gray-100">
+            <span class="text-sm font-semibold text-green-600">Impact: {innovation.impact}</span>
+          </div>
         </div>
       </div>
     {/each}
   </div>
 </section>
 
-<!-- Destinations -->
-<section class="bg-gradient-to-b from-blue-50 to-white py-16">
+<!-- Operational AI Applications -->
+<section class="bg-gradient-to-b from-gray-50 to-white py-16">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Sail to Amazing Destinations</h2>
+    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">AI Across Operations</h2>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {#each destinations as destination}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {#each operationalAI as area}
         <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6">
-          <div class="flex items-start space-x-4">
-            <div class="text-5xl">{destination.icon}</div>
-            <div>
-              <h3 class="text-xl font-bold text-gray-900 mb-1">{destination.region}</h3>
-              <p class="text-sm text-gray-600 mb-2">{destination.sailings}</p>
-              <p class="text-purple-600 font-semibold">{destination.highlights}</p>
+          <div class="text-4xl mb-4 text-center">{area.icon}</div>
+          <h3 class="font-bold text-gray-900 text-lg mb-4 text-center">{area.category}</h3>
+          <ul class="space-y-2">
+            {#each area.applications as app}
+              <li class="text-sm text-gray-700 flex items-start">
+                <span class="text-blue-500 mr-2">▸</span>
+                {app}
+              </li>
+            {/each}
+          </ul>
+        </div>
+      {/each}
+    </div>
+  </div>
+</section>
+
+<!-- Technology Deep Dive -->
+<section class="container mx-auto px-4 py-16">
+  <div class="bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl p-8 md:p-12 text-white">
+    <h2 class="text-3xl font-bold mb-8 text-center">Advanced Technology Stack</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+        <h3 class="text-xl font-bold mb-4">Machine Learning</h3>
+        <ul class="space-y-2 text-purple-100">
+          <li>• TensorFlow & PyTorch models</li>
+          <li>• Real-time data processing</li>
+          <li>• Edge computing on ships</li>
+          <li>• Federated learning systems</li>
+        </ul>
+      </div>
+      
+      <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+        <h3 class="text-xl font-bold mb-4">IoT & Sensors</h3>
+        <ul class="space-y-2 text-purple-100">
+          <li>• 10,000+ sensors per ship</li>
+          <li>• Real-time data streaming</li>
+          <li>• Predictive analytics</li>
+          <li>• Digital twin integration</li>
+        </ul>
+      </div>
+      
+      <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+        <h3 class="text-xl font-bold mb-4">Cloud & Edge</h3>
+        <ul class="space-y-2 text-purple-100">
+          <li>• Hybrid cloud architecture</li>
+          <li>• Satellite connectivity</li>
+          <li>• Low-latency processing</li>
+          <li>• Automated failover systems</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Future Innovations -->
+<section class="bg-gray-50 py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">The Future of AI at Sea</h2>
+    
+    <div class="max-w-4xl mx-auto">
+      {#each futureInnovations as innovation}
+        <div class="bg-white rounded-xl shadow-md p-6 mb-6 hover:shadow-lg transition-shadow">
+          <div class="flex items-center justify-between flex-wrap gap-4">
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">{innovation.innovation}</h3>
+              <p class="text-gray-700">{innovation.description}</p>
+            </div>
+            <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-semibold">
+              {innovation.timeline}
             </div>
           </div>
         </div>
       {/each}
     </div>
     
-    <!-- Castaway Cay Feature -->
-    <div class="mt-12 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-3xl p-8 text-white">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div>
-          <h3 class="text-2xl font-bold mb-4">Castaway Cay</h3>
-          <p class="text-lg mb-4 text-cyan-100">
-            Disney's Private Island Paradise in the Bahamas
-          </p>
-          <ul class="space-y-2">
-            <li class="flex items-center">
-              <span class="text-2xl mr-3">🏖️</span>
-              <span>Pristine beaches and crystal-clear waters</span>
-            </li>
-            <li class="flex items-center">
-              <span class="text-2xl mr-3">🏃</span>
-              <span>Castaway Cay 5K running trail</span>
-            </li>
-            <li class="flex items-center">
-              <span class="text-2xl mr-3">🤿</span>
-              <span>Snorkeling, parasailing, and water sports</span>
-            </li>
-          </ul>
-        </div>
-        <div class="text-center">
-          <div class="text-9xl">🏝️</div>
-        </div>
+    <!-- AI Benefits Summary -->
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <div class="text-center">
+        <div class="text-4xl mb-3">🌍</div>
+        <h4 class="font-bold text-gray-900 mb-2">Environmental Impact</h4>
+        <p class="text-gray-600">25% reduction in carbon emissions through AI optimization</p>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl mb-3">⚡</div>
+        <h4 class="font-bold text-gray-900 mb-2">Operational Excellence</h4>
+        <p class="text-gray-600">99.9% system uptime with predictive maintenance</p>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl mb-3">🎯</div>
+        <h4 class="font-bold text-gray-900 mb-2">Guest Satisfaction</h4>
+        <p class="text-gray-600">AI-driven personalization increases satisfaction by 40%</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Onboard Activities -->
-<section class="container mx-auto px-4 py-16">
-  <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Onboard Magic</h2>
-  
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    {#each onboardActivities as activity}
-      <div class="bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl p-6">
-        <div class="text-4xl mb-4 text-center">{activity.icon}</div>
-        <h3 class="font-bold text-gray-900 text-lg mb-3">{activity.category}</h3>
-        <ul class="space-y-1">
-          {#each activity.items as item}
-            <li class="text-sm text-gray-700">• {item}</li>
-          {/each}
-        </ul>
-      </div>
-    {/each}
-  </div>
-</section>
-
-<!-- Upcoming Ships -->
-<section class="bg-gray-50 py-16">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">New Ships on the Horizon</h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {#each upcomingShips as ship}
-        <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition-shadow">
-          <div class="text-5xl mb-4">🚢</div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">{ship.name}</h3>
-          <p class="text-gray-600 mb-2">Launching {ship.launch}</p>
-          <p class="text-purple-600 font-semibold">{ship.feature}</p>
-        </div>
-      {/each}
-    </div>
-  </div>
-</section>
-
-<!-- Booking CTA -->
+<!-- Call to Action -->
 <section class="container mx-auto px-4 py-16">
   <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white text-center">
-    <h2 class="text-4xl font-bold mb-6">Set Sail on Your Dream Vacation</h2>
+    <h2 class="text-4xl font-bold mb-6">Pioneering the Future of Maritime AI</h2>
     <p class="text-xl mb-8 text-blue-100 max-w-3xl mx-auto">
-      Experience world-class entertainment, exceptional dining, and magical moments at sea with Disney Cruise Line
+      Disney Cruise Line is leading the transformation of cruise operations through cutting-edge AI technology, 
+      creating safer, more efficient, and more magical experiences at sea.
     </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <button class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors">
+        Learn More About Our Technology
+      </button>
+      <button class="bg-transparent border-2 border-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-colors text-white">
+        Partner With Us
+      </button>
+    </div>
   </div>
 </section>
 
 <style>
-  @keyframes wave {
+  @keyframes pulse {
     0%, 100% {
-      transform: translateX(0) translateY(0);
+      opacity: 0.1;
     }
     50% {
-      transform: translateX(-25%) translateY(-10px);
+      opacity: 0.3;
     }
-  }
-  
-  .animate-wave {
-    animation: wave 6s ease-in-out infinite;
   }
 </style>

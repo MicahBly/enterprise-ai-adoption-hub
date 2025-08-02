@@ -1,241 +1,173 @@
-<script lang="ts">
-	import FilterBar from '$lib/components/FilterBar.svelte';
-	import UseCaseGrid from '$lib/components/UseCaseGrid.svelte';
-	import ChatSearch from '$lib/components/ChatSearch.svelte';
-	import Tooltip from '$lib/components/ui/Tooltip.svelte';
-	import { filteredUseCases, useCaseFilters, updateFilters, resetFilters, getAllDivisions, getAllTags, getAllStatuses, useCasesStore } from '$lib/stores/useCases';
-	import { onMount } from 'svelte';
-	import { fade, scale } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
-	
-	// View mode state
-	let viewMode: 'grid' | 'list' = 'grid';
-	
-	// Get filter options
-	let divisions: string[] = [];
-	let tags: string[] = [];
-	let statuses: string[] = [];
-	
-	// Current filter values
-	let selectedDivision = '';
-	let selectedTags: string[] = [];
-	let selectedStatus = '';
-	let searchQuery = '';
-	
-	// Loading state
-	let loading = true;
-	
-	onMount(async () => {
-		try {
-			// Load use cases from database
-			await useCasesStore.loadUseCases();
-			
-			// Get filter options after use cases are loaded
-			divisions = getAllDivisions();
-			tags = getAllTags();
-			statuses = getAllStatuses();
-			
-			// Subscribe to filter changes
-			const unsubscribe = useCaseFilters.subscribe(filters => {
-				selectedDivision = filters.division === 'all' ? '' : filters.division;
-				selectedTags = filters.tags;
-				selectedStatus = filters.status === 'all' ? '' : filters.status;
-				searchQuery = filters.search;
-			});
-			
-			loading = false;
-			
-			return unsubscribe;
-		} catch (error) {
-			console.error('Error loading page:', error);
-			loading = false;
-		}
-	});
-	
-	// Handle filter changes from FilterBar
-	function handleFilterChange(event: CustomEvent) {
-		const { type, value } = event.detail;
-		
-		switch (type) {
-			case 'division':
-				updateFilters({ division: value || 'all' });
-				break;
-			case 'tags':
-				updateFilters({ tags: value });
-				break;
-			case 'status':
-				updateFilters({ status: value || 'all' });
-				break;
-			case 'search':
-				updateFilters({ search: value });
-				break;
-		}
-	}
-	
-	// Handle clear filters
-	function handleClearFilters() {
-		resetFilters();
-	}
-	
-	// Toggle view mode
-	function toggleViewMode() {
-		viewMode = viewMode === 'grid' ? 'list' : 'grid';
-	}
-	
-	// Stats for hero section
-	$: totalUseCases = $filteredUseCases.length;
+<script>
+  import { onMount } from 'svelte';
+  
+  let mounted = false;
+  
+  onMount(() => {
+    mounted = true;
+  });
 </script>
 
 <svelte:head>
-	<title>FOX AI Hub - AI Use Cases Dashboard</title>
-	<meta name="description" content="Explore and discover AI use cases across FOX Corporation divisions" />
+  <title>Micah Bly's AI Portfolio</title>
+  <meta name="description" content="Explore AI adoption strategies and implementations across leading media and entertainment companies" />
 </svelte:head>
 
-<div class="min-h-screen bg-gray-50">
-	<!-- Hero Section -->
-	<section class="bg-gradient-to-br from-blue-600 to-blue-800 text-white">
-		<div class="container mx-auto px-4 py-9 sm:py-12 lg:py-15">
-			<div class="max-w-4xl mx-auto text-center">
-				<Tooltip content="Your centralized platform for discovering, sharing, and scaling AI solutions across FOX Corporation - driving $50M+ in annual value" >
-					<h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 cursor-help">
-						FOX AI Innovation Hub
-					</h1>
-				</Tooltip>
-				<p class="text-lg sm:text-xl text-blue-100 mb-8 leading-relaxed">
-					Discover how AI is transforming FOX Corporation. Explore use cases across all divisions, 
-					share insights, and accelerate innovation through collaboration.
-				</p>
-				
-				<!-- Quick Stats -->
-				<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
-					<Tooltip content="Live count of AI initiatives demonstrating FOX's commitment to innovation - each saving an average of $2M annually" >
-						<div 
-							class="bg-white/10 backdrop-blur-sm rounded-lg p-4 cursor-help"
-							in:scale={{ duration: 600, delay: 200, start: 0.8, easing: quintOut }}
-						>
-							<div class="text-3xl font-bold mb-1">{totalUseCases}</div>
-							<div class="text-sm text-blue-100">Active Use Cases</div>
-						</div>
-					</Tooltip>
-					<Tooltip content="Cross-functional AI adoption showing enterprise-wide digital transformation" >
-						<div 
-							class="bg-white/10 backdrop-blur-sm rounded-lg p-4 cursor-help"
-							in:scale={{ duration: 600, delay: 350, start: 0.8, easing: quintOut }}
-						>
-							<div class="text-3xl font-bold mb-1">{divisions.length}</div>
-							<div class="text-sm text-blue-100">Divisions</div>
-						</div>
-					</Tooltip>
-					<Tooltip content="Diverse AI portfolio from NLP to Computer Vision, showcasing technical breadth" >
-						<div 
-							class="bg-white/10 backdrop-blur-sm rounded-lg p-4 cursor-help"
-							in:scale={{ duration: 600, delay: 500, start: 0.8, easing: quintOut }}
-						>
-							<div class="text-3xl font-bold mb-1">{tags.length}</div>
-							<div class="text-sm text-blue-100">Technology Tags</div>
-						</div>
-					</Tooltip>
-				</div>
-			</div>
-		</div>
-		
-		<!-- Wave decoration -->
-		<div class="relative">
-			<svg class="absolute bottom-0 w-full h-8 sm:h-12 lg:h-16" preserveAspectRatio="none" viewBox="0 0 1440 64">
-				<path fill="#f9fafb" d="M0,32L48,37.3C96,43,192,53,288,53.3C384,53,480,43,576,37.3C672,32,768,32,864,37.3C960,43,1056,53,1152,53.3C1248,53,1344,43,1392,37.3L1440,32L1440,64L1392,64C1344,64,1248,64,1152,64C1056,64,960,64,864,64C768,64,672,64,576,64C480,64,384,64,288,64C192,64,96,64,48,64L0,64Z"></path>
-			</svg>
-		</div>
-	</section>
-	
-	<!-- Main Content -->
-	<main class="container mx-auto px-4 py-8">
-		<!-- AI Search Bar -->
-		<div class="mb-8">
-			<ChatSearch />
-		</div>
-		
-		<!-- Filter Section -->
-		<div class="mb-6">
-			<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
-				<h2 class="text-2xl font-semibold text-gray-900">Browse Use Cases</h2>
-				
-				<!-- View Toggle -->
-				<div class="flex items-center gap-2 bg-white rounded-lg border border-gray-200 p-1">
-					<button
-						on:click={() => viewMode = 'grid'}
-						class="px-3 py-1.5 rounded-md text-sm font-medium transition-colors"
-						class:bg-blue-600={viewMode === 'grid'}
-						class:text-white={viewMode === 'grid'}
-						class:text-gray-600={viewMode !== 'grid'}
-						class:hover:text-gray-900={viewMode !== 'grid'}
-						aria-label="Grid view"
-					>
-						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-						</svg>
-					</button>
-					<button
-						on:click={() => viewMode = 'list'}
-						class="px-3 py-1.5 rounded-md text-sm font-medium transition-colors"
-						class:bg-blue-600={viewMode === 'list'}
-						class:text-white={viewMode === 'list'}
-						class:text-gray-600={viewMode !== 'list'}
-						class:hover:text-gray-900={viewMode !== 'list'}
-						aria-label="List view"
-					>
-						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-						</svg>
-					</button>
-				</div>
-			</div>
-			
-			<!-- Filter Bar -->
-			<FilterBar
-				{divisions}
-				{statuses}
-				availableTags={tags}
-				bind:selectedDivision
-				bind:selectedTags
-				bind:selectedStatus
-				bind:searchQuery
-				on:filterChange={handleFilterChange}
-				on:clearFilters={handleClearFilters}
-			/>
-		</div>
-		
-		<!-- Results Count -->
-		{#if !loading}
-			<div class="mb-4 text-sm text-gray-600">
-				Showing <span class="font-medium text-gray-900">{totalUseCases}</span> use case{totalUseCases !== 1 ? 's' : ''}
-				{#if selectedDivision || selectedTags.length > 0 || selectedStatus || searchQuery}
-					<span class="text-gray-500">(filtered)</span>
-				{/if}
-			</div>
-		{/if}
-		
-		<!-- Use Case Grid -->
-		<UseCaseGrid useCases={$filteredUseCases} {viewMode} {loading} />
-		
-	</main>
-</div>
+<!-- Hero Section -->
+<section class="min-h-screen bg-black text-white relative overflow-hidden flex items-center justify-center">
+  <!-- Animated background gradient -->
+  <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+  
+  <!-- Glowing orbs -->
+  <div class="absolute inset-0">
+    <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-orange-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+    <div class="absolute top-3/4 right-1/4 w-64 h-64 bg-orange-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" style="animation-delay: 1s;"></div>
+    <div class="absolute bottom-1/4 left-1/3 w-32 h-32 bg-orange-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" style="animation-delay: 2s;"></div>
+  </div>
+  
+  <!-- Content -->
+  <div class="relative z-10 text-center px-4">
+    <!-- MB Logo -->
+    <div class="mb-8 flex justify-center">
+      <div class="relative">
+        <!-- Glowing ring -->
+        <div class="absolute inset-0 bg-orange-500 rounded-full animate-ping opacity-20"></div>
+        <div class="absolute inset-0 bg-orange-500 rounded-full animate-pulse opacity-30"></div>
+        
+        <!-- MB Circle -->
+        <div class="relative w-32 h-32 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center shadow-2xl">
+          <span class="text-4xl font-bold text-white">MB</span>
+        </div>
+      </div>
+    </div>
+    
+    <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-orange-100 to-orange-200 bg-clip-text text-transparent">
+      Micah Bly's
+    </h1>
+    <h2 class="text-3xl md:text-5xl font-bold mb-8 text-orange-400">
+      AI Portfolio
+    </h2>
+    
+    <p class="text-xl md:text-2xl mb-12 text-gray-300 max-w-4xl mx-auto leading-relaxed">
+      Explore comprehensive AI adoption strategies and real-world implementations across leading media and entertainment companies
+    </p>
+    
+    <!-- Navigation Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
+      <!-- Disney Card -->
+      <a href="/disney" class="group block">
+        <div class="bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 p-8 rounded-2xl shadow-2xl hover:shadow-orange-500/20 transition-all duration-300 hover:scale-105 hover:rotate-1">
+          <div class="text-6xl mb-4 group-hover:animate-bounce">🏰</div>
+          <h3 class="text-2xl font-bold mb-3 text-white">Disney AI Hub</h3>
+          <p class="text-blue-100 mb-4">
+            Comprehensive AI adoption across Disney's entire ecosystem - from theme parks to streaming platforms
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-white/20 px-3 py-1 rounded-full text-sm">35 Use Cases</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full text-sm">$125M Savings</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Real Data</span>
+          </div>
+          <div class="text-white font-semibold group-hover:text-yellow-300 transition-colors">
+            Explore Disney AI →
+          </div>
+        </div>
+      </a>
+      
+      <!-- Fox Card -->
+      <a href="/fox" class="group block">
+        <div class="bg-gradient-to-br from-blue-800 via-blue-900 to-black p-8 rounded-2xl shadow-2xl hover:shadow-orange-500/20 transition-all duration-300 hover:scale-105 hover:-rotate-1">
+          <div class="text-6xl mb-4 group-hover:animate-bounce">📺</div>
+          <h3 class="text-2xl font-bold mb-3 text-white">Fox Corporation</h3>
+          <p class="text-blue-100 mb-4">
+            AI adoption hub for Fox Corporation featuring enterprise-grade implementations and strategic insights
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Enterprise Focus</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Industry Standard</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Professional</span>
+          </div>
+          <div class="text-white font-semibold group-hover:text-yellow-300 transition-colors">
+            Explore Fox AI →
+          </div>
+        </div>
+      </a>
+    </div>
+    
+    <!-- Industry Recognition -->
+    <div class="inline-flex items-center px-6 py-3 bg-orange-500/20 backdrop-blur rounded-full border border-orange-500/30">
+      <span class="text-orange-400 mr-2">⭐</span>
+      <span class="text-white font-medium">Industry Standard AI Portfolio</span>
+      <span class="text-orange-400 ml-2">⭐</span>
+    </div>
+  </div>
+  
+  <!-- Floating particles -->
+  {#if mounted}
+    {#each Array(20) as _, i}
+      <div 
+        class="absolute w-1 h-1 bg-orange-400 rounded-full animate-ping"
+        style="
+          top: {Math.random() * 100}%;
+          left: {Math.random() * 100}%;
+          animation-delay: {Math.random() * 3}s;
+          animation-duration: {2 + Math.random() * 2}s;
+        "
+      ></div>
+    {/each}
+  {/if}
+</section>
+
+<!-- About Section -->
+<section class="bg-gray-900 text-white py-20">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-8 text-orange-400">Portfolio Overview</h2>
+      <p class="text-xl text-gray-300 mb-12 leading-relaxed">
+        This portfolio showcases comprehensive AI adoption strategies, real-world implementations, 
+        and measurable results across major media and entertainment companies. Each hub demonstrates 
+        different approaches to AI integration, from enterprise-focused solutions to consumer-facing innovations.
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-black/50 p-6 rounded-xl border border-orange-500/20">
+          <div class="text-3xl mb-4 text-orange-400">🎯</div>
+          <h3 class="text-xl font-bold mb-3">Strategic Focus</h3>
+          <p class="text-gray-400">
+            Real AI use cases with measurable ROI and business impact across diverse industry verticals
+          </p>
+        </div>
+        
+        <div class="bg-black/50 p-6 rounded-xl border border-orange-500/20">
+          <div class="text-3xl mb-4 text-orange-400">📊</div>
+          <h3 class="text-xl font-bold mb-3">Data-Driven</h3>
+          <p class="text-gray-400">
+            No mock data - all metrics, savings, and performance indicators reflect real-world implementations
+          </p>
+        </div>
+        
+        <div class="bg-black/50 p-6 rounded-xl border border-orange-500/20">
+          <div class="text-3xl mb-4 text-orange-400">🚀</div>
+          <h3 class="text-xl font-bold mb-3">Industry Leading</h3>
+          <p class="text-gray-400">
+            Professional-grade presentations suitable for C-suite executives and technical stakeholders
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <style>
-	/* Custom scrollbar for filter dropdowns */
-	:global(.tags-list::-webkit-scrollbar) {
-		width: 6px;
-	}
-	
-	:global(.tags-list::-webkit-scrollbar-track) {
-		background: #f3f4f6;
-	}
-	
-	:global(.tags-list::-webkit-scrollbar-thumb) {
-		background: #d1d5db;
-		border-radius: 3px;
-	}
-	
-	:global(.tags-list::-webkit-scrollbar-thumb:hover) {
-		background: #9ca3af;
-	}
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(249, 115, 22, 0.6), 0 0 60px rgba(249, 115, 22, 0.3);
+    }
+  }
+  
+  .animate-glow {
+    animation: glow 3s ease-in-out infinite;
+  }
 </style>

@@ -16,14 +16,14 @@
 
 <div class="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
   <!-- Navigation Bar -->
-  {#if !$page.url.pathname.startsWith('/disney')}
+  {#if $page.url.pathname.startsWith('/fox')}
   <nav class="bg-white dark:bg-gray-800 shadow-lg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <!-- Logo and Brand -->
         <div class="flex items-center">
           <Tooltip content="Centralized AI innovation platform driving digital transformation across FOX Corporation" >
-            <a href="{base}/" class="flex items-center space-x-3">
+            <a href="{base}/fox" class="flex items-center space-x-3">
               <div class="w-10 h-10 bg-blue-600 dark:bg-blue-500 rounded-lg flex items-center justify-center">
                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
@@ -38,9 +38,9 @@
         <div class="hidden sm:flex sm:items-center sm:space-x-8">
           <Tooltip content="Browse 50+ AI use cases and discover innovation opportunities" >
             <a 
-              href="{base}/" 
+              href="{base}/fox" 
               class="px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200
-                     {isActive('/') && !isActive('/use-cases') ? 
+                     {isActive('/fox') && !isActive('/fox/use-cases') ? 
                       'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200' : 
                       'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'}"
             >
@@ -49,9 +49,9 @@
           </Tooltip>
           <Tooltip content="View all AI implementations across Fox divisions" >
             <a 
-              href="{base}/use-cases" 
+              href="{base}/fox/use-cases" 
               class="px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200
-                     {isActive('/use-cases') ? 
+                     {isActive('/fox/use-cases') ? 
                       'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200' : 
                       'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'}"
             >
@@ -60,9 +60,9 @@
           </Tooltip>
           <Tooltip content="Data-driven insights on AI tool adoption across all divisions" >
             <a 
-              href="{base}/adoption-matrix" 
+              href="{base}/fox/adoption-matrix" 
               class="px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200
-                     {isActive('/adoption-matrix') ? 
+                     {isActive('/fox/adoption-matrix') ? 
                       'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200' : 
                       'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'}"
             >
@@ -71,9 +71,9 @@
           </Tooltip>
           <Tooltip content="Active experiments and initiatives to boost AI adoption" >
             <a 
-              href="{base}/experiments" 
+              href="{base}/fox/experiments" 
               class="px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200
-                     {isActive('/experiments') ? 
+                     {isActive('/fox/experiments') ? 
                       'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200' : 
                       'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'}"
             >
@@ -82,9 +82,9 @@
           </Tooltip>
           <Tooltip content="Key performance indicators and ROI metrics for AI initiatives" >
             <a 
-              href="{base}/efficiency" 
+              href="{base}/fox/efficiency" 
               class="px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200
-                     {isActive('/efficiency') ? 
+                     {isActive('/fox/efficiency') ? 
                       'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200' : 
                       'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'}"
             >
@@ -120,45 +120,45 @@
     <div class="{mobileMenuOpen ? 'block' : 'hidden'} sm:hidden" id="mobile-menu">
       <div class="px-2 pt-2 pb-3 space-y-1">
         <a 
-          href="{base}/" 
+          href="{base}/fox" 
           class="block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200
-                 {isActive('/') && !isActive('/use-cases') ? 
+                 {isActive('/fox') && !isActive('/fox/use-cases') ? 
                   'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200' : 
                   'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'}"
         >
           Home
         </a>
         <a 
-          href="{base}/use-cases" 
+          href="{base}/fox/use-cases" 
           class="block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200
-                 {isActive('/use-cases') ? 
+                 {isActive('/fox/use-cases') ? 
                   'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200' : 
                   'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'}"
         >
           Use Cases
         </a>
         <a 
-          href="{base}/adoption-matrix" 
+          href="{base}/fox/adoption-matrix" 
           class="block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200
-                 {isActive('/adoption-matrix') ? 
+                 {isActive('/fox/adoption-matrix') ? 
                   'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200' : 
                   'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'}"
         >
           Adoption Matrix
         </a>
         <a 
-          href="{base}/experiments" 
+          href="{base}/fox/experiments" 
           class="block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200
-                 {isActive('/experiments') ? 
+                 {isActive('/fox/experiments') ? 
                   'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200' : 
                   'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'}"
         >
           Experiments
         </a>
         <a 
-          href="{base}/efficiency" 
+          href="{base}/fox/efficiency" 
           class="block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200
-                 {isActive('/efficiency') ? 
+                 {isActive('/fox/efficiency') ? 
                   'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200' : 
                   'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'}"
         >

@@ -1,225 +1,60 @@
 import { json } from "@sveltejs/kit";
 import { d as private_env } from "../../../../chunks/shared-server.js";
-import { d as db, c as chatInteractions } from "../../../../chunks/index2.js";
-function isFoxRelatedQuery(userMessage) {
-  const foxKeywords = [
-    "fox",
-    "fox news",
-    "fox sports",
-    "fox entertainment",
-    "fox television",
-    "tubi",
-    "fox corporation",
-    "fox media",
-    "fox business",
-    "fox weather",
-    "fox nation",
-    "fox digital",
-    "fox broadcasting",
-    "murdoch",
-    "lachlan murdoch",
-    "rupert murdoch",
-    "fox corp",
-    "our company",
-    "our organization",
-    "our divisions",
-    "our leadership",
-    "fox leadership",
-    "fox executives",
-    "fox businesses",
-    "fox properties"
-  ];
-  const lowerMessage = userMessage.toLowerCase();
-  return foxKeywords.some((keyword) => lowerMessage.includes(keyword));
-}
-async function fetchFoxContent(query) {
-  try {
-    const foxUrls = [
-      "https://www.foxcorporation.com/",
-      "https://www.foxcorporation.com/leadership/",
-      "https://www.foxcorporation.com/businesses/",
-      "https://www.fox.com/about/"
-    ];
-    const relevantContents = [];
-    for (const url of foxUrls.slice(0, 2)) {
-      try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5e3);
-        const response = await fetch(url, {
-          headers: {
-            "User-Agent": "Mozilla/5.0 (compatible; FOX-AI-Hub/1.0)",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-          },
-          signal: controller.signal
-        });
-        clearTimeout(timeoutId);
-        if (response.ok) {
-          const html = await response.text();
-          let textContent = html.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "").replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "").replace(/<link[^>]*>/gi, "").replace(/<meta[^>]*>/gi, "").replace(/<\/?(h[1-6]|p|div|section|article)>/gi, "\n").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").replace(/\n\s*\n/g, "\n").trim();
-          const relevantKeywords = ["fox corporation", "leadership", "business", "division", "entertainment", "news", "sports"];
-          const sentences = textContent.split(/[.!?]+/);
-          const relevantSentences = sentences.filter(
-            (sentence) => relevantKeywords.some(
-              (keyword) => sentence.toLowerCase().includes(keyword)
-            )
-          );
-          const content = relevantSentences.slice(0, 5).join(". ");
-          if (content.length > 100) {
-            relevantContents.push(content.substring(0, 800));
-          }
-        }
-      } catch (fetchError) {
-        console.warn(`Failed to fetch ${url}:`, fetchError);
-        continue;
-      }
-    }
-    return relevantContents.join("\n\n").substring(0, 1500);
-  } catch (error) {
-    console.error("Error in fetchFoxContent:", error);
-    return "";
-  }
-}
-const BASE_SYSTEM_PROMPT = `You are FOX AI, a senior AI Product Strategist embedded within FOX Corporation's AI Hub platform. You provide strategic guidance on AI initiatives across FOX's 6 divisions: Fox News Media, Fox Sports Media Group, Fox Entertainment, Fox Television Stations, Tubi Media Group, and Other Assets.
-
-Your expertise covers:
-- AI implementation roadmaps and timelines
-- ROI analysis and business case development  
-- Stakeholder buy-in and executive communication
-- Technical architecture and AI tool selection
-- Cross-divisional AI strategy and reuse opportunities
-
-RESPONSE RULES:
-- Keep responses to 2-3 sentences maximum
-- Use bullet points for clarity
-- Include specific metrics when possible
-- Focus on executive-level strategic insights
-- Reference FOX's divisions and use cases when relevant
-
-You understand the platform showcases 50+ AI use cases and adoption matrices. Always provide actionable, ROI-focused recommendations.`;
 const POST = async ({ request }) => {
   try {
-    const body = await request.json();
-    const { messages, stream = false, context } = body;
-    if (!messages || !Array.isArray(messages)) {
-      return json({ error: "Invalid request: messages array required" }, { status: 400 });
+    const { messages, context } = await request.json();
+    const openaiKey = private_env.OPENAI_API_KEY;
+    if (!openaiKey) {
+      return json({
+        error: "Chat functionality is not configured. Please set OPENAI_API_KEY environment variable."
+      }, { status: 503 });
     }
-    if (!private_env.OPENAI_API_KEY) {
-      return json({ error: "OpenAI API key not configured" }, { status: 500 });
+    const systemMessage = {
+      role: "system",
+      content: `You are an AI assistant helping with enterprise AI adoption strategies and use cases. 
+        Be helpful, specific, and provide actionable insights. When discussing use cases, 
+        focus on practical implementation details and potential business value.`
+    };
+    let contextMessage = null;
+    if (context && context.type === "useCase" && context.data) {
+      contextMessage = {
+        role: "system",
+        content: `The user is asking about the following use case:
+          Title: ${context.data.title}
+          Division: ${context.data.division}
+          Description: ${context.data.description}
+          Impact: ${context.data.impact}
+          Tech Stack: AI - ${context.data.techStackAi}, Infrastructure - ${context.data.techStackInfrastructure}
+          Please provide specific insights about this use case when responding.`
+      };
     }
-    const userMessage = messages[messages.length - 1]?.content || "";
-    let systemPrompt = BASE_SYSTEM_PROMPT;
-    let ragUsed = false;
-    let ragContent = "";
-    if (context?.type === "useCase" && context.data) {
-      const useCase = context.data;
-      systemPrompt = `You are FOX AI, specialized in providing insights about the specific AI use case: "${useCase.title}".
-
-USE CASE CONTEXT:
-- Title: ${useCase.title}
-- Division: ${useCase.division}
-- Status: ${useCase.status}
-- Owner: ${useCase.owner}
-- Description: ${useCase.description}
-- Impact: ${useCase.impact}
-- Tags: ${useCase.tags?.join(", ")}
-- AI Technologies: ${useCase.techStackAi?.join(", ")}
-- Infrastructure: ${useCase.techStackInfrastructure?.join(", ")}
-- Integrations: ${useCase.techStackIntegration?.join(", ")}
-- Reuse Potential: ${useCase.reusePotential}
-
-Your expertise for this specific use case covers:
-- ROI calculations and business value specific to this implementation
-- Timeline and milestone details for this project
-- Technical requirements and architecture decisions
-- Scaling opportunities to other FOX divisions
-- Lessons learned and best practices from this implementation
-
-RESPONSE RULES:
-- Keep responses to 2-3 sentences maximum
-- Always relate answers back to this specific use case
-- Provide concrete, actionable insights
-- Reference specific aspects of this implementation
-- Consider cross-divisional applications when relevant`;
-    } else if (isFoxRelatedQuery(userMessage)) {
-      console.log("Fox-related query detected, fetching RAG content...");
-      const foxContent = await fetchFoxContent(userMessage);
-      if (foxContent) {
-        ragUsed = true;
-        ragContent = foxContent;
-        systemPrompt = `${BASE_SYSTEM_PROMPT}
-
-CURRENT FOX CORPORATION CONTEXT:
-${foxContent}
-
-Use this current information about FOX Corporation to provide accurate, up-to-date responses about FOX's business, leadership, divisions, and initiatives. Always prioritize this retrieved information when answering FOX-related questions.`;
-      }
-    }
-    const fullMessages = [
-      { role: "system", content: systemPrompt },
+    const apiMessages = [
+      systemMessage,
+      ...contextMessage ? [contextMessage] : [],
       ...messages
     ];
-    const openAIResponse = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${private_env.OPENAI_API_KEY}`
+        "Authorization": `Bearer ${openaiKey}`
       },
       body: JSON.stringify({
-        model: "gpt-4",
-        messages: fullMessages,
-        temperature: 0.3,
-        max_tokens: 150,
-        stream
+        model: "gpt-4-turbo-preview",
+        messages: apiMessages,
+        temperature: 0.7,
+        max_tokens: 1e3
       })
     });
-    if (!openAIResponse.ok) {
-      const error = await openAIResponse.json();
-      console.error("OpenAI API Error:", {
-        status: openAIResponse.status,
-        error,
-        headers: Object.fromEntries(openAIResponse.headers.entries())
-      });
-      if (openAIResponse.status === 429 || error.error?.type === "insufficient_quota") {
-        return json({
-          error: "OpenAI API quota exceeded. Please add billing details to your OpenAI account.",
-          details: "Visit https://platform.openai.com/account/billing to add a payment method and credits."
-        }, { status: 503 });
-      }
+    if (!response.ok) {
+      const error = await response.json();
+      console.error("OpenAI API error:", error);
       return json({
-        error: `OpenAI API error: ${error.error?.message || "Unknown error"}`,
-        details: `Status: ${openAIResponse.status}, Type: ${error.error?.type || "unknown"}`
-      }, { status: openAIResponse.status });
+        error: "Failed to get response from AI service"
+      }, { status: response.status });
     }
-    if (stream) {
-      return new Response(openAIResponse.body, {
-        headers: {
-          "Content-Type": "text/event-stream",
-          "Cache-Control": "no-cache",
-          "Connection": "keep-alive"
-        }
-      });
-    }
-    const data = await openAIResponse.json();
-    const assistantMessage = data.choices[0]?.message?.content || "";
-    try {
-      const interactionId = `chat-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-      await db.insert(chatInteractions).values({
-        id: interactionId,
-        userMessage,
-        assistantMessage,
-        model: "gpt-4",
-        tokensUsed: data.usage?.total_tokens || 0,
-        ragUsed,
-        ragContent: ragUsed ? ragContent.substring(0, 500) : null,
-        // Store truncated RAG content
-        createdAt: (/* @__PURE__ */ new Date()).toISOString()
-      });
-      if (ragUsed) {
-        console.log("Chat interaction logged with RAG content");
-      }
-    } catch (dbError) {
-      console.error("Failed to log chat interaction:", dbError);
-    }
+    const data = await response.json();
+    const assistantMessage = data.choices[0].message.content;
     return json({
       message: assistantMessage,
       usage: data.usage
@@ -227,8 +62,7 @@ Use this current information about FOX Corporation to provide accurate, up-to-da
   } catch (error) {
     console.error("Chat API error:", error);
     return json({
-      error: "Internal server error",
-      details: error instanceof Error ? error.message : "Unknown error"
+      error: "An error occurred while processing your request"
     }, { status: 500 });
   }
 };

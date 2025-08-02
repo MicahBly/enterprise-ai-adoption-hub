@@ -211,7 +211,7 @@
 <!-- Hero Section with Searchlight Theme -->
 <section class="relative overflow-hidden bg-gradient-to-b from-blue-900 via-blue-800 to-gold-600 text-white">
   <div class="absolute inset-0 opacity-20">
-    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3CradialGradient id="searchlight"%3E%3Cstop offset="0%25" stop-color="%23ffffff" stop-opacity="0.3"/%3E%3Cstop offset="100%25" stop-color="%23ffffff" stop-opacity="0"/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx="50" cy="50" r="40" fill="url(%23searchlight)"/%3E%3C/svg%3E')] bg-no-repeat bg-center"></div>
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%22100%22%20height%3D%22100%22%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cdefs%3E%3CradialGradient%20id%3D%22searchlight%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220.3%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2240%22%20fill%3D%22url%28%23searchlight%29%22/%3E%3C/svg%3E')] bg-no-repeat bg-center"></div>
   </div>
   
   <!-- Animated Searchlights -->

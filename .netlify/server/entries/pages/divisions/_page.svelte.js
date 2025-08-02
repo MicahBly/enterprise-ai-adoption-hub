@@ -1,4 +1,4 @@
-import { c as create_ssr_component, e as escape, v as validate_component, d as each } from "../../../chunks/ssr.js";
+import { c as create_ssr_component, e as escape, v as validate_component, b as each } from "../../../chunks/ssr.js";
 import { C as Card, a as CardHeader, b as CardTitle, c as CardContent } from "../../../chunks/CardTitle.js";
 import { T as Tooltip } from "../../../chunks/Tooltip.js";
 const divisionsData = {

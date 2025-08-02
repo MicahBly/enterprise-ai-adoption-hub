@@ -31,6 +31,9 @@ function compute_rest_props(props, keys) {
   for (const k in props) if (!keys.has(k) && k[0] !== "$") rest[k] = props[k];
   return rest;
 }
+function null_to_empty(value) {
+  return value == null ? "" : value;
+}
 function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
   return new CustomEvent(type, { detail, bubbles, cancelable });
 }
@@ -254,21 +257,22 @@ function style_object_to_string(style_object) {
 }
 export {
   subscribe as a,
-  add_attribute as b,
+  each as b,
   create_ssr_component as c,
-  each as d,
+  add_attribute as d,
   escape as e,
-  createEventDispatcher as f,
+  safe_not_equal as f,
   getContext as g,
   compute_rest_props as h,
-  spread as i,
-  escape_object as j,
-  escape_attribute_value as k,
-  safe_not_equal as l,
+  is_function as i,
+  spread as j,
+  escape_object as k,
+  escape_attribute_value as l,
   missing_component as m,
   noop as n,
   onDestroy as o,
-  is_function as p,
+  null_to_empty as p,
+  createEventDispatcher as q,
   run_all as r,
   setContext as s,
   validate_component as v

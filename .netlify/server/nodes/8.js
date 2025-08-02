@@ -1,8 +1,8 @@
-import * as server from '../entries/pages/fox/_page.server.ts.js';
+
 
 export const index = 8;
-export { server };
-export const server_id = "src/routes/fox/+page.server.ts";
-export const imports = [];
-export const stylesheets = [];
+let component_cache;
+export const component = async () => component_cache ??= (await import('../entries/pages/disney/cruises/_page.svelte.js')).default;
+export const imports = ["_app/immutable/nodes/8.HvBtzRFx.js","_app/immutable/chunks/BhKWKMy1.js","_app/immutable/chunks/CwgNFFi2.js","_app/immutable/chunks/IHki7fMi.js"];
+export const stylesheets = ["_app/immutable/assets/8.B5_7xjpd.css"];
 export const fonts = [];

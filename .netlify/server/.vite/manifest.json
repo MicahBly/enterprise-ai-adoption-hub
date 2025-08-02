@@ -10,6 +10,19 @@
       "_shared-server.js"
     ]
   },
+  "_AdoptionMatrix.js": {
+    "file": "chunks/AdoptionMatrix.js",
+    "name": "AdoptionMatrix",
+    "imports": [
+      "_ssr.js",
+      "_Icon.js",
+      "_paths.js",
+      "_Tooltip.js"
+    ],
+    "css": [
+      "_app/immutable/assets/AdoptionMatrix.DlMfsGwZ.css"
+    ]
+  },
   "_Button.js": {
     "file": "chunks/Button.js",
     "name": "Button",
@@ -23,6 +36,10 @@
     "imports": [
       "_ssr.js"
     ]
+  },
+  "_EnablementPathCompact.svelte_svelte_type_style_lang.js": {
+    "file": "_app/immutable/assets/EnablementPathCompact.D5x6Yn4t.css",
+    "src": "_EnablementPathCompact.svelte_svelte_type_style_lang.js"
   },
   "_FilterBar.svelte_svelte_type_style_lang.js": {
     "file": "_app/immutable/assets/FilterBar.BuG3uOO0.css",
@@ -102,10 +119,6 @@
       "_ssr.js"
     ]
   },
-  "_index2.js": {
-    "file": "chunks/index2.js",
-    "name": "index"
-  },
   "_internal.js": {
     "file": "chunks/internal.js",
     "name": "internal",
@@ -160,6 +173,14 @@
       "_paths.js"
     ]
   },
+  "_users.js": {
+    "file": "chunks/users.js",
+    "name": "users",
+    "imports": [
+      "_ssr.js",
+      "_Icon.js"
+    ]
+  },
   "node_modules/@sveltejs/kit/src/runtime/components/svelte-4/error.svelte": {
     "file": "entries/fallbacks/error.svelte.js",
     "name": "entries/fallbacks/error.svelte",
@@ -195,7 +216,7 @@
       "_Tooltip.js"
     ],
     "css": [
-      "_app/immutable/assets/_layout.0oVpaqx2.css"
+      "_app/immutable/assets/_layout.B0FJjwSf.css"
     ]
   },
   "src/routes/+page.svelte": {
@@ -204,13 +225,10 @@
     "src": "src/routes/+page.svelte",
     "isEntry": true,
     "imports": [
-      "_ssr.js",
-      "_UseCaseGrid.js",
-      "_Tooltip.js",
-      "_useCases.js"
+      "_ssr.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.4nCWI75E.css"
+      "_app/immutable/assets/_page.w_psJ5I7.css"
     ]
   },
   "src/routes/adoption-level/[level]/+page.svelte": {
@@ -238,16 +256,12 @@
     "isEntry": true,
     "imports": [
       "_ssr.js",
-      "_paths.js",
-      "_Tooltip.js",
+      "_AdoptionMatrix.js",
       "_Button.js",
       "_CardTitle.js",
       "_useCases.js",
-      "_Icon.js",
+      "_paths.js",
       "_download.js"
-    ],
-    "css": [
-      "_app/immutable/assets/_page.DlMfsGwZ.css"
     ]
   },
   "src/routes/api/adoption-matrix/+server.ts": {
@@ -265,8 +279,7 @@
     "src": "src/routes/api/chat/+server.ts",
     "isEntry": true,
     "imports": [
-      "_shared-server.js",
-      "_index2.js"
+      "_shared-server.js"
     ]
   },
   "src/routes/api/efficiency/+server.ts": {
@@ -275,7 +288,7 @@
     "src": "src/routes/api/efficiency/+server.ts",
     "isEntry": true,
     "imports": [
-      "_index2.js"
+      "_use-cases-db.js"
     ]
   },
   "src/routes/api/experiments/+server.ts": {
@@ -303,6 +316,346 @@
     "isEntry": true,
     "imports": [
       "_use-cases-db.js"
+    ]
+  },
+  "src/routes/disney/+layout.svelte": {
+    "file": "entries/pages/disney/_layout.svelte.js",
+    "name": "entries/pages/disney/_layout.svelte",
+    "src": "src/routes/disney/+layout.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_stores.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_layout.DNZCAGcy.css"
+    ]
+  },
+  "src/routes/disney/+page.svelte": {
+    "file": "entries/pages/disney/_page.svelte.js",
+    "name": "entries/pages/disney/_page.svelte",
+    "src": "src/routes/disney/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.CspOJeH9.css"
+    ]
+  },
+  "src/routes/disney/adoption-matrix/+page.svelte": {
+    "file": "entries/pages/disney/adoption-matrix/_page.svelte.js",
+    "name": "entries/pages/disney/adoption-matrix/_page.svelte",
+    "src": "src/routes/disney/adoption-matrix/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "src/routes/disney/cruises/+page.svelte": {
+    "file": "entries/pages/disney/cruises/_page.svelte.js",
+    "name": "entries/pages/disney/cruises/_page.svelte",
+    "src": "src/routes/disney/cruises/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.B5_7xjpd.css"
+    ]
+  },
+  "src/routes/disney/efficiency/+page.svelte": {
+    "file": "entries/pages/disney/efficiency/_page.svelte.js",
+    "name": "entries/pages/disney/efficiency/_page.svelte",
+    "src": "src/routes/disney/efficiency/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "src/routes/disney/entertainment/+page.svelte": {
+    "file": "entries/pages/disney/entertainment/_page.svelte.js",
+    "name": "entries/pages/disney/entertainment/_page.svelte",
+    "src": "src/routes/disney/entertainment/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "src/routes/disney/espn/+page.svelte": {
+    "file": "entries/pages/disney/espn/_page.svelte.js",
+    "name": "entries/pages/disney/espn/_page.svelte",
+    "src": "src/routes/disney/espn/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "src/routes/disney/espn/fantasy/+page.svelte": {
+    "file": "entries/pages/disney/espn/fantasy/_page.svelte.js",
+    "name": "entries/pages/disney/espn/fantasy/_page.svelte",
+    "src": "src/routes/disney/espn/fantasy/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.CO7kCEw0.css"
+    ]
+  },
+  "src/routes/disney/espn/live/+page.svelte": {
+    "file": "entries/pages/disney/espn/live/_page.svelte.js",
+    "name": "entries/pages/disney/espn/live/_page.svelte",
+    "src": "src/routes/disney/espn/live/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.DaOzI50t.css"
+    ]
+  },
+  "src/routes/disney/espn/news/+page.svelte": {
+    "file": "entries/pages/disney/espn/news/_page.svelte.js",
+    "name": "entries/pages/disney/espn/news/_page.svelte",
+    "src": "src/routes/disney/espn/news/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.EQDFaCgd.css"
+    ]
+  },
+  "src/routes/disney/espn/plus/+page.svelte": {
+    "file": "entries/pages/disney/espn/plus/_page.svelte.js",
+    "name": "entries/pages/disney/espn/plus/_page.svelte",
+    "src": "src/routes/disney/espn/plus/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.Cb-JmO4g.css"
+    ]
+  },
+  "src/routes/disney/experiences/+page.svelte": {
+    "file": "entries/pages/disney/experiences/_page.svelte.js",
+    "name": "entries/pages/disney/experiences/_page.svelte",
+    "src": "src/routes/disney/experiences/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "src/routes/disney/experiments/+page.svelte": {
+    "file": "entries/pages/disney/experiments/_page.svelte.js",
+    "name": "entries/pages/disney/experiments/_page.svelte",
+    "src": "src/routes/disney/experiments/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "src/routes/disney/games/+page.svelte": {
+    "file": "entries/pages/disney/games/_page.svelte.js",
+    "name": "entries/pages/disney/games/_page.svelte",
+    "src": "src/routes/disney/games/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.CspOJeH9.css"
+    ]
+  },
+  "src/routes/disney/movies/+page.svelte": {
+    "file": "entries/pages/disney/movies/_page.svelte.js",
+    "name": "entries/pages/disney/movies/_page.svelte",
+    "src": "src/routes/disney/movies/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "src/routes/disney/music/+page.svelte": {
+    "file": "entries/pages/disney/music/_page.svelte.js",
+    "name": "entries/pages/disney/music/_page.svelte",
+    "src": "src/routes/disney/music/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.5KsZcokn.css"
+    ]
+  },
+  "src/routes/disney/parks/+page.svelte": {
+    "file": "entries/pages/disney/parks/_page.svelte.js",
+    "name": "entries/pages/disney/parks/_page.svelte",
+    "src": "src/routes/disney/parks/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "src/routes/disney/princess/+page.svelte": {
+    "file": "entries/pages/disney/princess/_page.svelte.js",
+    "name": "entries/pages/disney/princess/_page.svelte",
+    "src": "src/routes/disney/princess/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.CuHpEVZz.css"
+    ]
+  },
+  "src/routes/disney/store/+page.svelte": {
+    "file": "entries/pages/disney/store/_page.svelte.js",
+    "name": "entries/pages/disney/store/_page.svelte",
+    "src": "src/routes/disney/store/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.DJSUGA8O.css"
+    ]
+  },
+  "src/routes/disney/streaming/+page.svelte": {
+    "file": "entries/pages/disney/streaming/_page.svelte.js",
+    "name": "entries/pages/disney/streaming/_page.svelte",
+    "src": "src/routes/disney/streaming/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "src/routes/disney/studios/+page.svelte": {
+    "file": "entries/pages/disney/studios/_page.svelte.js",
+    "name": "entries/pages/disney/studios/_page.svelte",
+    "src": "src/routes/disney/studios/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.Bn0M1a4m.css"
+    ]
+  },
+  "src/routes/disney/studios/20th-century/+page.svelte": {
+    "file": "entries/pages/disney/studios/20th-century/_page.svelte.js",
+    "name": "entries/pages/disney/studios/20th-century/_page.svelte",
+    "src": "src/routes/disney/studios/20th-century/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.B0EbAT1R.css"
+    ]
+  },
+  "src/routes/disney/studios/lucasfilm/+page.svelte": {
+    "file": "entries/pages/disney/studios/lucasfilm/_page.svelte.js",
+    "name": "entries/pages/disney/studios/lucasfilm/_page.svelte",
+    "src": "src/routes/disney/studios/lucasfilm/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.DrFcD9TV.css"
+    ]
+  },
+  "src/routes/disney/studios/marvel/+page.svelte": {
+    "file": "entries/pages/disney/studios/marvel/_page.svelte.js",
+    "name": "entries/pages/disney/studios/marvel/_page.svelte",
+    "src": "src/routes/disney/studios/marvel/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.D63wQzQ9.css"
+    ]
+  },
+  "src/routes/disney/studios/pixar/+page.svelte": {
+    "file": "entries/pages/disney/studios/pixar/_page.svelte.js",
+    "name": "entries/pages/disney/studios/pixar/_page.svelte",
+    "src": "src/routes/disney/studios/pixar/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.BMOP642z.css"
+    ]
+  },
+  "src/routes/disney/studios/searchlight/+page.svelte": {
+    "file": "entries/pages/disney/studios/searchlight/_page.svelte.js",
+    "name": "entries/pages/disney/studios/searchlight/_page.svelte",
+    "src": "src/routes/disney/studios/searchlight/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.Btby8kQb.css"
+    ]
+  },
+  "src/routes/disney/studios/walt-disney-animation/+page.svelte": {
+    "file": "entries/pages/disney/studios/walt-disney-animation/_page.svelte.js",
+    "name": "entries/pages/disney/studios/walt-disney-animation/_page.svelte",
+    "src": "src/routes/disney/studios/walt-disney-animation/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.DCbsqyZ7.css"
+    ]
+  },
+  "src/routes/disney/tv-shows/+page.svelte": {
+    "file": "entries/pages/disney/tv-shows/_page.svelte.js",
+    "name": "entries/pages/disney/tv-shows/_page.svelte",
+    "src": "src/routes/disney/tv-shows/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_paths.js"
+    ]
+  },
+  "src/routes/disney/tv/+page.svelte": {
+    "file": "entries/pages/disney/tv/_page.svelte.js",
+    "name": "entries/pages/disney/tv/_page.svelte",
+    "src": "src/routes/disney/tv/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_paths.js"
+    ]
+  },
+  "src/routes/disney/use-cases/+page.svelte": {
+    "file": "entries/pages/disney/use-cases/_page.svelte.js",
+    "name": "entries/pages/disney/use-cases/_page.svelte",
+    "src": "src/routes/disney/use-cases/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_stores.js"
+    ]
+  },
+  "src/routes/disney/vacation-club/+page.svelte": {
+    "file": "entries/pages/disney/vacation-club/_page.svelte.js",
+    "name": "entries/pages/disney/vacation-club/_page.svelte",
+    "src": "src/routes/disney/vacation-club/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.GN33FUMt.css"
     ]
   },
   "src/routes/divisions/+page.svelte": {
@@ -338,15 +691,90 @@
       "_ssr.js",
       "_CardTitle.js",
       "_Button.js",
-      "_Icon.js",
+      "_users.js",
       "_trending-up.js"
     ]
   },
-  "src/routes/fox/+page.server.ts": {
-    "file": "entries/pages/fox/_page.server.ts.js",
-    "name": "entries/pages/fox/_page.server.ts",
-    "src": "src/routes/fox/+page.server.ts",
-    "isEntry": true
+  "src/routes/fox/+page.svelte": {
+    "file": "entries/pages/fox/_page.svelte.js",
+    "name": "entries/pages/fox/_page.svelte",
+    "src": "src/routes/fox/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_UseCaseGrid.js",
+      "_Tooltip.js",
+      "_useCases.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.4nCWI75E.css"
+    ]
+  },
+  "src/routes/fox/adoption-matrix/+page.svelte": {
+    "file": "entries/pages/fox/adoption-matrix/_page.svelte.js",
+    "name": "entries/pages/fox/adoption-matrix/_page.svelte",
+    "src": "src/routes/fox/adoption-matrix/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_AdoptionMatrix.js",
+      "_Button.js",
+      "_CardTitle.js",
+      "_useCases.js",
+      "_paths.js",
+      "_download.js"
+    ]
+  },
+  "src/routes/fox/efficiency/+page.svelte": {
+    "file": "entries/pages/fox/efficiency/_page.svelte.js",
+    "name": "entries/pages/fox/efficiency/_page.svelte",
+    "src": "src/routes/fox/efficiency/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_download.js"
+    ]
+  },
+  "src/routes/fox/experiments/+page.svelte": {
+    "file": "entries/pages/fox/experiments/_page.svelte.js",
+    "name": "entries/pages/fox/experiments/_page.svelte",
+    "src": "src/routes/fox/experiments/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_CardTitle.js",
+      "_Button.js",
+      "_users.js",
+      "_trending-up.js"
+    ]
+  },
+  "src/routes/fox/use-cases/+page.svelte": {
+    "file": "entries/pages/fox/use-cases/_page.svelte.js",
+    "name": "entries/pages/fox/use-cases/_page.svelte",
+    "src": "src/routes/fox/use-cases/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_UseCaseGrid.js",
+      "_useCases.js"
+    ]
+  },
+  "src/routes/fox/use-cases/[id]/+page.svelte": {
+    "file": "entries/pages/fox/use-cases/_id_/_page.svelte.js",
+    "name": "entries/pages/fox/use-cases/_id_/_page.svelte",
+    "src": "src/routes/fox/use-cases/[id]/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_client.js",
+      "_useCases.js",
+      "_Tooltip.js",
+      "_arrow-left.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.DXuoz1oi.css",
+      "_app/immutable/assets/EnablementPathCompact.D5x6Yn4t.css"
+    ]
   },
   "src/routes/taxonomy/[tag]/+page.svelte": {
     "file": "entries/pages/taxonomy/_tag_/_page.svelte.js",
@@ -389,7 +817,8 @@
       "_arrow-left.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.DdtO2tV1.css"
+      "_app/immutable/assets/_page.DXuoz1oi.css",
+      "_app/immutable/assets/EnablementPathCompact.D5x6Yn4t.css"
     ]
   }
 }
